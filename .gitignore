@@ -1,0 +1,24 @@
+# Dependências
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Chaves e certificados nativos
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Logs e arquivos do sistema
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.DS_Store
+
+# Variáveis de ambiente locais
+.env*.local
