@@ -1,7 +1,7 @@
 // Tela "Esqueceu a senha?": primeira etapa da recuperação de senha.
 // Requisito atendido: RF 03 (recuperar senha por código enviado ao e-mail).
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import Botao from '../../components/Botao';
 import CampoTexto from '../../components/CampoTexto';
@@ -63,6 +63,12 @@ export default function EsqueceuSenhaScreen({ navigation }) {
         aoPressionar={enviar}
         carregando={carregando}
       />
+
+      <View style={estilosAcesso.espacador} />
+
+      <Pressable onPress={() => navigation.goBack()}>
+        <Text style={estilosAcesso.voltar}>Voltar</Text>
+      </Pressable>
     </Tela>
   );
 }
