@@ -9,6 +9,7 @@ import SeletorHorario from '../../components/SeletorHorario';
 import Tela from '../../components/Tela';
 import OnboardingService from '../../services/OnboardingService';
 import { validarHorarios } from '../../utils/validacoes';
+import ModalBoasVindas from './ModalBoasVindas';
 import estilos from './styles';
 
 const DIAS_DA_SEMANA = [
@@ -32,6 +33,7 @@ export default function DiasJogadosScreen({ navigation }) {
   const [vezesPorDia, setVezesPorDia] = useState(0);
   const [erros, setErros] = useState({});
   const [carregando, setCarregando] = useState(false);
+  const [boasVindasVisivel, setBoasVindasVisivel] = useState(true);
 
   function alternarDia(id) {
     if (diasSelecionados.includes(id)) {
@@ -160,6 +162,11 @@ export default function DiasJogadosScreen({ navigation }) {
           <Text style={estilos.voltar}>Voltar</Text>
         </Pressable>
       </View>
+
+      <ModalBoasVindas
+        visivel={boasVindasVisivel}
+        aoFechar={() => setBoasVindasVisivel(false)}
+      />
     </Tela>
   );
 }

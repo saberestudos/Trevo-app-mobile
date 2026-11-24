@@ -20,7 +20,7 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 | Cadastro | RF 01 |
 | Esqueceu a senha? | RF 03 |
 | Código | RF 03 |
-| Quantos dias por semana jogou? (onboarding) | RF 04 |
+| Quantos dias por semana jogou? (onboarding, com modal de boas-vindas em 4 etapas) | RF 04 |
 
 Fluxo: Login → "Inscreva-se" → Cadastro → Onboarding. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
 

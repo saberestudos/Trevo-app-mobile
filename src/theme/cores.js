@@ -12,8 +12,11 @@ export const cores = {
   fundo: '#FFFFFF',
   fundoCinza: '#F4F4F4',
   fundoTranslucido: 'rgba(255, 255, 255, 0.5)',
+  fundoIlustracao: '#E6F4EA',
+  textoDescricao: 'rgba(0, 0, 0, 0.6)',
+  pontoInativo: '#C9D9CD',
   sombraTexto: 'rgba(0, 0, 0, 0.25)',
-  sobreposicao: 'rgba(0, 0, 0, 0.4)',
+  sobreposicao: 'rgba(0, 0, 0, 0.45)',
   erro: '#D32F2F',
   facebook: '#3C5A99',
 };
