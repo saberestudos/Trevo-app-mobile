@@ -44,6 +44,8 @@ export default function CampoCodigo({ digitos, aoAlterar, erro, estilo }) {
             onKeyPress={(evento) => voltarAoApagar(indice, evento)}
             keyboardType="number-pad"
             maxLength={1}
+            cursorColor={cores.primaria}
+            selectionColor={cores.primaria}
             accessibilityLabel={`Dígito ${indice + 1} do código`}
           />
         ))}
@@ -67,6 +69,7 @@ const estilos = StyleSheet.create({
     borderRadius: 10,
     borderColor: cores.primaria,
     textAlign: 'center',
+    outlineStyle: 'none',
     ...fonte(familias.semiNegrito, 24),
     color: cores.primaria,
   },

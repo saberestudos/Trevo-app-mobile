@@ -36,6 +36,8 @@ export default function CampoTexto({
             value={valor}
             onChangeText={aoAlterar}
             secureTextEntry={senha && !senhaVisivel}
+            cursorColor={cores.primaria}
+            selectionColor={cores.primaria}
             accessibilityLabel={rotulo}
             {...propsDoInput}
           />
@@ -82,6 +84,7 @@ const estilos = StyleSheet.create({
   },
   input: {
     flex: 1,
+    outlineStyle: 'none',
     ...fonte(familias.regular, 15),
     color: cores.texto,
   },
