@@ -14,6 +14,7 @@ export const cores = {
   fundoTranslucido: 'rgba(255, 255, 255, 0.5)',
   fundoIlustracao: '#E6F4EA',
   textoDescricao: 'rgba(0, 0, 0, 0.6)',
+  textoDica: 'rgba(0, 0, 0, 0.55)',
   pontoInativo: '#C9D9CD',
   sombraTexto: 'rgba(0, 0, 0, 0.25)',
   sobreposicao: 'rgba(0, 0, 0, 0.45)',

@@ -1,12 +1,24 @@
 // Modal de boas-vindas que aparece antes das perguntas do onboarding.
-// Mostra uma etapa por vez, com Próximo, Voltar e Pular.
+// Mostra uma etapa por vez. Dá para avançar e voltar pelos botões,
+// arrastando para os lados ou tocando nas bolinhas.
 import { useState } from 'react';
-import { Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  Image,
+  Modal,
+  PanResponder,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import Botao from '../../components/Botao';
 import { cores } from '../../theme/cores';
 import { familias, fonte } from '../../theme/fontes';
 import { ETAPAS_BOAS_VINDAS } from './etapasBoasVindas';
+
+// Distância mínima, em pixels, para o arrasto contar como troca de etapa.
+const DISTANCIA_MINIMA_ARRASTO = 50;
 
 export default function ModalBoasVindas({ visivel, aoFechar }) {
   const [indiceEtapa, setIndiceEtapa] = useState(0);
@@ -23,6 +35,26 @@ export default function ModalBoasVindas({ visivel, aoFechar }) {
     setIndiceEtapa(indiceEtapa + 1);
   }
 
+  function voltar() {
+    if (!primeiraEtapa) {
+      setIndiceEtapa(indiceEtapa - 1);
+    }
+  }
+
+  // Arrastar para a esquerda avança; para a direita, volta.
+  // Na última etapa, arrastar não fecha o modal: isso fica para o botão Começar.
+  const arrasto = PanResponder.create({
+    onMoveShouldSetPanResponder: (_, gesto) =>
+      Math.abs(gesto.dx) > 15 && Math.abs(gesto.dx) > Math.abs(gesto.dy),
+    onPanResponderRelease: (_, gesto) => {
+      if (gesto.dx < -DISTANCIA_MINIMA_ARRASTO && !ultimaEtapa) {
+        setIndiceEtapa(indiceEtapa + 1);
+      } else if (gesto.dx > DISTANCIA_MINIMA_ARRASTO) {
+        voltar();
+      }
+    },
+  });
+
   return (
     <Modal
       visible={visivel}
@@ -31,7 +63,7 @@ export default function ModalBoasVindas({ visivel, aoFechar }) {
       onRequestClose={aoFechar}
     >
       <View style={estilos.fundo}>
-        <View style={estilos.cartao}>
+        <View style={estilos.cartao} {...arrasto.panHandlers}>
           <Pressable
             style={[estilos.pular, ultimaEtapa && estilos.oculto]}
             onPress={aoFechar}
@@ -53,13 +85,19 @@ export default function ModalBoasVindas({ visivel, aoFechar }) {
 
           <View style={estilos.pontos}>
             {ETAPAS_BOAS_VINDAS.map((item, indice) => (
-              <View
+              <Pressable
                 key={item.titulo}
-                style={[
-                  estilos.ponto,
-                  indice === indiceEtapa && estilos.pontoAtivo,
-                ]}
-              />
+                onPress={() => setIndiceEtapa(indice)}
+                hitSlop={6}
+                accessibilityLabel={`Ir para a etapa ${indice + 1}`}
+              >
+                <View
+                  style={[
+                    estilos.ponto,
+                    indice === indiceEtapa && estilos.pontoAtivo,
+                  ]}
+                />
+              </Pressable>
             ))}
           </View>
 
@@ -71,7 +109,7 @@ export default function ModalBoasVindas({ visivel, aoFechar }) {
 
           <Pressable
             style={primeiraEtapa && estilos.oculto}
-            onPress={() => setIndiceEtapa(indiceEtapa - 1)}
+            onPress={voltar}
             disabled={primeiraEtapa}
           >
             <Text style={estilos.voltar}>Voltar</Text>

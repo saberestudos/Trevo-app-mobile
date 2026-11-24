@@ -1,41 +1,43 @@
-// Estilos da tela "Quantos dias por semana jogou?", medidos no protótipo.
+// Estilos da tela "Quantos dias por semana jogou?" (versão com cartões).
 import { StyleSheet } from 'react-native';
 
 import { cores } from '../../theme/cores';
 import { familias, fonte } from '../../theme/fontes';
 
 const estilos = StyleSheet.create({
-  topo: {
-    height: 127,
-    backgroundColor: cores.fundo,
-  },
   conteudo: {
     flexGrow: 1,
+    paddingTop: 62,
     paddingHorizontal: 36,
     paddingBottom: 39,
     backgroundColor: cores.fundoCinza,
   },
   titulo: {
-    marginTop: 30,
+    marginTop: 26,
     ...fonte(familias.semiNegrito, 20),
     color: cores.texto,
     textAlign: 'center',
+  },
+  cartao: {
+    marginTop: 14,
   },
   rotulo: {
     ...fonte(familias.regular, 14),
     color: cores.texto,
   },
-  rotuloDias: {
-    marginTop: 37,
+  dica: {
+    marginTop: 3,
+    ...fonte(familias.regular, 12),
+    color: cores.textoDica,
   },
   linhaDias: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 5,
+    marginTop: 10,
   },
   dia: {
-    width: 43,
-    height: 43,
+    width: 40,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -46,14 +48,11 @@ const estilos = StyleSheet.create({
     backgroundColor: cores.primaria,
   },
   siglaDia: {
-    ...fonte(familias.semiNegrito, 24),
+    ...fonte(familias.semiNegrito, 22),
     color: cores.primaria,
   },
   siglaDiaSelecionado: {
     color: cores.fundo,
-  },
-  rotuloHorarios: {
-    marginTop: 8,
   },
   linhaHorario: {
     flexDirection: 'row',
@@ -61,7 +60,7 @@ const estilos = StyleSheet.create({
     marginTop: 9,
   },
   linhaHorarioSeguinte: {
-    marginTop: 15,
+    marginTop: 12,
   },
   ate: {
     marginHorizontal: 20,
@@ -69,13 +68,12 @@ const estilos = StyleSheet.create({
     color: cores.texto,
   },
   mensagemErro: {
-    marginTop: 4,
+    marginTop: 6,
     ...fonte(familias.regular, 13),
     color: cores.erro,
   },
   textoQuantidade: {
-    marginTop: 18,
-    marginBottom: 6,
+    marginBottom: 10,
     ...fonte(familias.regular, 16),
     color: cores.texto,
     textAlign: 'center',
@@ -85,9 +83,7 @@ const estilos = StyleSheet.create({
     minHeight: 24,
   },
   botaoContinuar: {
-    width: 291,
-    height: 81,
-    alignSelf: 'center',
+    height: 64,
   },
   voltar: {
     marginTop: 15,

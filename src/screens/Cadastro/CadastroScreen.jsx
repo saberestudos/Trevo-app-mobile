@@ -40,8 +40,11 @@ export default function CadastroScreen({ navigation }) {
     setCarregando(true);
 
     try {
-      await AuthService.cadastrar(identificador, senha);
-      navigation.navigate('DiasJogados');
+      const usuario = await AuthService.cadastrar(identificador, senha);
+      navigation.navigate('DiasJogados', {
+        nome: usuario.nomeDeExibicao(),
+        iniciais: usuario.iniciais(),
+      });
     } catch (erro) {
       setErros({ identificador: erro.message });
     } finally {
