@@ -2,6 +2,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import CadastroScreen from '../screens/Cadastro/CadastroScreen';
+import CodigoScreen from '../screens/Codigo/CodigoScreen';
+import DiasJogadosScreen from '../screens/DiasJogados/DiasJogadosScreen';
+import EsqueceuSenhaScreen from '../screens/EsqueceuSenha/EsqueceuSenhaScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
 
 const Stack = createNativeStackNavigator();
@@ -14,6 +18,10 @@ export default function AppNavigator() {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Cadastro" component={CadastroScreen} />
+        <Stack.Screen name="EsqueceuSenha" component={EsqueceuSenhaScreen} />
+        <Stack.Screen name="Codigo" component={CodigoScreen} />
+        <Stack.Screen name="DiasJogados" component={DiasJogadosScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

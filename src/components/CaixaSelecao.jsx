@@ -1,9 +1,9 @@
 // Caixa de seleção (checkbox) com texto ao lado.
-import { Pressable, StyleSheet, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 import { cores } from '../theme/cores';
-import { fontes } from '../theme/fontes';
+import { familias, fonte } from '../theme/fontes';
 
 export default function CaixaSelecao({ texto, marcada, aoAlternar }) {
   return (
@@ -13,11 +13,9 @@ export default function CaixaSelecao({ texto, marcada, aoAlternar }) {
       accessibilityRole="checkbox"
       accessibilityState={{ checked: marcada }}
     >
-      <Ionicons
-        name={marcada ? 'checkbox' : 'square-outline'}
-        size={18}
-        color={cores.icone}
-      />
+      <View style={[estilos.caixa, marcada && estilos.caixaMarcada]}>
+        {marcada && <Feather name="check" size={11} color={cores.fundo} />}
+      </View>
       <Text style={estilos.texto}>{texto}</Text>
     </Pressable>
   );
@@ -28,9 +26,22 @@ const estilos = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  caixa: {
+    width: 16,
+    height: 14,
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: cores.caixaSelecao,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  caixaMarcada: {
+    backgroundColor: cores.primaria,
+    borderColor: cores.primaria,
+  },
   texto: {
-    marginLeft: 4,
+    marginLeft: 5,
+    ...fonte(familias.regular, 15),
     color: cores.texto,
-    fontSize: fontes.normal,
   },
 });

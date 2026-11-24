@@ -10,12 +10,19 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 - React Native com Expo
 - React Navigation (native stack)
 - StyleSheet do React Native
+- Fonte Inter (`@expo-google-fonts/inter`) e degradê das bordas (`expo-linear-gradient`), como no protótipo
 
 ## Telas prontas
 
 | Tela | Requisito |
 |---|---|
 | Login | RF 02 |
+| Cadastro | RF 01 |
+| Esqueceu a senha? | RF 03 |
+| Código | RF 03 |
+| Quantos dias por semana jogou? (onboarding) | RF 04 |
+
+Fluxo: Login → "Inscreva-se" → Cadastro → Onboarding. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
 
 ## Como rodar
 
@@ -30,6 +37,8 @@ npx expo install --fix
 npx expo start
 ```
 
+Para ver no navegador do computador, use `npx expo start --web`.
+
 Depois, leia o QR Code com o Expo Go (Android) ou com a câmera (iOS). O celular e o computador precisam estar na mesma rede Wi-Fi.
 
 > Se o Expo Go avisar que a versão do projeto não é compatível, atualize o Expo com `npx expo install expo@latest`, rode `npx expo install --fix` e faça commit do `package.json` atualizado.
@@ -41,19 +50,22 @@ Depois, leia o QR Code com o Expo Go (Android) ou com a câmera (iOS). O celular
 | E-mail | teste@trevo.com |
 | Usuário | teste |
 | Senha | 123456 |
+| Código de recuperação | 12345 |
+
+Os cadastros feitos no app ficam só na memória e somem ao recarregar.
 
 ## Estrutura de pastas
 
 ```
 src/
-├── components/   peças reutilizáveis (Botao, CampoTexto, CaixaSelecao)
+├── components/   peças reutilizáveis (Botao, CampoTexto, CampoCodigo, Contador...)
 ├── mocks/        dados simulados, usados até o backend existir
-├── models/       classes de dados (Usuario)
+├── models/       classes de dados (Usuario, RespostaOnboarding)
 ├── navigation/   rotas do app
 ├── screens/      uma pasta por tela, com o componente e os estilos
 ├── services/     classes que hoje usam o mock e depois chamarão a API
 ├── theme/        cores e tamanhos de fonte do protótipo
-└── utils/        validações dos formulários
+└── utils/        validações, lista de horários e avisos
 ```
 
 ## Padrões do projeto

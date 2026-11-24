@@ -1,6 +1,18 @@
-// Tamanhos de fonte usados nas telas do TREVO.
-export const fontes = {
-  pequena: 13,
-  normal: 15,
-  grande: 20,
+// Fonte do protótipo (Inter) e seus pesos.
+// Os nomes abaixo são os mesmos carregados no App.js.
+export const familias = {
+  leve: 'Inter_300Light',
+  regular: 'Inter_400Regular',
+  media: 'Inter_500Medium',
+  semiNegrito: 'Inter_600SemiBold',
 };
+
+// Monta o estilo de texto com a altura de linha "normal" do Figma
+// para a Inter (cerca de 1,21 vezes o tamanho da fonte).
+export function fonte(familia, tamanho) {
+  return {
+    fontFamily: familia,
+    fontSize: tamanho,
+    lineHeight: Math.round(tamanho * 1.21),
+  };
+}
