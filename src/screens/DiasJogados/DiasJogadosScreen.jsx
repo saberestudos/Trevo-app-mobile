@@ -84,7 +84,8 @@ export default function DiasJogadosScreen({ navigation, route }) {
         <Saudacao
           nome={nome}
           iniciais={iniciais}
-          subtitulo="Conte um pouco sobre seus hábitos"
+          subtitulo="Conte sobre seus hábitos"
+          aoPedirAjuda={() => setBoasVindasVisivel(true)}
         />
 
         <Text style={estilos.titulo}>{'Quantos dias\npor semana jogou?'}</Text>

@@ -1,6 +1,7 @@
 // Modal de boas-vindas que aparece antes das perguntas do onboarding.
-// Mostra uma etapa por vez. Dá para avançar e voltar pelos botões,
+// Mostra uma etapa por vez. Dá para avançar e voltar pelos botões (seta e Próximo),
 // arrastando para os lados ou tocando nas bolinhas.
+// Ao fechar, volta para a etapa 1, para quem quiser rever a introdução.
 import { useState } from 'react';
 import {
   Image,
@@ -11,6 +12,8 @@ import {
   Text,
   View,
 } from 'react-native';
+
+import { Feather } from '@expo/vector-icons';
 
 import Botao from '../../components/Botao';
 import { cores } from '../../theme/cores';
@@ -27,9 +30,14 @@ export default function ModalBoasVindas({ visivel, aoFechar }) {
   const primeiraEtapa = indiceEtapa === 0;
   const ultimaEtapa = indiceEtapa === ETAPAS_BOAS_VINDAS.length - 1;
 
+  function fechar() {
+    setIndiceEtapa(0);
+    aoFechar();
+  }
+
   function avancar() {
     if (ultimaEtapa) {
-      aoFechar();
+      fechar();
       return;
     }
     setIndiceEtapa(indiceEtapa + 1);
@@ -60,17 +68,28 @@ export default function ModalBoasVindas({ visivel, aoFechar }) {
       visible={visivel}
       transparent
       animationType="fade"
-      onRequestClose={aoFechar}
+      onRequestClose={fechar}
     >
       <View style={estilos.fundo}>
         <View style={estilos.cartao} {...arrasto.panHandlers}>
-          <Pressable
-            style={[estilos.pular, ultimaEtapa && estilos.oculto]}
-            onPress={aoFechar}
-            disabled={ultimaEtapa}
-          >
-            <Text style={estilos.textoPular}>Pular</Text>
-          </Pressable>
+          <View style={estilos.topo}>
+            <Pressable
+              style={[estilos.seta, primeiraEtapa && estilos.oculto]}
+              onPress={voltar}
+              disabled={primeiraEtapa}
+              accessibilityLabel="Voltar para a etapa anterior"
+            >
+              <Feather name="chevron-left" size={20} color={cores.primaria} />
+            </Pressable>
+
+            <Pressable
+              style={ultimaEtapa && estilos.oculto}
+              onPress={fechar}
+              disabled={ultimaEtapa}
+            >
+              <Text style={estilos.textoPular}>Pular</Text>
+            </Pressable>
+          </View>
 
           <View style={estilos.areaImagem}>
             <Image
@@ -106,14 +125,6 @@ export default function ModalBoasVindas({ visivel, aoFechar }) {
             titulo={ultimaEtapa ? 'Começar' : 'Próximo'}
             aoPressionar={avancar}
           />
-
-          <Pressable
-            style={primeiraEtapa && estilos.oculto}
-            onPress={voltar}
-            disabled={primeiraEtapa}
-          >
-            <Text style={estilos.voltar}>Voltar</Text>
-          </Pressable>
         </View>
       </View>
     </Modal>
@@ -129,14 +140,25 @@ const estilos = StyleSheet.create({
   },
   cartao: {
     alignItems: 'center',
-    paddingTop: 20,
+    paddingTop: 16,
     paddingHorizontal: 20,
-    paddingBottom: 18,
+    paddingBottom: 22,
     borderRadius: 16,
     backgroundColor: cores.fundo,
   },
-  pular: {
-    alignSelf: 'flex-end',
+  topo: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  seta: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: cores.fundoIlustracao,
   },
   textoPular: {
     ...fonte(familias.regular, 15),
@@ -191,10 +213,5 @@ const estilos = StyleSheet.create({
   botao: {
     alignSelf: 'stretch',
     marginTop: 20,
-  },
-  voltar: {
-    marginTop: 12,
-    ...fonte(familias.media, 16),
-    color: cores.texto,
   },
 });
