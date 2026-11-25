@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import Botao from '../../components/Botao';
+import { voltar } from '../../components/BotaoVoltar';
 import CampoTexto from '../../components/CampoTexto';
 import Logo from '../../components/Logo';
 import Tela from '../../components/Tela';
@@ -66,7 +67,7 @@ export default function EsqueceuSenhaScreen({ navigation }) {
 
       <View style={estilosAcesso.espacador} />
 
-      <Pressable onPress={() => navigation.goBack()}>
+      <Pressable onPress={() => voltar(navigation, 'Login')}>
         <Text style={estilosAcesso.voltar}>Voltar</Text>
       </Pressable>
     </Tela>

@@ -43,6 +43,15 @@ export const FANTASIAS = {
   abelha: require('../../assets/images/avatar/fantasias/abelha.png'),
 };
 
+// Visual básico: sem chapéu, sem óculos, camiseta vermelha e calça jeans.
+export const VISUAL_PADRAO = {
+  chapeu: null,
+  oculos: null,
+  camiseta: 'vermelha',
+  calca: 'jeans',
+  fantasia: null,
+};
+
 // As imagens têm sobra em volta (para o chapéu de mago e as asas da abelha).
 // Esta posição faz o boneco sem chapéu ocupar a caixa do avatar inteira.
 export const POSICAO_CAMADAS = {

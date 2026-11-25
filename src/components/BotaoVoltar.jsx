@@ -4,12 +4,13 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import { cores } from '../theme/cores';
 
-// Volta para a tela anterior; se não houver (ex.: página recarregada), vai para a Home.
-export function voltar(navigation) {
+// Regra do app: toda seta, "Voltar" ou X leva de volta para a tela anterior.
+// Se não houver tela anterior (ex.: página recarregada), vai para a tela padrão.
+export function voltar(navigation, telaPadrao = 'Home') {
   if (navigation.canGoBack()) {
     navigation.goBack();
   } else {
-    navigation.navigate('Home');
+    navigation.navigate(telaPadrao);
   }
 }
 

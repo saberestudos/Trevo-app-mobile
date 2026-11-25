@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Image, Pressable, View } from 'react-native';
 
+import { VISUAL_PADRAO } from '../../catalogos/avatar';
 import AvatarPersonalizado from '../../components/AvatarPersonalizado';
 import BarraTopo from '../../components/BarraTopo';
 import BotaoVoltar, { voltar } from '../../components/BotaoVoltar';
@@ -39,12 +40,17 @@ export default function MinhaContaScreen({ navigation }) {
   }, []);
 
   // Veste o item escolhido na vitrine e guarda o novo visual.
-  // Escolher uma roupa ou acessório tira a fantasia (ou o "sem roupa"),
-  // para o item escolhido aparecer no boneco.
+  // - "Sem roupa" (⊘ das fantasias) tira tudo: depois disso, cada roupa
+  //   escolhida entra sozinha, sem trazer de volta o que estava antes.
+  // - Escolher uma roupa ou acessório tira a fantasia, para o item aparecer.
   function vestir(categoria, item) {
-    const novoVisual = { ...visual, [categoria]: item };
-    if (categoria !== 'fantasia') {
-      novoVisual.fantasia = null;
+    let novoVisual;
+    if (categoria === 'fantasia' && item === 'sem-roupa') {
+      novoVisual = { ...VISUAL_PADRAO, fantasia: 'sem-roupa' };
+    } else if (categoria === 'fantasia') {
+      novoVisual = { ...visual, fantasia: item };
+    } else {
+      novoVisual = { ...visual, [categoria]: item, fantasia: null };
     }
     AvatarService.salvar(novoVisual).then(setVisual);
   }

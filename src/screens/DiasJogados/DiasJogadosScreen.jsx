@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import Botao from '../../components/Botao';
+import { voltar } from '../../components/BotaoVoltar';
 import Cartao from '../../components/Cartao';
 import Contador from '../../components/Contador';
 import Saudacao from '../../components/Saudacao';
@@ -170,7 +171,7 @@ export default function DiasJogadosScreen({ navigation, route }) {
           carregando={carregando}
         />
 
-        <Pressable onPress={() => navigation.goBack()}>
+        <Pressable onPress={() => voltar(navigation, 'Login')}>
           <Text style={estilos.voltar}>Voltar</Text>
         </Pressable>
       </View>
