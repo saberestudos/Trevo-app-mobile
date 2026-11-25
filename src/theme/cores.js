@@ -26,4 +26,7 @@ export const cores = {
   cartaoEscuro: '#006207',
   fundoItem: '#F2F2F2',
   facebook: '#3C5A99',
+  cartaoOpcoes: '#FF9C00',
+  botaoSair: '#8E0000',
+  contornoBotao: '#000000',
 };

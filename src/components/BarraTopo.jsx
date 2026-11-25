@@ -10,7 +10,12 @@ const imagens = {
   engrenagem: require('../../assets/images/home/engrenagem.png'),
 };
 
-export default function BarraTopo({ moedas, trofeus, aoAbrirTrofeus }) {
+export default function BarraTopo({
+  moedas,
+  trofeus,
+  aoAbrirTrofeus,
+  aoAbrirOpcoes = avisarEmBreve,
+}) {
   return (
     <View style={estilos.topo}>
       <Pilula
@@ -26,7 +31,7 @@ export default function BarraTopo({ moedas, trofeus, aoAbrirTrofeus }) {
         descricao="Troféus"
         aoPressionar={aoAbrirTrofeus}
       />
-      <Pressable onPress={avisarEmBreve} accessibilityLabel="Opções">
+      <Pressable onPress={aoAbrirOpcoes} accessibilityLabel="Opções">
         <Image source={imagens.engrenagem} style={estilos.engrenagem} />
       </Pressable>
     </View>

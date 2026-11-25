@@ -14,9 +14,7 @@ import {
 } from '../catalogos/avatar';
 
 function Camada({ imagem }) {
-  return (
-    <Image source={imagem} style={estilos.camada} resizeMode="contain" />
-  );
+  return <Image source={imagem} style={estilos.camada} resizeMode="contain" />;
 }
 
 export default function AvatarPersonalizado({ visual, estilo }) {

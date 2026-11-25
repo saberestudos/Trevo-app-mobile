@@ -53,6 +53,7 @@ export default function MinhaContaScreen({ navigation }) {
         moedas={progresso.moedas}
         trofeus={progresso.trofeus}
         aoAbrirTrofeus={() => navigation.navigate('Trofeus')}
+        aoAbrirOpcoes={() => navigation.navigate('Opcoes')}
       />
 
       <View style={estilos.cabecalho}>

@@ -44,7 +44,11 @@ export default function TrofeusScreen({ navigation }) {
     <TelaJogo navigation={navigation}>
       {progresso && (
         <>
-          <BarraTopo moedas={progresso.moedas} trofeus={progresso.trofeus} />
+          <BarraTopo
+            moedas={progresso.moedas}
+            trofeus={progresso.trofeus}
+            aoAbrirOpcoes={() => navigation.navigate('Opcoes')}
+          />
 
           <View style={estilos.cabecalho}>
             <BotaoVoltar aoPressionar={() => navigation.goBack()} />
