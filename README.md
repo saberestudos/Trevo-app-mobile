@@ -23,8 +23,10 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 | Código | RF 03 |
 | Quantos dias por semana jogou? (onboarding, com modal de boas-vindas em 4 etapas) | RF 04 |
 | Home (contador de dias sem apostar, nível, moedas e troféus) | RF 05 |
+| Troféus (minha coleção) | RF 08 |
+| Minha Conta (avatar, personalização e estatísticas) | RF 09 |
 
-Fluxo: Login → Home. Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
+Fluxo: Login → Home → Troféus (troféu do topo ou da barra) e Minha Conta (toque no avatar). Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
 
 ## Como rodar
 

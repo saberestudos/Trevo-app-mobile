@@ -3,16 +3,13 @@
 // Moedas, troféus e nível são a parte de gamificação, por enquanto com dados simulados.
 import { useEffect, useState } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { StatusBar } from 'expo-status-bar';
 
-import BarraNavegacao from '../../components/BarraNavegacao';
 import BarraNivel from '../../components/BarraNivel';
-import Pilula from '../../components/Pilula';
+import BarraTopo from '../../components/BarraTopo';
+import TelaJogo from '../../components/TelaJogo';
 import TextoDestaque from '../../components/TextoDestaque';
 import ProgressoService from '../../services/ProgressoService';
 import { avisarEmBreve } from '../../utils/avisos';
-import { cores } from '../../theme/cores';
 import estilos from './styles';
 
 // Antes da primeira missão, comemora o começo; depois, mostra o progresso.
@@ -20,59 +17,27 @@ const MENSAGEM_INICIO = 'VOCÊ DEU O\nPRIMEIRO PASSO!';
 const MENSAGEM_PROGRESSO = 'BOA! VOCÊ ESTÁ\nINDO BEM!';
 
 const imagens = {
-  moeda: require('../../../assets/images/home/moeda.png'),
-  trofeu: require('../../../assets/images/home/trofeu-pequeno.png'),
-  engrenagem: require('../../../assets/images/home/engrenagem.png'),
   avatar: require('../../../assets/images/home/avatar.png'),
   investimentos: require('../../../assets/images/home/investimentos.png'),
   missoes: require('../../../assets/images/home/missoes.png'),
 };
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [progresso, setProgresso] = useState(null);
 
   useEffect(() => {
     ProgressoService.buscar().then(setProgresso);
   }, []);
 
-  function abrirAba(aba) {
-    if (aba !== 'Home') {
-      avisarEmBreve();
-    }
-  }
-
   return (
-    <LinearGradient
-      colors={[cores.homeFundoInicio, cores.homeFundoFim]}
-      locations={[0.428, 1]}
-      style={estilos.tela}
-    >
-      <StatusBar style="light" />
-
+    <TelaJogo navigation={navigation}>
       {progresso && (
-        <View style={estilos.conteudo}>
-          <View style={estilos.topo}>
-            <Pilula
-              icone={imagens.moeda}
-              texto={progresso.moedas}
-              descricao="Moedas"
-              aoPressionar={avisarEmBreve}
-            />
-            <Pilula
-              texto="LOJA"
-              descricao="Loja"
-              aoPressionar={avisarEmBreve}
-            />
-            <Pilula
-              icone={imagens.trofeu}
-              texto={progresso.trofeus}
-              descricao="Troféus"
-              aoPressionar={avisarEmBreve}
-            />
-            <Pressable onPress={avisarEmBreve} accessibilityLabel="Opções">
-              <Image source={imagens.engrenagem} style={estilos.engrenagem} />
-            </Pressable>
-          </View>
+        <>
+          <BarraTopo
+            moedas={progresso.moedas}
+            trofeus={progresso.trofeus}
+            aoAbrirTrofeus={() => navigation.navigate('Trofeus')}
+          />
 
           <View style={estilos.cartaoNivel}>
             <TextoDestaque
@@ -97,12 +62,17 @@ export default function HomeScreen() {
           </View>
 
           <View style={estilos.meio}>
-            <Image
-              source={imagens.avatar}
+            <Pressable
               style={estilos.avatar}
-              resizeMode="contain"
-              accessibilityLabel="Seu avatar"
-            />
+              onPress={() => navigation.navigate('MinhaConta')}
+              accessibilityLabel="Minha conta"
+            >
+              <Image
+                source={imagens.avatar}
+                style={estilos.imagemAvatar}
+                resizeMode="contain"
+              />
+            </Pressable>
 
             <Text style={estilos.rotuloDias}>DIAS SEM APOSTAS</Text>
             <View style={estilos.caixaDias}>
@@ -130,10 +100,8 @@ export default function HomeScreen() {
               <Image source={imagens.missoes} style={estilos.missoes} />
             </Pressable>
           </View>
-        </View>
+        </>
       )}
-
-      <BarraNavegacao aoSelecionar={abrirAba} />
-    </LinearGradient>
+    </TelaJogo>
   );
 }

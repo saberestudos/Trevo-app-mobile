@@ -6,5 +6,8 @@ export const progressoMock = {
   trofeus: 0,
   experiencia: 0,
   missoesConcluidas: 0,
+  posicaoRanking: null,
+  amigos: 0,
+  ativos: 0,
   inicioSemApostar: new Date().toISOString(),
 };

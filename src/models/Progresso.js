@@ -10,12 +10,18 @@ export default class Progresso {
     trofeus,
     experiencia,
     missoesConcluidas,
+    posicaoRanking,
+    amigos,
+    ativos,
     inicioSemApostar,
   }) {
     this.moedas = moedas;
     this.trofeus = trofeus;
     this.experiencia = experiencia;
     this.missoesConcluidas = missoesConcluidas;
+    this.posicaoRanking = posicaoRanking;
+    this.amigos = amigos;
+    this.ativos = ativos;
     this.inicioSemApostar = new Date(inicioSemApostar);
   }
 
@@ -43,5 +49,15 @@ export default class Progresso {
   diasSemApostar() {
     const diferenca = Date.now() - this.inicioSemApostar.getTime();
     return Math.max(0, Math.floor(diferenca / UM_DIA_EM_MILISSEGUNDOS));
+  }
+
+  // Posição no ranking: "#1" (curta) ou "#01" (com dois dígitos).
+  // Quem ainda não entrou no ranking aparece como "#--".
+  ranking(comDoisDigitos = false) {
+    if (!this.posicaoRanking) {
+      return '#--';
+    }
+    const posicao = String(this.posicaoRanking);
+    return `#${comDoisDigitos ? posicao.padStart(2, '0') : posicao}`;
   }
 }

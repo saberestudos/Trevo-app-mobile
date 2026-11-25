@@ -5,24 +5,6 @@ import { cores } from '../../theme/cores';
 import { fonteDestaque } from '../../theme/fontes';
 
 const estilos = StyleSheet.create({
-  tela: {
-    flex: 1,
-  },
-  conteudo: {
-    flex: 1,
-    paddingTop: 65,
-    paddingHorizontal: 16,
-  },
-  topo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  engrenagem: {
-    width: 40,
-    height: 40,
-    margin: 2,
-  },
   cartaoNivel: {
     height: 175,
     marginTop: 9,
@@ -50,6 +32,10 @@ const estilos = StyleSheet.create({
     left: '44.3%',
     width: 191,
     height: 475,
+  },
+  imagemAvatar: {
+    width: '100%',
+    height: '100%',
   },
   rotuloDias: {
     marginTop: 26,

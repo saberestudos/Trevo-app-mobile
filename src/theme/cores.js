@@ -23,5 +23,7 @@ export const cores = {
   homeFundoFim: '#266E39',
   nivelInicio: '#05693E',
   nivelFim: '#1FFF2E',
+  cartaoEscuro: '#006207',
+  setaLaranja: '#FF9C00',
   facebook: '#3C5A99',
 };

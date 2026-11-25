@@ -1,7 +1,8 @@
 // Texto na fonte de destaque (HIGHSENS).
 // Essa fonte não tem letras acentuadas: no protótipo, os acentos foram
 // desenhados à mão. Aqui fazemos o mesmo: para cada letra com acento,
-// mostramos a letra sem acento e desenhamos o acento por cima.
+// mostramos a letra sem acento e desenhamos o acento por cima
+// (ou a cedilha por baixo).
 import { StyleSheet, Text, View } from 'react-native';
 
 import { cores } from '../theme/cores';
@@ -16,6 +17,9 @@ const LETRAS_ACENTUADAS = {
   Â: { letra: 'A', acento: 'circunflexo' },
   Ê: { letra: 'E', acento: 'circunflexo' },
   Ô: { letra: 'O', acento: 'circunflexo' },
+  Ã: { letra: 'A', acento: 'til' },
+  Õ: { letra: 'O', acento: 'til' },
+  Ç: { letra: 'C', acento: 'cedilha' },
 };
 
 // Divide uma linha em pedaços de texto normal e letras acentuadas.
@@ -48,6 +52,24 @@ function Acento({ tipo, tamanho, cor }) {
   };
   // Afasta os dois traços do circunflexo para que as pontas de cima se encontrem.
   const deslocamento = tamanho * 0.028;
+
+  if (tipo === 'cedilha') {
+    return (
+      <View style={[estilos.acento, { top: tamanho * 0.58 }]}>
+        <View style={[traco, { height: tamanho * 0.28 }]} />
+      </View>
+    );
+  }
+
+  if (tipo === 'til') {
+    return (
+      <View style={[estilos.acento, { top: -tamanho * 0.08 }]}>
+        <View
+          style={[traco, { width: tamanho * 0.25, height: tamanho * 0.085 }]}
+        />
+      </View>
+    );
+  }
 
   return (
     <View style={[estilos.acento, { top: -tamanho * 0.13 }]}>
