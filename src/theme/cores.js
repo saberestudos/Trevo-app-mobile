@@ -24,6 +24,6 @@ export const cores = {
   nivelInicio: '#05693E',
   nivelFim: '#1FFF2E',
   cartaoEscuro: '#006207',
-  setaLaranja: '#FF9C00',
+  fundoItem: '#F2F2F2',
   facebook: '#3C5A99',
 };

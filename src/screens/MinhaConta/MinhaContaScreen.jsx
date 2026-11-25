@@ -1,21 +1,21 @@
-// Tela Minha Conta: avatar, personalização e estatísticas do usuário.
+// Tela Minha Conta: avatar, vitrine de personalização e estatísticas do usuário.
 // Requisito atendido: RF 09 (avatar e loja), com estatísticas de RF 05 e RF 08.
-// Por enquanto, só bonés/chapéus e óculos aparecem desenhados no avatar.
 import { useEffect, useState } from 'react';
 import { Image, Pressable, View } from 'react-native';
 
+import AvatarPersonalizado from '../../components/AvatarPersonalizado';
 import BarraTopo from '../../components/BarraTopo';
 import BotaoVoltar from '../../components/BotaoVoltar';
 import TelaJogo from '../../components/TelaJogo';
 import TextoDestaque from '../../components/TextoDestaque';
+import VitrineAvatar from '../../components/VitrineAvatar';
+import AvatarService from '../../services/AvatarService';
 import ProgressoService from '../../services/ProgressoService';
 import { avisarEmBreve } from '../../utils/avisos';
 import { cores } from '../../theme/cores';
-import { CATEGORIAS_AVATAR } from './itensAvatar';
 import estilos from './styles';
 
 const imagens = {
-  avatar: require('../../../assets/images/home/avatar.png'),
   adicionarAmigos: require('../../../assets/images/conta/adicionar-amigos.png'),
   trofeu: require('../../../assets/images/home/trofeu-pequeno.png'),
   podio: require('../../../assets/images/conta/podio.png'),
@@ -31,37 +31,19 @@ function textoComPlural(numero, singular, plural) {
 
 export default function MinhaContaScreen({ navigation }) {
   const [progresso, setProgresso] = useState(null);
-  const [indiceCategoria, setIndiceCategoria] = useState(0);
-  const [indiceItem, setIndiceItem] = useState(0);
-  const [itensUsados, setItensUsados] = useState({});
+  const [visual, setVisual] = useState(null);
 
   useEffect(() => {
     ProgressoService.buscar().then(setProgresso);
+    AvatarService.buscar().then(setVisual);
   }, []);
 
-  const categoria = CATEGORIAS_AVATAR[indiceCategoria];
-  const item = categoria.itens[indiceItem];
-
-  function escolherCategoria(indice) {
-    setIndiceCategoria(indice);
-    setIndiceItem(0);
+  // Veste o item escolhido na vitrine e guarda o novo visual.
+  function vestir(categoria, item) {
+    AvatarService.salvar({ ...visual, [categoria]: item }).then(setVisual);
   }
 
-  // As setas passam pelos itens da categoria e voltam ao começo no fim da lista.
-  function trocarItem(passo) {
-    const total = categoria.itens.length;
-    setIndiceItem((indiceItem + passo + total) % total);
-  }
-
-  function usarItem() {
-    if (!categoria.noAvatar) {
-      avisarEmBreve();
-      return;
-    }
-    setItensUsados({ ...itensUsados, [categoria.id]: item });
-  }
-
-  if (!progresso) {
+  if (!progresso || !visual) {
     return <TelaJogo navigation={navigation} />;
   }
 
@@ -84,26 +66,7 @@ export default function MinhaContaScreen({ navigation }) {
 
       <View style={estilos.areaAvatar}>
         <View style={estilos.painelAvatar}>
-          <Image
-            source={imagens.avatar}
-            style={estilos.avatar}
-            resizeMode="contain"
-            accessibilityLabel="Seu avatar"
-          />
-          {itensUsados.oculos && (
-            <Image
-              source={itensUsados.oculos.imagem}
-              style={estilos.oculosNoAvatar}
-              resizeMode="contain"
-            />
-          )}
-          {itensUsados.cabeca && (
-            <Image
-              source={itensUsados.cabeca.imagem}
-              style={estilos.chapeuNoAvatar}
-              resizeMode="contain"
-            />
-          )}
+          <AvatarPersonalizado visual={visual} estilo={estilos.avatar} />
         </View>
 
         <TextoDestaque
@@ -113,48 +76,11 @@ export default function MinhaContaScreen({ navigation }) {
           estilo={estilos.tituloPersonalizar}
         />
 
-        <View style={estilos.cartaoItens}>
-          <View style={estilos.abas}>
-            {CATEGORIAS_AVATAR.map((cat, indice) => (
-              <Pressable
-                key={cat.id}
-                style={[
-                  estilos.aba,
-                  indice === indiceCategoria && estilos.abaAtiva,
-                ]}
-                onPress={() => escolherCategoria(indice)}
-                accessibilityLabel={cat.nome}
-              >
-                <Image
-                  source={cat.icone}
-                  style={estilos.iconeAba}
-                  resizeMode="contain"
-                />
-              </Pressable>
-            ))}
-          </View>
-          <Image
-            source={item.imagem}
-            style={estilos.itemSelecionado}
-            resizeMode="contain"
-            accessibilityLabel={item.nome}
-          />
-        </View>
-
-        <Pressable
-          style={[estilos.seta, estilos.setaEsquerda]}
-          onPress={() => trocarItem(-1)}
-          accessibilityLabel="Item anterior"
+        <VitrineAvatar
+          visual={visual}
+          aoEscolher={vestir}
+          estilo={estilos.vitrine}
         />
-        <Pressable
-          style={[estilos.seta, estilos.setaDireita]}
-          onPress={() => trocarItem(1)}
-          accessibilityLabel="Próximo item"
-        />
-
-        <Pressable style={estilos.botaoUsar} onPress={usarItem}>
-          <TextoDestaque texto="USAR" tamanho={36} centralizado />
-        </Pressable>
       </View>
 
       <Pressable style={estilos.botaoAmigos} onPress={avisarEmBreve}>

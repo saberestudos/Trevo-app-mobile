@@ -1,13 +1,16 @@
 // Tela inicial (Home) do TREVO.
 // Requisito atendido: RF 05 (contador de dias sem apostar).
 // Moedas, troféus e nível são a parte de gamificação, por enquanto com dados simulados.
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
+import AvatarPersonalizado from '../../components/AvatarPersonalizado';
 import BarraNivel from '../../components/BarraNivel';
 import BarraTopo from '../../components/BarraTopo';
 import TelaJogo from '../../components/TelaJogo';
 import TextoDestaque from '../../components/TextoDestaque';
+import AvatarService from '../../services/AvatarService';
 import ProgressoService from '../../services/ProgressoService';
 import { avisarEmBreve } from '../../utils/avisos';
 import estilos from './styles';
@@ -17,17 +20,25 @@ const MENSAGEM_INICIO = 'VOCÊ DEU O\nPRIMEIRO PASSO!';
 const MENSAGEM_PROGRESSO = 'BOA! VOCÊ ESTÁ\nINDO BEM!';
 
 const imagens = {
-  avatar: require('../../../assets/images/home/avatar.png'),
   investimentos: require('../../../assets/images/home/investimentos.png'),
   missoes: require('../../../assets/images/home/missoes.png'),
 };
 
 export default function HomeScreen({ navigation }) {
   const [progresso, setProgresso] = useState(null);
+  const [visual, setVisual] = useState(null);
 
   useEffect(() => {
     ProgressoService.buscar().then(setProgresso);
   }, []);
+
+  // Recarrega o visual sempre que a Home aparece de novo
+  // (por exemplo, depois de trocar a roupa na Minha Conta).
+  useFocusEffect(
+    useCallback(() => {
+      AvatarService.buscar().then(setVisual);
+    }, []),
+  );
 
   return (
     <TelaJogo navigation={navigation}>
@@ -67,11 +78,12 @@ export default function HomeScreen({ navigation }) {
               onPress={() => navigation.navigate('MinhaConta')}
               accessibilityLabel="Minha conta"
             >
-              <Image
-                source={imagens.avatar}
-                style={estilos.imagemAvatar}
-                resizeMode="contain"
-              />
+              {visual && (
+                <AvatarPersonalizado
+                  visual={visual}
+                  estilo={estilos.imagemAvatar}
+                />
+              )}
             </Pressable>
 
             <Text style={estilos.rotuloDias}>DIAS SEM APOSTAS</Text>

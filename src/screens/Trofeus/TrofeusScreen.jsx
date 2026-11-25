@@ -47,16 +47,17 @@ export default function TrofeusScreen({ navigation }) {
           <BarraTopo moedas={progresso.moedas} trofeus={progresso.trofeus} />
 
           <View style={estilos.cabecalho}>
-            <BotaoVoltar
-              estilo={estilos.voltar}
-              aoPressionar={() => navigation.goBack()}
-            />
-            <TextoDestaque texto="MINHA COLEÇÃO" tamanho={36} centralizado />
-            <TextoDestaque
-              texto={`${progresso.ranking(true)} NO RANKING`}
-              tamanho={32}
-              centralizado
-            />
+            <BotaoVoltar aoPressionar={() => navigation.goBack()} />
+            <View style={estilos.titulos}>
+              <TextoDestaque texto="MINHA COLEÇÃO" tamanho={36} centralizado />
+              <TextoDestaque
+                texto={`${progresso.ranking(true)} NO RANKING`}
+                tamanho={32}
+                centralizado
+              />
+            </View>
+            {/* Espaço do mesmo tamanho da seta, para os títulos ficarem no centro da tela. */}
+            <View style={estilos.espacoSeta} />
           </View>
 
           <View style={estilos.grade}>

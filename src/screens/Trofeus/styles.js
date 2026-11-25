@@ -3,13 +3,16 @@ import { StyleSheet } from 'react-native';
 
 const estilos = StyleSheet.create({
   cabecalho: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginTop: 30,
+    paddingHorizontal: 15,
   },
-  voltar: {
-    position: 'absolute',
-    top: 15,
-    left: 15,
-    zIndex: 1,
+  titulos: {
+    flex: 1,
+  },
+  espacoSeta: {
+    width: 35,
   },
   grade: {
     flexDirection: 'row',

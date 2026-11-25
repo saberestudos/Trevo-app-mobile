@@ -70,6 +70,7 @@ src/
 ├── services/     classes que hoje usam o mock e depois chamarão a API
 ├── theme/        cores e tamanhos de fonte do protótipo
 └── utils/        validações, lista de horários e avisos
+├── catalogos/    imagens e categorias do avatar (bases, roupas, acessórios e fantasias)
 ```
 
 ## Padrões do projeto

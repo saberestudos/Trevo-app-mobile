@@ -52,10 +52,10 @@ export default class Progresso {
   }
 
   // Posição no ranking: "#1" (curta) ou "#01" (com dois dígitos).
-  // Quem ainda não entrou no ranking aparece como "#--".
+  // Quem ainda não entrou no ranking aparece só com "#".
   ranking(comDoisDigitos = false) {
     if (!this.posicaoRanking) {
-      return '#--';
+      return '#';
     }
     const posicao = String(this.posicaoRanking);
     return `#${comDoisDigitos ? posicao.padStart(2, '0') : posicao}`;
