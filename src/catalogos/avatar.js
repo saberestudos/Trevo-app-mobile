@@ -1,74 +1,73 @@
-// Catálogo do avatar: imagens das bases, camadas de roupa, acessórios,
-// fantasias e as categorias da vitrine da tela Minha Conta (RF 09).
-// As posições estão em porcentagem da caixa do avatar, então valem para qualquer tamanho.
+// Catálogo do avatar: as camadas de imagem e as categorias da vitrine
+// da tela Minha Conta (RF 09).
+// Todas as camadas têm o mesmo tamanho e o boneco no mesmo lugar, então
+// basta empilhar uma em cima da outra.
 // Obs.: o require do React Native precisa do caminho escrito por inteiro.
 
-// Bases: o boneco sem boné e o boneco já desenhado com boné.
-export const BASES = {
-  padrao: require('../../assets/images/avatar/base-padrao.png'),
-  bone: require('../../assets/images/avatar/base-bone.png'),
+// Corpo sem o alto da cabeça e sem as pernas (essas partes vêm das camadas abaixo).
+export const CORPO = require('../../assets/images/avatar/corpo.png');
+
+// Alto da cabeça: cabelo ou chapéu. "padrao" é sem chapéu.
+export const CABECAS = {
+  padrao: require('../../assets/images/avatar/cabecas/padrao.png'),
+  bone: require('../../assets/images/avatar/cabecas/bone.png'),
+  chapeu: require('../../assets/images/avatar/cabecas/chapeu.png'),
+  'chapeu-mago': require('../../assets/images/avatar/cabecas/chapeu-mago.png'),
 };
 
-// Camadas que trocam a cor da camiseta e a calça, uma para cada base.
-export const CAMADAS = {
-  padrao: {
-    camiseta: {
-      azul: require('../../assets/images/avatar/camadas/padrao-camiseta-azul.png'),
-      verde: require('../../assets/images/avatar/camadas/padrao-camiseta-verde.png'),
-      amarela: require('../../assets/images/avatar/camadas/padrao-camiseta-amarela.png'),
-      preta: require('../../assets/images/avatar/camadas/padrao-camiseta-preta.png'),
-    },
-    calca: {
-      'bermuda-vermelha': require('../../assets/images/avatar/camadas/padrao-bermuda-vermelha.png'),
-      'bermuda-azul': require('../../assets/images/avatar/camadas/padrao-bermuda-azul.png'),
-    },
-  },
-  bone: {
-    camiseta: {
-      azul: require('../../assets/images/avatar/camadas/bone-camiseta-azul.png'),
-      verde: require('../../assets/images/avatar/camadas/bone-camiseta-verde.png'),
-      amarela: require('../../assets/images/avatar/camadas/bone-camiseta-amarela.png'),
-      preta: require('../../assets/images/avatar/camadas/bone-camiseta-preta.png'),
-    },
-    calca: {
-      'bermuda-vermelha': require('../../assets/images/avatar/camadas/bone-bermuda-vermelha.png'),
-      'bermuda-azul': require('../../assets/images/avatar/camadas/bone-bermuda-azul.png'),
-    },
-  },
+// A camiseta vermelha já faz parte do corpo; as outras cores vão por cima.
+export const CAMISETAS = {
+  azul: require('../../assets/images/avatar/camisetas/azul.png'),
+  verde: require('../../assets/images/avatar/camisetas/verde.png'),
+  amarela: require('../../assets/images/avatar/camisetas/amarela.png'),
+  preta: require('../../assets/images/avatar/camisetas/preta.png'),
 };
 
-// Chapéus desenhados por cima da base sem boné.
-export const CHAPEUS = {
-  chapeu: {
-    imagem: require('../../assets/images/avatar/itens/chapeu.png'),
-    posicao: { left: '8%', top: '-0.9%', width: '82%', height: '19.9%' },
-  },
-  'chapeu-mago': {
-    imagem: require('../../assets/images/avatar/itens/chapeu-mago.png'),
-    posicao: { left: '19%', top: '-6%', width: '60%', height: '24.5%' },
-  },
+export const PERNAS = {
+  jeans: require('../../assets/images/avatar/pernas/jeans.png'),
+  'bermuda-vermelha': require('../../assets/images/avatar/pernas/bermuda-vermelha.png'),
+  'bermuda-azul': require('../../assets/images/avatar/pernas/bermuda-azul.png'),
 };
 
 export const OCULOS = {
-  amarelo: require('../../assets/images/avatar/itens/oculos-amarelo.png'),
-  preto: require('../../assets/images/avatar/itens/oculos-preto.png'),
+  preto: require('../../assets/images/avatar/oculos/preto.png'),
+  amarelo: require('../../assets/images/avatar/oculos/amarelo.png'),
 };
 
-// Onde os óculos ficam em cada base (os olhos mudam um pouco de lugar).
-export const POSICAO_OCULOS = {
-  padrao: { left: '21.7%', top: '24%', width: '50%', height: '8.1%' },
-  bone: { left: '21%', top: '23.1%', width: '50%', height: '8.1%' },
-};
-
+// A fantasia é o boneco inteiro: cobre roupa, chapéu e óculos.
 export const FANTASIAS = {
   dinossauro: require('../../assets/images/avatar/fantasias/dinossauro.png'),
   astronauta: require('../../assets/images/avatar/fantasias/astronauta.png'),
   abelha: require('../../assets/images/avatar/fantasias/abelha.png'),
 };
 
+// As imagens têm sobra em volta (para o chapéu de mago e as asas da abelha).
+// Esta posição faz o boneco sem chapéu ocupar a caixa do avatar inteira.
+export const POSICAO_CAMADAS = {
+  left: '-10.98%',
+  top: '-14.38%',
+  width: '121.95%',
+  height: '114.54%',
+};
+
 const miniatura = {
   nenhum: require('../../assets/images/avatar/miniaturas/nenhum.png'),
   bone: require('../../assets/images/avatar/miniaturas/bone.png'),
+  chapeu: require('../../assets/images/avatar/miniaturas/chapeu.png'),
+  chapeuMago: require('../../assets/images/avatar/miniaturas/chapeu-mago.png'),
+  oculosPreto: require('../../assets/images/avatar/miniaturas/oculos-preto.png'),
+  oculosAmarelo: require('../../assets/images/avatar/miniaturas/oculos-amarelo.png'),
+  camisetaVermelha: require('../../assets/images/avatar/miniaturas/camiseta-vermelha.png'),
+  camisetaAzul: require('../../assets/images/avatar/miniaturas/camiseta-azul.png'),
+  camisetaVerde: require('../../assets/images/avatar/miniaturas/camiseta-verde.png'),
+  camisetaAmarela: require('../../assets/images/avatar/miniaturas/camiseta-amarela.png'),
+  camisetaPreta: require('../../assets/images/avatar/miniaturas/camiseta-preta.png'),
+  jeans: require('../../assets/images/avatar/miniaturas/jeans.png'),
+  bermudaVermelha: require('../../assets/images/avatar/miniaturas/bermuda-vermelha.png'),
+  bermudaAzul: require('../../assets/images/avatar/miniaturas/bermuda-azul.png'),
+  dinossauro: require('../../assets/images/avatar/miniaturas/fantasia-dinossauro.png'),
+  astronauta: require('../../assets/images/avatar/miniaturas/fantasia-astronauta.png'),
+  abelha: require('../../assets/images/avatar/miniaturas/fantasia-abelha.png'),
 };
 
 // Categorias e itens da vitrine. "id: null" é a opção "nenhum" (tira o item).
@@ -80,11 +79,11 @@ export const CATEGORIAS_VITRINE = [
     itens: [
       { id: null, nome: 'Sem chapéu', miniatura: miniatura.nenhum },
       { id: 'bone', nome: 'Boné', miniatura: miniatura.bone },
-      { id: 'chapeu', nome: 'Chapéu', miniatura: CHAPEUS.chapeu.imagem },
+      { id: 'chapeu', nome: 'Chapéu', miniatura: miniatura.chapeu },
       {
         id: 'chapeu-mago',
         nome: 'Chapéu de mago',
-        miniatura: CHAPEUS['chapeu-mago'].imagem,
+        miniatura: miniatura.chapeuMago,
       },
     ],
   },
@@ -94,8 +93,12 @@ export const CATEGORIAS_VITRINE = [
     icone: require('../../assets/images/conta/abas/oculos.png'),
     itens: [
       { id: null, nome: 'Sem óculos', miniatura: miniatura.nenhum },
-      { id: 'amarelo', nome: 'Óculos amarelo', miniatura: OCULOS.amarelo },
-      { id: 'preto', nome: 'Óculos preto', miniatura: OCULOS.preto },
+      { id: 'preto', nome: 'Óculos preto', miniatura: miniatura.oculosPreto },
+      {
+        id: 'amarelo',
+        nome: 'Óculos amarelo',
+        miniatura: miniatura.oculosAmarelo,
+      },
     ],
   },
   {
@@ -106,27 +109,23 @@ export const CATEGORIAS_VITRINE = [
       {
         id: 'vermelha',
         nome: 'Camiseta vermelha',
-        miniatura: require('../../assets/images/avatar/miniaturas/camiseta-vermelha.png'),
+        miniatura: miniatura.camisetaVermelha,
       },
-      {
-        id: 'azul',
-        nome: 'Camiseta azul',
-        miniatura: require('../../assets/images/avatar/miniaturas/camiseta-azul.png'),
-      },
+      { id: 'azul', nome: 'Camiseta azul', miniatura: miniatura.camisetaAzul },
       {
         id: 'verde',
         nome: 'Camiseta verde',
-        miniatura: require('../../assets/images/avatar/miniaturas/camiseta-verde.png'),
+        miniatura: miniatura.camisetaVerde,
       },
       {
         id: 'amarela',
         nome: 'Camiseta amarela',
-        miniatura: require('../../assets/images/avatar/miniaturas/camiseta-amarela.png'),
+        miniatura: miniatura.camisetaAmarela,
       },
       {
         id: 'preta',
         nome: 'Camiseta preta',
-        miniatura: require('../../assets/images/avatar/miniaturas/camiseta-preta.png'),
+        miniatura: miniatura.camisetaPreta,
       },
     ],
   },
@@ -135,44 +134,36 @@ export const CATEGORIAS_VITRINE = [
     nome: 'Calças e bermudas',
     icone: require('../../assets/images/conta/abas/bermuda.png'),
     itens: [
-      {
-        id: 'jeans',
-        nome: 'Calça jeans',
-        miniatura: require('../../assets/images/avatar/miniaturas/calca-jeans.png'),
-      },
+      { id: 'jeans', nome: 'Calça jeans', miniatura: miniatura.jeans },
       {
         id: 'bermuda-vermelha',
         nome: 'Bermuda vermelha',
-        miniatura: require('../../assets/images/avatar/miniaturas/bermuda-vermelha.png'),
+        miniatura: miniatura.bermudaVermelha,
       },
       {
         id: 'bermuda-azul',
         nome: 'Bermuda azul',
-        miniatura: require('../../assets/images/avatar/miniaturas/bermuda-azul.png'),
+        miniatura: miniatura.bermudaAzul,
       },
     ],
   },
   {
     id: 'fantasia',
     nome: 'Fantasias',
-    icone: require('../../assets/images/avatar/miniaturas/fantasia-dinossauro.png'),
+    icone: miniatura.dinossauro,
     itens: [
       { id: null, nome: 'Sem fantasia', miniatura: miniatura.nenhum },
       {
         id: 'dinossauro',
         nome: 'Fantasia de dinossauro',
-        miniatura: require('../../assets/images/avatar/miniaturas/fantasia-dinossauro.png'),
+        miniatura: miniatura.dinossauro,
       },
       {
         id: 'astronauta',
         nome: 'Fantasia de astronauta',
-        miniatura: require('../../assets/images/avatar/miniaturas/fantasia-astronauta.png'),
+        miniatura: miniatura.astronauta,
       },
-      {
-        id: 'abelha',
-        nome: 'Fantasia de abelha',
-        miniatura: require('../../assets/images/avatar/miniaturas/fantasia-abelha.png'),
-      },
+      { id: 'abelha', nome: 'Fantasia de abelha', miniatura: miniatura.abelha },
     ],
   },
 ];
