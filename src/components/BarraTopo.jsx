@@ -1,4 +1,6 @@
-// Barra do topo das telas de jogo: moedas, Loja (abre as Opções), troféus e engrenagem.
+// Barra do topo das telas de jogo, seguindo o fluxo do protótipo (Figma):
+// LOJA → personalizar o avatar (Minha Conta), troféu → Troféus,
+// engrenagem → Opções (configurações). As moedas ainda não têm tela.
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import Pilula from './Pilula';
@@ -10,12 +12,7 @@ const imagens = {
   engrenagem: require('../../assets/images/home/engrenagem.png'),
 };
 
-export default function BarraTopo({
-  moedas,
-  trofeus,
-  aoAbrirTrofeus,
-  aoAbrirOpcoes = avisarEmBreve,
-}) {
+export default function BarraTopo({ moedas, trofeus, navigation }) {
   return (
     <View style={estilos.topo}>
       <Pilula
@@ -24,14 +21,21 @@ export default function BarraTopo({
         descricao="Moedas"
         aoPressionar={avisarEmBreve}
       />
-      <Pilula texto="LOJA" descricao="Loja" aoPressionar={aoAbrirOpcoes} />
+      <Pilula
+        texto="LOJA"
+        descricao="Loja"
+        aoPressionar={() => navigation.navigate('MinhaConta')}
+      />
       <Pilula
         icone={imagens.trofeu}
         texto={trofeus}
         descricao="Troféus"
-        aoPressionar={aoAbrirTrofeus}
+        aoPressionar={() => navigation.navigate('Trofeus')}
       />
-      <Pressable onPress={avisarEmBreve} accessibilityLabel="Configurações">
+      <Pressable
+        onPress={() => navigation.navigate('Opcoes')}
+        accessibilityLabel="Configurações"
+      >
         <Image source={imagens.engrenagem} style={estilos.engrenagem} />
       </Pressable>
     </View>

@@ -47,7 +47,7 @@ export default function TrofeusScreen({ navigation }) {
           <BarraTopo
             moedas={progresso.moedas}
             trofeus={progresso.trofeus}
-            aoAbrirOpcoes={() => navigation.navigate('Opcoes')}
+            navigation={navigation}
           />
 
           <View style={estilos.cabecalho}>

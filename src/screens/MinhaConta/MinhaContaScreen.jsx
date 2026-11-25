@@ -64,8 +64,7 @@ export default function MinhaContaScreen({ navigation }) {
       <BarraTopo
         moedas={progresso.moedas}
         trofeus={progresso.trofeus}
-        aoAbrirTrofeus={() => navigation.navigate('Trofeus')}
-        aoAbrirOpcoes={() => navigation.navigate('Opcoes')}
+        navigation={navigation}
       />
 
       <View style={estilos.cabecalho}>

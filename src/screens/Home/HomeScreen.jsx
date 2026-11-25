@@ -33,7 +33,7 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   // Recarrega o visual sempre que a Home aparece de novo
-  // (por exemplo, depois de trocar a roupa na Minha Conta).
+  // (por exemplo, depois de trocar a roupa pela LOJA).
   useFocusEffect(
     useCallback(() => {
       AvatarService.buscar().then(setVisual);
@@ -47,8 +47,7 @@ export default function HomeScreen({ navigation }) {
           <BarraTopo
             moedas={progresso.moedas}
             trofeus={progresso.trofeus}
-            aoAbrirTrofeus={() => navigation.navigate('Trofeus')}
-            aoAbrirOpcoes={() => navigation.navigate('Opcoes')}
+            navigation={navigation}
           />
 
           <View style={estilos.cartaoNivel}>
@@ -74,18 +73,14 @@ export default function HomeScreen({ navigation }) {
           </View>
 
           <View style={estilos.meio}>
-            <Pressable
-              style={estilos.avatar}
-              onPress={() => navigation.navigate('MinhaConta')}
-              accessibilityLabel="Minha conta"
-            >
+            <View style={estilos.avatar}>
               {visual && (
                 <AvatarPersonalizado
                   visual={visual}
                   estilo={estilos.imagemAvatar}
                 />
               )}
-            </Pressable>
+            </View>
 
             <Text style={estilos.rotuloDias}>DIAS SEM APOSTAS</Text>
             <View style={estilos.caixaDias}>

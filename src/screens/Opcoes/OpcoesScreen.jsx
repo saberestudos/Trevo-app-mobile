@@ -1,4 +1,4 @@
-// Tela de Opções: aberta pelo botão LOJA do topo das telas de jogo.
+// Tela de Opções (configurações): aberta pela engrenagem do topo das telas de jogo.
 // "Minha conta" abre a tela da conta e "Sair" volta para o Login.
 // As outras opções ainda serão feitas e mostram "Em breve".
 import { useCallback, useState } from 'react';
@@ -67,8 +67,7 @@ export default function OpcoesScreen({ navigation }) {
           <BarraTopo
             moedas={progresso.moedas}
             trofeus={progresso.trofeus}
-            aoAbrirTrofeus={() => navigation.navigate('Trofeus')}
-            aoAbrirOpcoes={() => voltar(navigation)}
+            navigation={navigation}
           />
 
           <View style={estilos.cartao}>
