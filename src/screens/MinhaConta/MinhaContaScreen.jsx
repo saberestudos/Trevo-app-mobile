@@ -39,8 +39,14 @@ export default function MinhaContaScreen({ navigation }) {
   }, []);
 
   // Veste o item escolhido na vitrine e guarda o novo visual.
+  // Escolher uma roupa ou acessório tira a fantasia (ou o "sem roupa"),
+  // para o item escolhido aparecer no boneco.
   function vestir(categoria, item) {
-    AvatarService.salvar({ ...visual, [categoria]: item }).then(setVisual);
+    const novoVisual = { ...visual, [categoria]: item };
+    if (categoria !== 'fantasia') {
+      novoVisual.fantasia = null;
+    }
+    AvatarService.salvar(novoVisual).then(setVisual);
   }
 
   if (!progresso || !visual) {

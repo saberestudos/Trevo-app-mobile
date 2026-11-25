@@ -35,7 +35,9 @@ export const OCULOS = {
 };
 
 // A fantasia é o boneco inteiro: cobre roupa, chapéu e óculos.
+// "sem-roupa" é o boneco só de bermuda e chinelo (o ⊘ da aba de fantasias).
 export const FANTASIAS = {
+  'sem-roupa': require('../../assets/images/avatar/sem-roupa.png'),
   dinossauro: require('../../assets/images/avatar/fantasias/dinossauro.png'),
   astronauta: require('../../assets/images/avatar/fantasias/astronauta.png'),
   abelha: require('../../assets/images/avatar/fantasias/abelha.png'),
@@ -152,7 +154,7 @@ export const CATEGORIAS_VITRINE = [
     nome: 'Fantasias',
     icone: miniatura.dinossauro,
     itens: [
-      { id: null, nome: 'Sem fantasia', miniatura: miniatura.nenhum },
+      { id: 'sem-roupa', nome: 'Sem roupa', miniatura: miniatura.nenhum },
       {
         id: 'dinossauro',
         nome: 'Fantasia de dinossauro',
