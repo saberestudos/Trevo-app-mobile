@@ -19,5 +19,9 @@ export const cores = {
   sombraTexto: 'rgba(0, 0, 0, 0.25)',
   sobreposicao: 'rgba(0, 0, 0, 0.45)',
   erro: '#D32F2F',
+  homeFundoInicio: '#34A853',
+  homeFundoFim: '#266E39',
+  nivelInicio: '#05693E',
+  nivelFim: '#1FFF2E',
   facebook: '#3C5A99',
 };

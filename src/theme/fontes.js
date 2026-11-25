@@ -5,6 +5,7 @@ export const familias = {
   regular: 'Inter_400Regular',
   media: 'Inter_500Medium',
   semiNegrito: 'Inter_600SemiBold',
+  destaque: 'HIGHSENS',
 };
 
 // Monta o estilo de texto com a altura de linha "normal" do Figma
@@ -14,5 +15,15 @@ export function fonte(familia, tamanho) {
     fontFamily: familia,
     fontSize: tamanho,
     lineHeight: Math.round(tamanho * 1.21),
+  };
+}
+
+// Fonte de destaque da Home (HIGHSENS). Nela, a altura de linha "normal"
+// do Figma é igual ao tamanho da fonte.
+export function fonteDestaque(tamanho) {
+  return {
+    fontFamily: familias.destaque,
+    fontSize: tamanho,
+    lineHeight: tamanho,
   };
 }

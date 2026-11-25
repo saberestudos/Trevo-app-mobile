@@ -1,7 +1,7 @@
 // Tela de Login do TREVO.
 // Requisito atendido: RF 02 (o usuário deve conseguir fazer login).
 import { useState } from 'react';
-import { Alert, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import Botao from '../../components/Botao';
 import CaixaSelecao from '../../components/CaixaSelecao';
@@ -34,8 +34,9 @@ export default function LoginScreen({ navigation }) {
     setCarregando(true);
 
     try {
-      const usuario = await AuthService.login(identificador, senha);
-      Alert.alert('Login realizado', `Bem-vindo(a), ${usuario.nome}!`);
+      await AuthService.login(identificador, senha);
+      // "reset" troca a pilha de telas: ao voltar, o app não retorna para o login.
+      navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
     } catch (erro) {
       setErros({ senha: erro.message });
     } finally {

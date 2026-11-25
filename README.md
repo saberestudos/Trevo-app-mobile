@@ -11,6 +11,7 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 - React Navigation (native stack)
 - StyleSheet do React Native
 - Fonte Inter (`@expo-google-fonts/inter`) e degradê das bordas (`expo-linear-gradient`), como no protótipo
+- Fonte HIGHSENS na Home (`assets/fonts`). Ela é **gratuita só para uso pessoal** e não tem letras acentuadas: o componente `TextoDestaque` desenha os acentos
 
 ## Telas prontas
 
@@ -21,8 +22,9 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 | Esqueceu a senha? | RF 03 |
 | Código | RF 03 |
 | Quantos dias por semana jogou? (onboarding, com modal de boas-vindas em 4 etapas) | RF 04 |
+| Home (contador de dias sem apostar, nível, moedas e troféus) | RF 05 |
 
-Fluxo: Login → "Inscreva-se" → Cadastro → Onboarding. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
+Fluxo: Login → Home. Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
 
 ## Como rodar
 

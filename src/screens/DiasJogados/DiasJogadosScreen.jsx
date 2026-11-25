@@ -1,7 +1,7 @@
 // Tela de onboarding "Quantos dias por semana jogou?".
 // Requisito atendido: RF 04 (perguntar em quantos dias por semana o usuário apostou).
 import { useState } from 'react';
-import { Alert, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import Botao from '../../components/Botao';
 import Cartao from '../../components/Cartao';
@@ -69,10 +69,7 @@ export default function DiasJogadosScreen({ navigation, route }) {
         horarios: faixasDeHorario,
         vezesPorDia,
       });
-      Alert.alert(
-        'Respostas salvas',
-        'A tela inicial estará disponível em breve.',
-      );
+      navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
     } finally {
       setCarregando(false);
     }
