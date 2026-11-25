@@ -1,4 +1,4 @@
-// Tela de Opções: aberta pela engrenagem do topo das telas de jogo.
+// Tela de Opções: aberta pelo botão LOJA do topo das telas de jogo.
 // "Minha conta" abre a tela da conta e "Sair" volta para o Login.
 // As outras opções ainda serão feitas e mostram "Em breve".
 import { useCallback, useState } from 'react';
@@ -6,6 +6,7 @@ import { Pressable, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 import BarraTopo from '../../components/BarraTopo';
+import { voltar } from '../../components/BotaoVoltar';
 import TelaJogo from '../../components/TelaJogo';
 import ProgressoService from '../../services/ProgressoService';
 import { avisarEmBreve } from '../../utils/avisos';
@@ -67,7 +68,7 @@ export default function OpcoesScreen({ navigation }) {
             moedas={progresso.moedas}
             trofeus={progresso.trofeus}
             aoAbrirTrofeus={() => navigation.navigate('Trofeus')}
-            aoAbrirOpcoes={() => navigation.goBack()}
+            aoAbrirOpcoes={() => voltar(navigation)}
           />
 
           <View style={estilos.cartao}>
@@ -94,7 +95,7 @@ export default function OpcoesScreen({ navigation }) {
 
             <Pressable
               style={estilos.fechar}
-              onPress={() => navigation.goBack()}
+              onPress={() => voltar(navigation)}
               accessibilityRole="button"
               accessibilityLabel="Fechar opções"
             >

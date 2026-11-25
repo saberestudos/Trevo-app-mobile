@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Image, View } from 'react-native';
 
 import BarraTopo from '../../components/BarraTopo';
-import BotaoVoltar from '../../components/BotaoVoltar';
+import BotaoVoltar, { voltar } from '../../components/BotaoVoltar';
 import TelaJogo from '../../components/TelaJogo';
 import TextoDestaque from '../../components/TextoDestaque';
 import ProgressoService from '../../services/ProgressoService';
@@ -51,7 +51,7 @@ export default function TrofeusScreen({ navigation }) {
           />
 
           <View style={estilos.cabecalho}>
-            <BotaoVoltar aoPressionar={() => navigation.goBack()} />
+            <BotaoVoltar aoPressionar={() => voltar(navigation)} />
             <View style={estilos.titulos}>
               <TextoDestaque texto="MINHA COLEÇÃO" tamanho={36} centralizado />
               <TextoDestaque

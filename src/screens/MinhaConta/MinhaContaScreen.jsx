@@ -5,7 +5,7 @@ import { Image, Pressable, View } from 'react-native';
 
 import AvatarPersonalizado from '../../components/AvatarPersonalizado';
 import BarraTopo from '../../components/BarraTopo';
-import BotaoVoltar from '../../components/BotaoVoltar';
+import BotaoVoltar, { voltar } from '../../components/BotaoVoltar';
 import TelaJogo from '../../components/TelaJogo';
 import TextoDestaque from '../../components/TextoDestaque';
 import VitrineAvatar from '../../components/VitrineAvatar';
@@ -57,7 +57,7 @@ export default function MinhaContaScreen({ navigation }) {
       />
 
       <View style={estilos.cabecalho}>
-        <BotaoVoltar aoPressionar={() => navigation.goBack()} />
+        <BotaoVoltar aoPressionar={() => voltar(navigation)} />
         <TextoDestaque
           texto="MINHA CONTA"
           tamanho={36}

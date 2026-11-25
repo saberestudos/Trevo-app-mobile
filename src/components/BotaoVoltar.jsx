@@ -4,6 +4,15 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import { cores } from '../theme/cores';
 
+// Volta para a tela anterior; se não houver (ex.: página recarregada), vai para a Home.
+export function voltar(navigation) {
+  if (navigation.canGoBack()) {
+    navigation.goBack();
+  } else {
+    navigation.navigate('Home');
+  }
+}
+
 export default function BotaoVoltar({ aoPressionar, estilo }) {
   return (
     <Pressable

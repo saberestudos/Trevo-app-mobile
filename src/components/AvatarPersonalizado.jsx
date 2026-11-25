@@ -1,6 +1,8 @@
 // Desenha o avatar com o que ele está usando, empilhando imagens do mesmo tamanho:
 // corpo → camiseta → pernas (calça ou bermuda) → alto da cabeça (cabelo ou chapéu) → óculos.
 // Com fantasia, ela é o boneco inteiro e aparece sozinha.
+// O palco passa um pouco da caixa (chapéu de mago, asas da abelha); por isso ele
+// não recebe toques, para não tapar botões vizinhos como a seta de voltar.
 import { Image, StyleSheet, View } from 'react-native';
 
 import {
@@ -22,7 +24,7 @@ export default function AvatarPersonalizado({ visual, estilo }) {
 
   return (
     <View style={estilo}>
-      <View style={[estilos.palco, POSICAO_CAMADAS]}>
+      <View style={[estilos.palco, POSICAO_CAMADAS]} pointerEvents="none">
         {fantasia ? (
           <Camada imagem={FANTASIAS[fantasia]} />
         ) : (

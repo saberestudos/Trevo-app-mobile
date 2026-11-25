@@ -1,4 +1,4 @@
-// Barra do topo das telas de jogo: moedas, Loja, troféus e engrenagem (opções).
+// Barra do topo das telas de jogo: moedas, Loja (abre as Opções), troféus e engrenagem.
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import Pilula from './Pilula';
@@ -24,14 +24,14 @@ export default function BarraTopo({
         descricao="Moedas"
         aoPressionar={avisarEmBreve}
       />
-      <Pilula texto="LOJA" descricao="Loja" aoPressionar={avisarEmBreve} />
+      <Pilula texto="LOJA" descricao="Loja" aoPressionar={aoAbrirOpcoes} />
       <Pilula
         icone={imagens.trofeu}
         texto={trofeus}
         descricao="Troféus"
         aoPressionar={aoAbrirTrofeus}
       />
-      <Pressable onPress={aoAbrirOpcoes} accessibilityLabel="Opções">
+      <Pressable onPress={avisarEmBreve} accessibilityLabel="Configurações">
         <Image source={imagens.engrenagem} style={estilos.engrenagem} />
       </Pressable>
     </View>
