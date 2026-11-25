@@ -63,15 +63,15 @@ Os cadastros feitos no app ficam só na memória e somem ao recarregar.
 
 ```
 src/
+├── catalogos/    imagens e categorias do avatar (corpo, cabeças, roupas, óculos e fantasias)
 ├── components/   peças reutilizáveis (Botao, CampoTexto, CampoCodigo, Contador...)
 ├── mocks/        dados simulados, usados até o backend existir
-├── models/       classes de dados (Usuario, RespostaOnboarding)
+├── models/       classes de dados (Usuario, RespostaOnboarding, Progresso, Trofeu)
 ├── navigation/   rotas do app
 ├── screens/      uma pasta por tela, com o componente e os estilos
 ├── services/     classes que hoje usam o mock e depois chamarão a API
 ├── theme/        cores e tamanhos de fonte do protótipo
 └── utils/        validações, lista de horários e avisos
-├── catalogos/    imagens e categorias do avatar (bases, roupas, acessórios e fantasias)
 ```
 
 ## Padrões do projeto

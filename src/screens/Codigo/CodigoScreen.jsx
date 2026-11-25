@@ -1,13 +1,14 @@
 // Tela "Código": segunda etapa da recuperação de senha.
 // Requisito atendido: RF 03 (recuperar senha por código enviado ao e-mail).
 import { useState } from 'react';
-import { Alert, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import Botao from '../../components/Botao';
 import CampoCodigo from '../../components/CampoCodigo';
 import Logo from '../../components/Logo';
 import Tela from '../../components/Tela';
 import AuthService from '../../services/AuthService';
+import { avisar } from '../../utils/avisos';
 import { validarCodigo } from '../../utils/validacoes';
 import estilosAcesso from '../estilosAcesso';
 import estilos from './styles';
@@ -31,7 +32,7 @@ export default function CodigoScreen({ navigation }) {
 
     try {
       await AuthService.verificarCodigo(digitos.join(''));
-      Alert.alert('Código verificado', 'Seu código foi confirmado.');
+      avisar('Código verificado', 'Seu código foi confirmado.');
       navigation.navigate('Login');
     } catch (erro) {
       setErros({ codigo: erro.message });
