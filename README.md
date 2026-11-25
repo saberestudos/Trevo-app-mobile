@@ -57,7 +57,7 @@ Depois, leia o QR Code com o Expo Go (Android) ou com a câmera (iOS). O celular
 | Senha | 123456 |
 | Código de recuperação | 12345 |
 
-Os cadastros feitos no app ficam só na memória e somem ao recarregar.
+Os cadastros feitos no app ficam guardados no navegador (não somem ao recarregar a página). No celular, ficam só na memória até o backend existir.
 
 ## Estrutura de pastas
 
