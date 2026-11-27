@@ -103,8 +103,8 @@ const miniatura = {
 };
 
 // Nível em que os itens bloqueados são liberados.
-const NIVEL_ITEM_RARO = 3;
-const NIVEL_ITEM_EPICO = 5;
+const NIVEL_ITEM_RARO = 5;
+const NIVEL_ITEM_EPICO = 12;
 
 // Categorias e itens da vitrine. "id: null" é a opção "nenhum" (tira o item).
 // Itens com "nivelMinimo" aparecem bloqueados até a pessoa chegar nesse nível.

@@ -48,10 +48,7 @@ export default function VitrineAvatar({ visual, nivel, aoEscolher, estilo }) {
 
           function escolher() {
             if (bloqueado) {
-              avisar(
-                'Item bloqueado',
-                `${item.nome} libera no nível ${item.nivelMinimo}. Continue fazendo as missões!`,
-              );
+              avisar('Item bloqueado', `Necessário nível ${item.nivelMinimo}`);
               return;
             }
             aoEscolher(categoria.id, item.id);
