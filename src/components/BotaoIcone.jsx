@@ -1,4 +1,4 @@
-// Botão quadrado (cantos arredondados) só com ícone. Ao passar o mouse (ou segurar o dedo no celular),
+// Botão só com ícone (o tamanho pode mudar com "estiloBotao"). Ao passar o mouse (ou segurar o dedo no celular),
 // aparece uma dica (tooltip) com o nome da ação.
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -8,7 +8,14 @@ import { cores } from '../theme/cores';
 import { familias, fonte } from '../theme/fontes';
 import { sombraPadrao } from '../theme/sombras';
 
-export default function BotaoIcone({ icone, dica, aoPressionar, cor, estilo }) {
+export default function BotaoIcone({
+  icone,
+  dica,
+  aoPressionar,
+  cor,
+  estilo,
+  estiloBotao,
+}) {
   const [mostrarDica, setMostrarDica] = useState(false);
 
   return (
@@ -21,7 +28,7 @@ export default function BotaoIcone({ icone, dica, aoPressionar, cor, estilo }) {
         </View>
       )}
       <Pressable
-        style={[estilos.botao, cor && { backgroundColor: cor }]}
+        style={[estilos.botao, cor && { backgroundColor: cor }, estiloBotao]}
         onPress={aoPressionar}
         onHoverIn={() => setMostrarDica(true)}
         onHoverOut={() => setMostrarDica(false)}

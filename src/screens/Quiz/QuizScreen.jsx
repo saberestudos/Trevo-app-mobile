@@ -207,6 +207,7 @@ export default function QuizScreen({ navigation }) {
           dica="Tentar novamente"
           aoPressionar={continuar}
           estilo={estilos.botaoTentar}
+          estiloBotao={estilos.botaoTentarRetangulo}
         />
       )}
     </TelaJogo>

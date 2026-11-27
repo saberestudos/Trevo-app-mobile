@@ -153,6 +153,11 @@ const estilos = StyleSheet.create({
   botaoTentar: {
     marginTop: 22,
   },
+  // Retangular como o botão Continuar, só com o ícone.
+  botaoTentarRetangulo: {
+    width: 255,
+    borderRadius: 14,
+  },
   textoBotao: {
     marginTop: 3,
     ...fonteQuiz(32),
