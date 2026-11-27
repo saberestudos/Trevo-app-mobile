@@ -70,6 +70,16 @@ class ProgressoService {
     return this.buscar();
   }
 
+  // Soma pontos de experiência (ex.: acertos no quiz).
+  ganharExperiencia(pontos) {
+    const ganhos = lerDados(CHAVE_GANHOS_MISSOES, GANHOS_VAZIOS);
+    salvarDados(CHAVE_GANHOS_MISSOES, {
+      ...ganhos,
+      experiencia: ganhos.experiencia + pontos,
+    });
+    return this.buscar();
+  }
+
   // Dá o presente de boas-vindas uma única vez.
   // Devolve true se deu agora (para a tela mostrar o parabéns).
   receberBonusBoasVindas() {

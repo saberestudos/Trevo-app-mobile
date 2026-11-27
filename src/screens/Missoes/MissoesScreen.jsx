@@ -13,7 +13,7 @@ import TextoDestaque from '../../components/TextoDestaque';
 import MissaoService from '../../services/MissaoService';
 import ProgressoService from '../../services/ProgressoService';
 import { cores } from '../../theme/cores';
-import { avisar, avisarEmBreve } from '../../utils/avisos';
+import { avisar } from '../../utils/avisos';
 import estilos from './styles';
 
 const icones = {
@@ -45,8 +45,20 @@ export default function MissoesScreen({ navigation }) {
   );
 
   function alternar(missao) {
-    if (missao.resgatada) {
-      avisar('Missão concluída', 'Você já recebeu a recompensa dessa missão.');
+    if (missao.automatica && !missao.feita) {
+      avisar(
+        'Jogue o quiz',
+        'Essa missão é concluída quando você responde o quiz.',
+      );
+      return;
+    }
+    if (missao.automatica || missao.resgatada) {
+      avisar(
+        'Missão concluída',
+        missao.resgatada
+          ? 'Você já recebeu a recompensa dessa missão.'
+          : 'Toque em Receber recompensas para ganhar o prêmio.',
+      );
       return;
     }
     MissaoService.alternar(missao.id).then(setMissoes);
@@ -134,7 +146,7 @@ export default function MissoesScreen({ navigation }) {
 
         <Pressable
           style={estilos.botaoQuiz}
-          onPress={avisarEmBreve}
+          onPress={() => navigation.navigate('Quiz')}
           accessibilityRole="button"
         >
           <TextoDestaque texto="RESPONDER QUIZ" tamanho={36} />

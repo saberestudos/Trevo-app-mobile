@@ -12,6 +12,7 @@ import LojaScreen from '../screens/Loja/LojaScreen';
 import MissoesScreen from '../screens/Missoes/MissoesScreen';
 import OpcoesScreen from '../screens/Opcoes/OpcoesScreen';
 import PremiumScreen from '../screens/Premium/PremiumScreen';
+import QuizScreen from '../screens/Quiz/QuizScreen';
 import MinhaContaScreen from '../screens/MinhaConta/MinhaContaScreen';
 import TrofeusScreen from '../screens/Trofeus/TrofeusScreen';
 
@@ -36,6 +37,7 @@ export default function AppNavigator() {
         <Stack.Screen name="Loja" component={LojaScreen} />
         <Stack.Screen name="Premium" component={PremiumScreen} />
         <Stack.Screen name="Missoes" component={MissoesScreen} />
+        <Stack.Screen name="Quiz" component={QuizScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

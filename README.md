@@ -11,6 +11,7 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 - React Navigation (native stack)
 - StyleSheet do React Native
 - Fonte Inter (`@expo-google-fonts/inter`) e degradê das bordas (`expo-linear-gradient`), como no protótipo
+- Fonte Bebas Neue no quiz (`@expo-google-fonts/bebas-neue`), como no protótipo
 - Fonte HIGHSENS na Home (`assets/fonts`). Ela é **gratuita só para uso pessoal** e não tem letras acentuadas: o componente `TextoDestaque` desenha os acentos
 
 ## Telas prontas
@@ -28,9 +29,10 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 | Loja do Avatar (compra de itens com moedas) | RF 09 |
 | Pacote Premium (benefícios; pagamento ainda não existe) | — |
 | Missões Diárias (marcar missões e receber troféus e moedas) | — |
+| Quiz (5 perguntas, 4 vidas por dia, pontos para subir de nível) | — |
 | Opções (engrenagem do topo: Minha Conta e Sair; as outras opções mostram "Em breve") | — |
 
-Fluxo (igual ao protótipo): Login → Home → Troféus (troféu do topo ou da barra), Missões Diárias (ícone de missões), Loja do Avatar (botão LOJA) e Opções (engrenagem) → Minha Conta e Pacote Premium. Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
+Fluxo (igual ao protótipo): Login → Home → Troféus (troféu do topo ou da barra), Missões Diárias (ícone de missões) → Quiz (Responder quiz), Loja do Avatar (botão LOJA) e Opções (engrenagem) → Minha Conta e Pacote Premium. Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
 
 ## Como rodar
 

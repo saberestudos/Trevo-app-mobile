@@ -6,6 +6,7 @@ export const familias = {
   media: 'Inter_500Medium',
   semiNegrito: 'Inter_600SemiBold',
   destaque: 'HIGHSENS',
+  quiz: 'BebasNeue_400Regular',
 };
 
 // Monta o estilo de texto com a altura de linha "normal" do Figma
@@ -25,5 +26,14 @@ export function fonteDestaque(tamanho) {
     fontFamily: familias.destaque,
     fontSize: tamanho,
     lineHeight: tamanho,
+  };
+}
+
+// Fonte das perguntas do quiz (Bebas Neue), com a altura de linha "normal" do Figma.
+export function fonteQuiz(tamanho) {
+  return {
+    fontFamily: familias.quiz,
+    fontSize: tamanho,
+    lineHeight: Math.round(tamanho * 1.2),
   };
 }

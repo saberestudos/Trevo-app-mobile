@@ -28,12 +28,24 @@ class MissaoService {
   }
 
   // Marca ou desmarca uma missão. Missão que já deu recompensa não volta atrás.
+  // Missões automáticas (como o quiz) não são marcadas à mão.
   alternar(id) {
     const estado = lerEstado();
-    if (!estado.resgatadas.includes(id)) {
+    const missao = MISSOES_DIARIAS.find((item) => item.id === id);
+    if (!missao.automatica && !estado.resgatadas.includes(id)) {
       estado.feitas = estado.feitas.includes(id)
         ? estado.feitas.filter((feita) => feita !== id)
         : [...estado.feitas, id];
+      salvarDados(chaveDeHoje(), estado);
+    }
+    return this.listar();
+  }
+
+  // Marca uma missão como feita (usado quando o próprio app sabe que ela foi cumprida).
+  concluir(id) {
+    const estado = lerEstado();
+    if (!estado.feitas.includes(id)) {
+      estado.feitas = [...estado.feitas, id];
       salvarDados(chaveDeHoje(), estado);
     }
     return this.listar();

@@ -1,5 +1,6 @@
 // Missões diárias, na ordem do protótipo.
 // "recompensa" diz o que a pessoa recebe ao concluir (troféus ou moedas).
+// Missão "automatica" só é concluída pelo próprio app (o quiz, ao responder).
 export const MISSOES_DIARIAS = [
   {
     id: 'interagir',
@@ -9,6 +10,7 @@ export const MISSOES_DIARIAS = [
   {
     id: 'quiz',
     texto: 'JOGUE O QUIZ',
+    automatica: true,
     recompensa: { tipo: 'trofeus', quantidade: 20 },
   },
   {

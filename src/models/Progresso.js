@@ -1,7 +1,18 @@
 // Model com o progresso do usuário mostrado na Home.
 // O nível e a barra saem da experiência ganha nas missões;
 // os dias sem apostar (RF 05) saem da data de início.
-const EXPERIENCIA_POR_NIVEL = 100; // provisório: o grupo ainda vai definir essa regra
+// Regra dos níveis: começa no 0; o nível 1 pede 55 pontos, o 2 pede 160
+// e, a partir daí, cada nível pede mais 105 pontos.
+const PONTOS_NIVEL_1 = 55;
+const PONTOS_NIVEL_2 = 160;
+const PONTOS_POR_NIVEL_SEGUINTE = 105;
+
+// Total de pontos para chegar a um nível.
+export function pontosParaNivel(nivel) {
+  if (nivel <= 0) return 0;
+  if (nivel === 1) return PONTOS_NIVEL_1;
+  return PONTOS_NIVEL_2 + (nivel - 2) * PONTOS_POR_NIVEL_SEGUINTE;
+}
 const UM_DIA_EM_MILISSEGUNDOS = 24 * 60 * 60 * 1000;
 
 export default class Progresso {
@@ -30,9 +41,13 @@ export default class Progresso {
     return this.missoesConcluidas > 0;
   }
 
-  // Começa no nível 1 e sobe a cada 100 pontos de experiência.
+  // Nível atual a partir dos pontos de experiência (começa no 0).
   nivelAtual() {
-    return Math.floor(this.experiencia / EXPERIENCIA_POR_NIVEL) + 1;
+    let nivel = 0;
+    while (pontosParaNivel(nivel + 1) <= this.experiencia) {
+      nivel += 1;
+    }
+    return nivel;
   }
 
   proximoNivel() {
@@ -41,8 +56,9 @@ export default class Progresso {
 
   // Quanto já foi completado do nível atual, de 0 a 100.
   porcentagemDoNivel() {
-    const experienciaNoNivel = this.experiencia % EXPERIENCIA_POR_NIVEL;
-    return Math.floor((experienciaNoNivel / EXPERIENCIA_POR_NIVEL) * 100);
+    const inicio = pontosParaNivel(this.nivelAtual());
+    const fim = pontosParaNivel(this.proximoNivel());
+    return Math.floor(((this.experiencia - inicio) / (fim - inicio)) * 100);
   }
 
   // Dias completos desde a data de início (ou da última recaída).
