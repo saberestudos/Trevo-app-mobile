@@ -89,9 +89,7 @@ export default function DiasJogadosScreen({ navigation, route }) {
 
         {/* Título e cartões se espalham pela altura, com espaços iguais. */}
         <View style={estilos.meio}>
-          <Text style={estilos.titulo}>
-            {'Quantos dias\npor semana jogou?'}
-          </Text>
+          <Text style={estilos.titulo}>Quantos dias por semana jogou?</Text>
 
           <Cartao estilo={estilos.cartao}>
             <Text style={estilos.rotulo}>Dias da semana jogados</Text>

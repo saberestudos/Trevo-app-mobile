@@ -18,8 +18,9 @@ const estilos = StyleSheet.create({
     gap: 14,
     paddingVertical: 16,
   },
+  // Uma linha só: 20 cabe na largura da tela (330).
   titulo: {
-    ...fonte(familias.semiNegrito, 22),
+    ...fonte(familias.semiNegrito, 20),
     color: cores.texto,
     textAlign: 'center',
   },
