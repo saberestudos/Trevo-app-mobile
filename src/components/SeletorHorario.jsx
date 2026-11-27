@@ -30,7 +30,7 @@ export default function SeletorHorario({ valor, aoSelecionar, descricao }) {
         accessibilityLabel={descricao}
       >
         <Text style={estilos.valor}>{valor || '-'}</Text>
-        <Feather name="chevron-down" size={24} color={cores.texto} />
+        <Feather name="chevron-down" size={20} color={cores.textoSecundario} />
       </Pressable>
 
       <Modal
@@ -63,19 +63,19 @@ export default function SeletorHorario({ valor, aoSelecionar, descricao }) {
 const estilos = StyleSheet.create({
   caixa: {
     flex: 1,
-    height: 46,
+    height: 44,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingLeft: 9,
-    paddingRight: 4,
-    borderWidth: 1,
-    borderRadius: 6,
-    borderColor: cores.primaria,
-    backgroundColor: cores.fundoTranslucido,
+    paddingLeft: 12,
+    paddingRight: 6,
+    borderWidth: 1.5,
+    borderRadius: 12,
+    borderColor: cores.divisor,
+    backgroundColor: cores.fundo,
   },
   valor: {
-    ...fonte(familias.media, 20),
+    ...fonte(familias.semiNegrito, 17),
     color: cores.texto,
   },
   fundo: {
@@ -86,7 +86,7 @@ const estilos = StyleSheet.create({
   },
   lista: {
     maxHeight: 360,
-    borderRadius: 6,
+    borderRadius: 12,
     backgroundColor: cores.fundo,
   },
   opcao: {

@@ -1,5 +1,6 @@
 // Contador com botões de menos e mais, que não deixa passar de zero para baixo.
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 import { cores } from '../theme/cores';
 import { familias, fonte } from '../theme/fontes';
@@ -18,7 +19,7 @@ export default function Contador({ valor, aoAlterar, unidade }) {
         onPress={diminuir}
         accessibilityLabel="Diminuir"
       >
-        <Text style={estilos.sinal}>-</Text>
+        <Feather name="minus" size={22} color={cores.fundo} />
       </Pressable>
 
       <View style={estilos.caixaValor}>
@@ -30,7 +31,7 @@ export default function Contador({ valor, aoAlterar, unidade }) {
         onPress={() => aoAlterar(valor + 1)}
         accessibilityLabel="Aumentar"
       >
-        <Text style={estilos.sinal}>+</Text>
+        <Feather name="plus" size={22} color={cores.fundo} />
       </Pressable>
     </View>
   );
@@ -41,35 +42,28 @@ const estilos = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 6,
+    gap: 10,
   },
   botao: {
-    width: 46,
-    height: 46,
-    borderRadius: 23,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: cores.primaria,
   },
-  sinal: {
-    ...fonte(familias.media, 32),
-    color: cores.fundo,
-    textShadowColor: cores.sombraTexto,
-    textShadowOffset: { width: 0, height: 4 },
-    textShadowRadius: 4,
-  },
   caixaValor: {
-    width: 134,
-    height: 46,
+    width: 130,
+    height: 44,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderRadius: 6,
-    borderColor: cores.primaria,
-    backgroundColor: cores.fundoTranslucido,
+    borderWidth: 1.5,
+    borderRadius: 12,
+    borderColor: cores.divisor,
+    backgroundColor: cores.fundo,
   },
   valor: {
-    ...fonte(familias.media, 16),
+    ...fonte(familias.semiNegrito, 16),
     color: cores.texto,
   },
 });

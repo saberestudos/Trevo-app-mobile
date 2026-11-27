@@ -15,14 +15,15 @@ import { validarHorarios } from '../../utils/validacoes';
 import ModalBoasVindas from './ModalBoasVindas';
 import estilos from './styles';
 
+// Siglas de 3 letras: mais fáceis de ler que S, T, Q... (que se repetem).
 const DIAS_DA_SEMANA = [
-  { id: 'segunda', sigla: 'S' },
-  { id: 'terca', sigla: 'T' },
-  { id: 'quarta', sigla: 'Q' },
-  { id: 'quinta', sigla: 'Q' },
-  { id: 'sexta', sigla: 'S' },
-  { id: 'sabado', sigla: 'S' },
-  { id: 'domingo', sigla: 'D' },
+  { id: 'segunda', sigla: 'SEG' },
+  { id: 'terca', sigla: 'TER' },
+  { id: 'quarta', sigla: 'QUA' },
+  { id: 'quinta', sigla: 'QUI' },
+  { id: 'sexta', sigla: 'SEX' },
+  { id: 'sabado', sigla: 'SÁB' },
+  { id: 'domingo', sigla: 'DOM' },
 ];
 
 const FAIXAS_VAZIAS = [
@@ -86,83 +87,86 @@ export default function DiasJogadosScreen({ navigation, route }) {
           aoPedirAjuda={() => setBoasVindasVisivel(true)}
         />
 
-        <Text style={estilos.titulo}>{'Quantos dias\npor semana jogou?'}</Text>
+        {/* Título e cartões se espalham pela altura, com espaços iguais. */}
+        <View style={estilos.meio}>
+          <Text style={estilos.titulo}>
+            {'Quantos dias\npor semana jogou?'}
+          </Text>
 
-        <Cartao estilo={estilos.cartao}>
-          <Text style={estilos.rotulo}>Dias da semana jogados</Text>
-          <View style={estilos.linhaDias}>
-            {DIAS_DA_SEMANA.map((dia) => {
-              const selecionado = diasSelecionados.includes(dia.id);
-              return (
-                <Pressable
-                  key={dia.id}
-                  style={[estilos.dia, selecionado && estilos.diaSelecionado]}
-                  onPress={() => alternarDia(dia.id)}
-                  accessibilityRole="checkbox"
-                  accessibilityState={{ checked: selecionado }}
-                  accessibilityLabel={dia.id}
-                >
-                  <Text
-                    style={[
-                      estilos.siglaDia,
-                      selecionado && estilos.siglaDiaSelecionado,
-                    ]}
+          <Cartao estilo={estilos.cartao}>
+            <Text style={estilos.rotulo}>Dias da semana jogados</Text>
+            <View style={estilos.linhaDias}>
+              {DIAS_DA_SEMANA.map((dia) => {
+                const selecionado = diasSelecionados.includes(dia.id);
+                return (
+                  <Pressable
+                    key={dia.id}
+                    style={[estilos.dia, selecionado && estilos.diaSelecionado]}
+                    onPress={() => alternarDia(dia.id)}
+                    accessibilityRole="checkbox"
+                    accessibilityState={{ checked: selecionado }}
+                    accessibilityLabel={dia.id}
                   >
-                    {dia.sigla}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
-        </Cartao>
-
-        <Cartao estilo={estilos.cartao}>
-          <Text style={estilos.rotulo}>Horários mais frequentes</Text>
-          <Text style={estilos.dica}>
-            Ex.: das 20:00 até 23:00. A segunda linha é opcional.
-          </Text>
-          {faixasDeHorario.map((faixa, indice) => (
-            <View
-              key={indice}
-              style={[
-                estilos.linhaHorario,
-                indice > 0 && estilos.linhaHorarioSeguinte,
-              ]}
-            >
-              <SeletorHorario
-                descricao={`Início do horário ${indice + 1}`}
-                valor={faixa.inicio}
-                aoSelecionar={(horario) =>
-                  alterarHorario(indice, 'inicio', horario)
-                }
-              />
-              <Text style={estilos.ate}>até</Text>
-              <SeletorHorario
-                descricao={`Fim do horário ${indice + 1}`}
-                valor={faixa.fim}
-                aoSelecionar={(horario) =>
-                  alterarHorario(indice, 'fim', horario)
-                }
-              />
+                    <Text
+                      style={[
+                        estilos.siglaDia,
+                        selecionado && estilos.siglaDiaSelecionado,
+                      ]}
+                    >
+                      {dia.sigla}
+                    </Text>
+                  </Pressable>
+                );
+              })}
             </View>
-          ))}
-          {erros.horarios && (
-            <Text style={estilos.mensagemErro}>{erros.horarios}</Text>
-          )}
-        </Cartao>
+          </Cartao>
 
-        <Cartao estilo={estilos.cartao}>
-          <Text style={estilos.textoQuantidade}>
-            {'Quantidade de vezes jogadas no dia,\nem média.'}
-          </Text>
-          <Contador
-            valor={vezesPorDia}
-            aoAlterar={setVezesPorDia}
-            unidade="vezes"
-          />
-        </Cartao>
+          <Cartao estilo={estilos.cartao}>
+            <Text style={estilos.rotulo}>Horários mais frequentes</Text>
+            <Text style={estilos.dica}>
+              Ex.: das 20:00 até 23:00. A segunda linha é opcional.
+            </Text>
+            {faixasDeHorario.map((faixa, indice) => (
+              <View
+                key={indice}
+                style={[
+                  estilos.linhaHorario,
+                  indice > 0 && estilos.linhaHorarioSeguinte,
+                ]}
+              >
+                <SeletorHorario
+                  descricao={`Início do horário ${indice + 1}`}
+                  valor={faixa.inicio}
+                  aoSelecionar={(horario) =>
+                    alterarHorario(indice, 'inicio', horario)
+                  }
+                />
+                <Text style={estilos.ate}>até</Text>
+                <SeletorHorario
+                  descricao={`Fim do horário ${indice + 1}`}
+                  valor={faixa.fim}
+                  aoSelecionar={(horario) =>
+                    alterarHorario(indice, 'fim', horario)
+                  }
+                />
+              </View>
+            ))}
+            {erros.horarios && (
+              <Text style={estilos.mensagemErro}>{erros.horarios}</Text>
+            )}
+          </Cartao>
 
-        <View style={estilos.espacador} />
+          <Cartao estilo={estilos.cartao}>
+            <Text style={estilos.textoQuantidade}>
+              {'Quantidade de vezes jogadas no dia,\nem média.'}
+            </Text>
+            <Contador
+              valor={vezesPorDia}
+              aoAlterar={setVezesPorDia}
+              unidade="vezes"
+            />
+          </Cartao>
+        </View>
 
         <Botao
           estilo={estilos.botaoContinuar}

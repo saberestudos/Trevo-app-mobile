@@ -12,17 +12,20 @@ const estilos = StyleSheet.create({
     paddingBottom: 39,
     backgroundColor: cores.fundoCinza,
   },
+  meio: {
+    flex: 1,
+    justifyContent: 'space-evenly',
+    gap: 14,
+    paddingVertical: 16,
+  },
   titulo: {
-    marginTop: 26,
-    ...fonte(familias.semiNegrito, 20),
+    ...fonte(familias.semiNegrito, 22),
     color: cores.texto,
     textAlign: 'center',
   },
-  cartao: {
-    marginTop: 14,
-  },
+  cartao: {},
   rotulo: {
-    ...fonte(familias.regular, 14),
+    ...fonte(familias.media, 14),
     color: cores.texto,
   },
   dica: {
@@ -35,21 +38,24 @@ const estilos = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 10,
   },
+  // Bolinhas dos dias: contorno cinza claro; selecionado fica verde cheio.
   dia: {
     width: 40,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: cores.primaria,
+    borderWidth: 1.5,
+    borderRadius: 20,
+    borderColor: cores.divisor,
+    backgroundColor: cores.fundo,
   },
   diaSelecionado: {
+    borderColor: cores.primaria,
     backgroundColor: cores.primaria,
   },
   siglaDia: {
-    ...fonte(familias.semiNegrito, 22),
-    color: cores.primaria,
+    ...fonte(familias.semiNegrito, 12),
+    color: cores.textoSecundario,
   },
   siglaDiaSelecionado: {
     color: cores.fundo,
@@ -73,14 +79,10 @@ const estilos = StyleSheet.create({
     color: cores.erro,
   },
   textoQuantidade: {
-    marginBottom: 10,
-    ...fonte(familias.regular, 16),
+    marginBottom: 12,
+    ...fonte(familias.media, 14),
     color: cores.texto,
     textAlign: 'center',
-  },
-  espacador: {
-    flex: 1,
-    minHeight: 24,
   },
   botaoContinuar: {
     height: 64,
