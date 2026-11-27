@@ -1,4 +1,4 @@
-// Botão redondo só com ícone. Ao passar o mouse (ou segurar o dedo no celular),
+// Botão quadrado (cantos arredondados) só com ícone. Ao passar o mouse (ou segurar o dedo no celular),
 // aparece uma dica (tooltip) com o nome da ação.
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -45,7 +45,7 @@ const estilos = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 30,
+    borderRadius: 14,
     backgroundColor: cores.quizEscuro,
     ...sombraPadrao,
   },
