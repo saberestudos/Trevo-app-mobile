@@ -27,9 +27,10 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 | Minha Conta (avatar, personalização e estatísticas) | RF 09 |
 | Loja do Avatar (compra de itens com moedas) | RF 09 |
 | Pacote Premium (benefícios; pagamento ainda não existe) | — |
+| Missões Diárias (marcar missões e receber troféus e moedas) | — |
 | Opções (engrenagem do topo: Minha Conta e Sair; as outras opções mostram "Em breve") | — |
 
-Fluxo (igual ao protótipo): Login → Home → Troféus (troféu do topo ou da barra), Loja do Avatar (botão LOJA) e Opções (engrenagem) → Minha Conta e Pacote Premium. Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
+Fluxo (igual ao protótipo): Login → Home → Troféus (troféu do topo ou da barra), Missões Diárias (ícone de missões), Loja do Avatar (botão LOJA) e Opções (engrenagem) → Minha Conta e Pacote Premium. Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
 
 ## Como rodar
 

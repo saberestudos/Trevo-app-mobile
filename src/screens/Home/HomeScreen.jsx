@@ -107,7 +107,7 @@ export default function HomeScreen({ navigation }) {
 
             <Pressable
               style={estilos.botaoMissoes}
-              onPress={avisarEmBreve}
+              onPress={() => navigation.navigate('Missoes')}
               accessibilityLabel="Missões"
             >
               <Image source={imagens.missoes} style={estilos.missoes} />

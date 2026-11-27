@@ -9,6 +9,9 @@ import { lerDados, salvarDados } from '../utils/armazenamento';
 const CHAVE_MOEDAS_GANHAS = 'trevo:moedasGanhas';
 const CHAVE_MOEDAS_GASTAS = 'trevo:moedasGastas';
 const CHAVE_BONUS_BOAS_VINDAS = 'trevo:bonusBoasVindas';
+// Troféus, missões e experiência ganhos nas missões diárias.
+const CHAVE_GANHOS_MISSOES = 'trevo:ganhosMissoes';
+const GANHOS_VAZIOS = { trofeus: 0, missoes: 0, experiencia: 0 };
 
 // Presente de boas-vindas para quem chega na Home pela primeira vez.
 export const MOEDAS_BOAS_VINDAS = 50;
@@ -21,10 +24,15 @@ class ProgressoService {
       setTimeout(() => {
         const ganhas = lerDados(CHAVE_MOEDAS_GANHAS, 0);
         const gastas = lerDados(CHAVE_MOEDAS_GASTAS, 0);
+        const missoes = lerDados(CHAVE_GANHOS_MISSOES, GANHOS_VAZIOS);
         resolve(
           new Progresso({
             ...progressoMock,
             moedas: Math.max(progressoMock.moedas + ganhas - gastas, 0),
+            trofeus: progressoMock.trofeus + missoes.trofeus,
+            missoesConcluidas:
+              progressoMock.missoesConcluidas + missoes.missoes,
+            experiencia: progressoMock.experiencia + missoes.experiencia,
           }),
         );
       }, TEMPO_DE_RESPOSTA_SIMULADO);
@@ -45,6 +53,20 @@ class ProgressoService {
       CHAVE_MOEDAS_GASTAS,
       lerDados(CHAVE_MOEDAS_GASTAS, 0) + quantidade,
     );
+    return this.buscar();
+  }
+
+  // Soma o que as missões deram: moedas, troféus, missões e experiência.
+  registrarMissoes({ quantidade, experiencia, moedas, trofeus }) {
+    const ganhos = lerDados(CHAVE_GANHOS_MISSOES, GANHOS_VAZIOS);
+    salvarDados(CHAVE_GANHOS_MISSOES, {
+      trofeus: ganhos.trofeus + trofeus,
+      missoes: ganhos.missoes + quantidade,
+      experiencia: ganhos.experiencia + experiencia,
+    });
+    if (moedas > 0) {
+      return this.ganharMoedas(moedas);
+    }
     return this.buscar();
   }
 

@@ -35,6 +35,11 @@ export const cores = {
   linhaSecao: 'rgba(255, 255, 255, 0.35)',
   fundoCadeado: 'rgba(0, 0, 0, 0.55)',
   ouroInicio: '#FFE082',
+  missaoPendente: '#7D7D7D',
+  textoRecompensa: '#890000',
+  botaoQuiz: '#0077C2',
+  botaoDesativado: '#939290',
+  textoDesativado: '#626262',
   ouroFim: '#F5A623',
   contornoBotao: '#000000',
 };
