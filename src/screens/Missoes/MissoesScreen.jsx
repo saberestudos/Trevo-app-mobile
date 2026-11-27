@@ -1,6 +1,6 @@
 // Tela de Missões Diárias (metas do dia).
 // Aberta pelo ícone de missões da Home. A pessoa marca o que fez e,
-// depois, toca em "Receber recompensas" para ganhar troféus e moedas.
+// depois de responder o quiz, toca em "Receber recompensas" para ganhar troféus e moedas.
 import { useCallback, useState } from 'react';
 import { Image, Pressable, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
@@ -40,9 +40,12 @@ export default function MissoesScreen({ navigation }) {
     }, []),
   );
 
-  const temRecompensa = missoes.some(
-    (missao) => missao.feita && !missao.resgatada,
+  // O quiz libera as recompensas do dia: sem ele respondido, o botão fica bloqueado.
+  const quizFeito = missoes.some(
+    (missao) => missao.id === 'quiz' && missao.feita,
   );
+  const temRecompensa =
+    quizFeito && missoes.some((missao) => missao.feita && !missao.resgatada);
 
   function alternar(missao) {
     if (missao.automatica && !missao.feita) {
@@ -155,8 +158,17 @@ export default function MissoesScreen({ navigation }) {
 
       <Pressable
         style={[estilos.botaoReceber, temRecompensa && estilos.botaoAtivo]}
-        onPress={receber}
-        disabled={!temRecompensa}
+        onPress={
+          temRecompensa
+            ? receber
+            : () =>
+                avisar(
+                  'Recompensas bloqueadas',
+                  quizFeito
+                    ? 'Marque as missões que você fez para receber.'
+                    : 'Responda o quiz para liberar as recompensas do dia.',
+                )
+        }
         accessibilityRole="button"
         accessibilityState={{ disabled: !temRecompensa }}
       >

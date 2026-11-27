@@ -64,8 +64,18 @@ class MissaoService {
     return this.listar();
   }
 
+  // As recompensas do dia só são liberadas depois de responder o quiz.
+  async recompensasLiberadas() {
+    const missoes = await this.listar();
+    return missoes.find((missao) => missao.id === 'quiz').feita;
+  }
+
   // Entrega as recompensas das missões feitas e ainda não resgatadas.
+  // Sem o quiz respondido, nada é entregue.
   async receberRecompensas() {
+    if (!(await this.recompensasLiberadas())) {
+      return { moedas: 0, trofeus: 0 };
+    }
     const estado = lerEstado();
     const novas = MISSOES_DIARIAS.filter(
       (missao) =>
