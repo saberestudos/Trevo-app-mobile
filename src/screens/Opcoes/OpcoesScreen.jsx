@@ -50,7 +50,7 @@ export default function OpcoesScreen({ navigation }) {
       texto: 'TRILHA DO SABER',
       espaco: 23.3,
       topo: 276,
-      aoPressionar: avisarEmBreve,
+      aoPressionar: () => navigation.navigate('Trilha'),
     },
     {
       texto: 'PLANO PREMIUM',
