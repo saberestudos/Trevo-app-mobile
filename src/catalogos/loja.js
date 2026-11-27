@@ -2,7 +2,7 @@
 // "categoria" e "id" apontam para o item do avatar (catálogo do avatar);
 // depois de comprado, ele aparece na vitrine da Minha Conta.
 const imagem = {
-  cowboy: require('../../assets/images/loja/chapeu-cowboy.png'),
+  gorroNatal: require('../../assets/images/loja/gorro-natal.png'),
   oculosVerde: require('../../assets/images/loja/oculos-verde.png'),
   chapeuRoxo: require('../../assets/images/loja/chapeu-roxo.png'),
   tenis: require('../../assets/images/loja/tenis.png'),
@@ -14,22 +14,22 @@ const imagem = {
 export const ITENS_LOJA = [
   {
     categoria: 'chapeu',
-    id: 'cowboy',
-    nome: 'Chapéu de cowboy',
+    id: 'gorro-natal',
+    nome: 'Gorro de Natal',
     preco: 100,
-    imagem: imagem.cowboy,
+    imagem: imagem.gorroNatal,
   },
   {
     categoria: 'oculos',
     id: 'verde',
-    nome: 'Óculos verde',
+    nome: 'Óculos de sol verde',
     preco: 50,
     imagem: imagem.oculosVerde,
   },
   {
     categoria: 'chapeu',
     id: 'chapeu-roxo',
-    nome: 'Chapéu roxo',
+    nome: 'Chapéu bucket roxo',
     preco: 25,
     imagem: imagem.chapeuRoxo,
   },
@@ -63,7 +63,7 @@ export const ITENS_LOJA = [
   },
 ];
 
-// Chave única de um item, juntando categoria e id (ex.: "chapeu:cowboy").
+// Chave única de um item, juntando categoria e id (ex.: "chapeu:gorro-natal").
 export function chaveDoItem(categoria, id) {
   return `${categoria}:${id}`;
 }

@@ -18,7 +18,7 @@ class AvatarService {
     return Promise.resolve({ ...this.visual });
   }
 
-  // Chaves dos itens comprados (ex.: "chapeu:cowboy").
+  // Chaves dos itens comprados (ex.: "chapeu:gorro-natal").
   buscarComprados() {
     return Promise.resolve([...this.comprados]);
   }
