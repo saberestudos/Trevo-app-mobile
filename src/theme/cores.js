@@ -46,6 +46,8 @@ export const cores = {
   fundoVidas: 'rgba(255, 255, 255, 0.55)',
   fundoDica: 'rgba(0, 0, 0, 0.85)',
   balaoSofia: '#469F34',
+  balaoPessoa: 'rgba(5, 61, 0, 0.75)',
+  horaMensagem: 'rgba(255, 255, 255, 0.75)',
   botaoEnviar: '#1CF400',
   textoRecompensa: '#890000',
   botaoQuiz: '#0077C2',

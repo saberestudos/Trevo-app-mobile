@@ -34,35 +34,77 @@ const estilos = StyleSheet.create({
     flex: 1,
   },
   lista: {
-    gap: 10,
+    gap: 12,
     paddingTop: 20,
     paddingHorizontal: 16,
     paddingBottom: 16,
   },
-  balao: {
-    maxWidth: 274,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 14,
+  linhaSofia: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    gap: 8,
+    maxWidth: 320,
   },
-  // Sofia à esquerda (verde); a pessoa à direita (branco).
+  fotoPequena: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+  },
+  // Sofia: balão verde com sombra suave e o canto de baixo "apontando" para a foto.
   balaoSofia: {
-    alignSelf: 'flex-start',
-    borderTopLeftRadius: 4,
+    flexShrink: 1,
+    paddingTop: 8,
+    paddingHorizontal: 14,
+    paddingBottom: 6,
+    borderRadius: 18,
+    borderBottomLeftRadius: 4,
     backgroundColor: cores.balaoSofia,
+    ...sombraPadrao,
   },
-  balaoPessoa: {
-    alignSelf: 'flex-end',
-    borderTopRightRadius: 4,
-    backgroundColor: cores.fundo,
+  nomeSofia: {
+    marginBottom: 2,
+    ...fonte(familias.semiNegrito, 13),
+    color: cores.destaqueAmarelo,
   },
   textoSofia: {
-    ...fonte(familias.regular, 16),
+    ...fonte(familias.regular, 15),
+    lineHeight: 21,
     color: cores.fundo,
   },
+  // A pessoa: balão verde-escuro translúcido à direita (sem fundo branco).
+  balaoPessoa: {
+    alignSelf: 'flex-end',
+    maxWidth: 260,
+    paddingTop: 8,
+    paddingHorizontal: 14,
+    paddingBottom: 6,
+    borderRadius: 18,
+    borderBottomRightRadius: 4,
+    backgroundColor: cores.balaoPessoa,
+  },
   textoPessoa: {
-    ...fonte(familias.regular, 16),
-    color: cores.texto,
+    ...fonte(familias.regular, 15),
+    lineHeight: 21,
+    color: cores.fundo,
+  },
+  hora: {
+    alignSelf: 'flex-end',
+    marginTop: 2,
+    ...fonte(familias.regular, 11),
+    color: cores.horaMensagem,
+  },
+  balaoDigitando: {
+    paddingVertical: 12,
+  },
+  pontos: {
+    flexDirection: 'row',
+    gap: 4,
+  },
+  ponto: {
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+    backgroundColor: cores.horaMensagem,
   },
   linhaEnvio: {
     flexDirection: 'row',

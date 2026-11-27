@@ -26,9 +26,17 @@ import estilos from './styles';
 
 const fotoSofia = require('../../../assets/images/chat/sofia.png');
 
+// Hora no formato 20:03, mostrada embaixo de cada mensagem.
+function horaAgora() {
+  const agora = new Date();
+  const horas = String(agora.getHours()).padStart(2, '0');
+  const minutos = String(agora.getMinutes()).padStart(2, '0');
+  return `${horas}:${minutos}`;
+}
+
 export default function ChatScreen({ navigation }) {
   const [mensagens, setMensagens] = useState([
-    { id: 0, autor: 'sofia', texto: BOAS_VINDAS },
+    { id: 0, autor: 'sofia', texto: BOAS_VINDAS, hora: horaAgora() },
   ]);
   const [texto, setTexto] = useState('');
   const [digitando, setDigitando] = useState(false);
@@ -41,7 +49,12 @@ export default function ChatScreen({ navigation }) {
     setTexto('');
     setMensagens((atuais) => [
       ...atuais,
-      { id: atuais.length, autor: 'pessoa', texto: mensagem },
+      {
+        id: atuais.length,
+        autor: 'pessoa',
+        texto: mensagem,
+        hora: horaAgora(),
+      },
     ]);
     setDigitando(true);
 
@@ -49,7 +62,7 @@ export default function ChatScreen({ navigation }) {
     setDigitando(false);
     setMensagens((atuais) => [
       ...atuais,
-      { id: atuais.length, autor: 'sofia', texto: resposta },
+      { id: atuais.length, autor: 'sofia', texto: resposta, hora: horaAgora() },
     ]);
   }
 
@@ -92,31 +105,35 @@ export default function ChatScreen({ navigation }) {
           }
           keyboardShouldPersistTaps="handled"
         >
-          {mensagens.map((mensagem) => (
-            <View
-              key={mensagem.id}
-              style={[
-                estilos.balao,
-                mensagem.autor === 'sofia'
-                  ? estilos.balaoSofia
-                  : estilos.balaoPessoa,
-              ]}
-            >
-              <Text
-                style={
-                  mensagem.autor === 'sofia'
-                    ? estilos.textoSofia
-                    : estilos.textoPessoa
-                }
-              >
-                {mensagem.texto}
-              </Text>
-            </View>
-          ))}
+          {mensagens.map((mensagem) =>
+            mensagem.autor === 'sofia' ? (
+              // Mensagem da Sofia: fotinho ao lado e o nome em cima.
+              <View key={mensagem.id} style={estilos.linhaSofia}>
+                <Image source={fotoSofia} style={estilos.fotoPequena} />
+                <View style={estilos.balaoSofia}>
+                  <Text style={estilos.nomeSofia}>Sofia</Text>
+                  <Text style={estilos.textoSofia}>{mensagem.texto}</Text>
+                  <Text style={estilos.hora}>{mensagem.hora}</Text>
+                </View>
+              </View>
+            ) : (
+              <View key={mensagem.id} style={estilos.balaoPessoa}>
+                <Text style={estilos.textoPessoa}>{mensagem.texto}</Text>
+                <Text style={estilos.hora}>{mensagem.hora}</Text>
+              </View>
+            ),
+          )}
 
           {digitando && (
-            <View style={[estilos.balao, estilos.balaoSofia]}>
-              <Text style={estilos.textoSofia}>...</Text>
+            <View style={estilos.linhaSofia}>
+              <Image source={fotoSofia} style={estilos.fotoPequena} />
+              <View style={[estilos.balaoSofia, estilos.balaoDigitando]}>
+                <View style={estilos.pontos}>
+                  <View style={estilos.ponto} />
+                  <View style={estilos.ponto} />
+                  <View style={estilos.ponto} />
+                </View>
+              </View>
             </View>
           )}
         </ScrollView>
