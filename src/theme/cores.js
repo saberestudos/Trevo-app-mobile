@@ -29,5 +29,9 @@ export const cores = {
   cartaoOpcoes: '#FF9C00',
   botaoSair: '#8E0000',
   botaoAzul: '#1565C0',
+  destaqueAmarelo: '#FFC83D',
+  fundoBotaoVoltar: 'rgba(255, 255, 255, 0.18)',
+  bordaBotaoVoltar: 'rgba(255, 255, 255, 0.35)',
+  linhaSecao: 'rgba(255, 255, 255, 0.35)',
   contornoBotao: '#000000',
 };

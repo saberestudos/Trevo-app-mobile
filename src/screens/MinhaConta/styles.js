@@ -13,13 +13,13 @@ const ESPACO_CARTOES = 10;
 const estilos = StyleSheet.create({
   cabecalho: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginTop: 45,
-    paddingLeft: 15,
+    alignItems: 'center',
+    gap: 12,
+    marginTop: 40,
+    paddingLeft: 10,
   },
   titulo: {
-    marginLeft: 14,
-    marginTop: 3,
+    marginTop: 4,
   },
   areaAvatar: {
     height: 308,
@@ -76,7 +76,9 @@ const estilos = StyleSheet.create({
     height: 41,
   },
   tituloEstatisticas: {
-    marginTop: 19,
+    marginTop: 16,
+    marginLeft: 5,
+    width: LARGURA_CONTEUDO,
   },
   linhaEstatisticas: {
     flexDirection: 'row',

@@ -9,6 +9,7 @@ import BarraTopo from '../../components/BarraTopo';
 import BotaoVoltar, { voltar } from '../../components/BotaoVoltar';
 import TelaJogo from '../../components/TelaJogo';
 import TextoDestaque from '../../components/TextoDestaque';
+import TituloSecao from '../../components/TituloSecao';
 import VitrineAvatar from '../../components/VitrineAvatar';
 import AvatarService from '../../services/AvatarService';
 import ProgressoService from '../../services/ProgressoService';
@@ -71,7 +72,7 @@ export default function MinhaContaScreen({ navigation }) {
         <BotaoVoltar aoPressionar={() => voltar(navigation)} />
         <TextoDestaque
           texto="MINHA CONTA"
-          tamanho={36}
+          tamanho={34}
           estilo={estilos.titulo}
         />
       </View>
@@ -100,11 +101,7 @@ export default function MinhaContaScreen({ navigation }) {
         <Image source={imagens.adicionarAmigos} style={estilos.iconeAmigos} />
       </Pressable>
 
-      <TextoDestaque
-        texto="ESTATÍSTICAS"
-        tamanho={32}
-        estilo={estilos.tituloEstatisticas}
-      />
+      <TituloSecao texto="ESTATÍSTICAS" estilo={estilos.tituloEstatisticas} />
 
       <View style={estilos.linhaEstatisticas}>
         <View style={[estilos.estatistica, estilos.estatisticaPequena]}>

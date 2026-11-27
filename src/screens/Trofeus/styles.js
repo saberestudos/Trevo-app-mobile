@@ -1,6 +1,8 @@
 // Estilos da tela de Troféus, com as medidas do protótipo (tela de 402 x 874).
 import { StyleSheet } from 'react-native';
 
+import { TAMANHO_BOTAO_VOLTAR } from '../../components/BotaoVoltar';
+
 const estilos = StyleSheet.create({
   cabecalho: {
     flexDirection: 'row',
@@ -12,7 +14,7 @@ const estilos = StyleSheet.create({
     flex: 1,
   },
   espacoSeta: {
-    width: 35,
+    width: TAMANHO_BOTAO_VOLTAR,
   },
   grade: {
     flexDirection: 'row',

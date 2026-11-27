@@ -2,8 +2,10 @@
 // LOJA → personalizar o avatar (Minha Conta), troféu → Troféus,
 // engrenagem → Opções (configurações). As moedas ainda não têm tela.
 import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Pilula from './Pilula';
+import { cores } from '../theme/cores';
 import { avisarEmBreve } from '../utils/avisos';
 
 const imagens = {
@@ -24,6 +26,13 @@ export default function BarraTopo({ moedas, trofeus, navigation }) {
       <Pilula
         texto="LOJA"
         descricao="Loja"
+        simbolo={
+          <MaterialCommunityIcons
+            name="shopping"
+            size={21}
+            color={cores.destaqueAmarelo}
+          />
+        }
         aoPressionar={() => navigation.navigate('MinhaConta')}
       />
       <Pilula
