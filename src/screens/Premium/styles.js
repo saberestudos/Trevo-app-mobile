@@ -6,57 +6,72 @@ import { familias, fonte } from '../../theme/fontes';
 import { sombraPadrao } from '../../theme/sombras';
 
 const LARGURA_LISTA = 288;
+const LARGURA_CARTAO = 326;
+const TAMANHO_SELO = 72;
 
 const estilos = StyleSheet.create({
   voltar: {
-    marginTop: 24,
+    marginTop: 20,
     marginLeft: 10,
   },
-  destaque: {
+  cartaoTitulo: {
+    alignSelf: 'center',
+    width: LARGURA_CARTAO,
     alignItems: 'center',
-    marginTop: -18,
+    marginTop: 44,
+    paddingTop: 44,
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+    borderRadius: 18,
+    backgroundColor: cores.fundo,
+    ...sombraPadrao,
   },
-  linhaSelo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    marginBottom: 8,
-  },
+  // Selo redondo dourado, metade para fora do cartão.
   selo: {
-    width: 60,
-    height: 60,
+    position: 'absolute',
+    top: -TAMANHO_SELO / 2,
+    left: (LARGURA_CARTAO - TAMANHO_SELO) / 2,
+    width: TAMANHO_SELO,
+    height: TAMANHO_SELO,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 3,
-    borderRadius: 18,
-    borderColor: cores.cartaoEscuro,
-    transform: [{ rotate: '45deg' }],
+    borderWidth: 4,
+    borderRadius: TAMANHO_SELO / 2,
+    borderColor: cores.fundo,
+    ...sombraPadrao,
   },
-  // Desfaz o giro do selo para a coroa ficar reta.
-  coroa: {
-    transform: [{ rotate: '-45deg' }],
+  // Brilhinhos dos dois lados do selo.
+  brilho: {
+    position: 'absolute',
+    top: -26,
   },
-  // As folhas ficam viradas para fora, como um louro.
-  folhaEsquerda: {
-    transform: [{ scaleX: -1 }],
+  brilhoEsquerdo: {
+    left: LARGURA_CARTAO / 2 - 64,
   },
-  folhaDireita: {},
+  brilhoDireito: {
+    left: LARGURA_CARTAO / 2 + 48,
+  },
   frase: {
     marginTop: 4,
-    ...fonte(familias.media, 15),
-    color: cores.textoClaro,
+    ...fonte(familias.media, 14),
+    color: cores.textoDescricao,
     textAlign: 'center',
   },
-  linhaPreco: {
+  caixaPreco: {
     flexDirection: 'row',
     alignItems: 'flex-end',
     gap: 6,
     marginTop: 10,
+    paddingTop: 6,
+    paddingHorizontal: 14,
+    paddingBottom: 4,
+    borderRadius: 12,
+    backgroundColor: cores.fundoIlustracao,
   },
   porMes: {
     marginBottom: 4,
-    ...fonte(familias.media, 16),
-    color: cores.textoClaro,
+    ...fonte(familias.media, 15),
+    color: cores.textoDescricao,
   },
   lista: {
     alignSelf: 'center',

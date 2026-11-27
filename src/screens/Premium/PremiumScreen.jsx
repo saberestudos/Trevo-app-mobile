@@ -57,42 +57,47 @@ export default function PremiumScreen({ navigation }) {
         estilo={estilos.voltar}
       />
 
-      {/* Título: selo com coroa, nome do pacote, frase e preço. */}
-      <View style={estilos.destaque}>
-        <View style={estilos.linhaSelo}>
+      {/* Título num cartão branco, com o selo da coroa encaixado em cima. */}
+      <View style={estilos.cartaoTitulo}>
+        <MaterialCommunityIcons
+          name="star-four-points"
+          size={16}
+          color={cores.destaqueAmarelo}
+          style={[estilos.brilho, estilos.brilhoEsquerdo]}
+        />
+        <MaterialCommunityIcons
+          name="star-four-points"
+          size={16}
+          color={cores.destaqueAmarelo}
+          style={[estilos.brilho, estilos.brilhoDireito]}
+        />
+        <LinearGradient
+          colors={[cores.ouroInicio, cores.ouroFim]}
+          style={estilos.selo}
+        >
           <MaterialCommunityIcons
-            name="leaf"
-            size={22}
-            color={cores.destaqueAmarelo}
-            style={estilos.folhaEsquerda}
+            name="crown"
+            size={36}
+            color={cores.cartaoEscuro}
           />
-          <LinearGradient
-            colors={[cores.ouroInicio, cores.ouroFim]}
-            style={estilos.selo}
-          >
-            <View style={estilos.coroa}>
-              <MaterialCommunityIcons
-                name="crown"
-                size={34}
-                color={cores.cartaoEscuro}
-              />
-            </View>
-          </LinearGradient>
-          <MaterialCommunityIcons
-            name="leaf"
-            size={22}
-            color={cores.destaqueAmarelo}
-            style={estilos.folhaDireita}
-          />
-        </View>
+        </LinearGradient>
 
-        <TextoDestaque texto="PACOTE PREMIUM" tamanho={44} centralizado />
+        <TextoDestaque
+          texto="PACOTE PREMIUM"
+          tamanho={42}
+          cor={cores.primaria}
+          centralizado
+        />
         <Text style={estilos.frase}>
           Desbloqueie toda a sua jornada financeira
         </Text>
 
-        <View style={estilos.linhaPreco}>
-          <TextoDestaque texto={PRECO_MENSAL} tamanho={40} />
+        <View style={estilos.caixaPreco}>
+          <TextoDestaque
+            texto={PRECO_MENSAL}
+            tamanho={36}
+            cor={cores.primaria}
+          />
           <Text style={estilos.porMes}>/ mês</Text>
         </View>
       </View>
