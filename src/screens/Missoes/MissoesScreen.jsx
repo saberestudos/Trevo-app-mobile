@@ -44,6 +44,10 @@ export default function MissoesScreen({ navigation }) {
   const quizFeito = missoes.some(
     (missao) => missao.id === 'quiz' && missao.feita,
   );
+  // O aviso vermelho só aparece se a pessoa marcar missões sem ter feito o quiz.
+  const marcouSemQuiz =
+    !quizFeito && missoes.some((missao) => missao.feita && !missao.automatica);
+  const mostrarAviso = quizFeito || marcouSemQuiz;
   const temRecompensa =
     quizFeito && missoes.some((missao) => missao.feita && !missao.resgatada);
 
@@ -149,25 +153,27 @@ export default function MissoesScreen({ navigation }) {
 
         <View style={estilos.rodapeCartao}>
           {/* Mostra se o quiz de hoje já foi respondido. */}
-          <View
-            style={[estilos.aviso, quizFeito && estilos.avisoOk]}
-            accessibilityLiveRegion="polite"
-          >
-            <Feather
-              name={quizFeito ? 'check-circle' : 'alert-circle'}
-              size={18}
-              color={cores.fundo}
-            />
-            <TextoDestaque
-              texto={
-                quizFeito
-                  ? 'QUIZ RESPONDIDO!'
-                  : 'VOCÊ AINDA NÃO RESPONDEU O QUIZ'
-              }
-              tamanho={18}
-              estilo={estilos.textoAviso}
-            />
-          </View>
+          {mostrarAviso && (
+            <View
+              style={[estilos.aviso, quizFeito && estilos.avisoOk]}
+              accessibilityLiveRegion="polite"
+            >
+              <Feather
+                name={quizFeito ? 'check-circle' : 'alert-circle'}
+                size={18}
+                color={cores.fundo}
+              />
+              <TextoDestaque
+                texto={
+                  quizFeito
+                    ? 'QUIZ RESPONDIDO!'
+                    : 'VOCÊ AINDA NÃO RESPONDEU O QUIZ'
+                }
+                tamanho={18}
+                estilo={estilos.textoAviso}
+              />
+            </View>
+          )}
 
           <Pressable
             style={estilos.botaoQuiz}
