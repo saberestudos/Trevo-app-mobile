@@ -12,12 +12,16 @@ const estilos = StyleSheet.create({
     paddingHorizontal: 0,
     paddingBottom: 24,
   },
+  // Cabeçalho verde-escuro com os cantos de baixo arredondados.
   cabecalho: {
     height: 199,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingBottom: 22,
+    paddingBottom: 16,
+    borderBottomLeftRadius: 28,
+    borderBottomRightRadius: 28,
     backgroundColor: cores.quizCabecalho,
+    ...sombraPadrao,
   },
   voltar: {
     position: 'absolute',
@@ -26,14 +30,36 @@ const estilos = StyleSheet.create({
   },
   subtitulo: {
     marginTop: 2,
-    ...fonte(familias.regular, 36),
+    ...fonte(familias.regular, 32),
     color: cores.fundo,
   },
-  vidas: {
+  progresso: {
     flexDirection: 'row',
-    justifyContent: 'center',
     gap: 6,
-    marginTop: 4,
+    marginTop: 10,
+  },
+  segmento: {
+    width: 36,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: cores.segmentoQuiz,
+  },
+  segmentoFeito: {
+    backgroundColor: cores.destaqueAmarelo,
+  },
+  segmentoAtual: {
+    backgroundColor: cores.fundo,
+  },
+  // Corações dentro de uma pílula clara.
+  vidas: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+    gap: 6,
+    marginTop: 12,
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+    borderRadius: 18,
+    backgroundColor: cores.fundoVidas,
   },
   coracao: {
     width: 25,
@@ -44,12 +70,13 @@ const estilos = StyleSheet.create({
     width: 307,
     minHeight: 456,
     alignItems: 'center',
-    marginTop: 7,
-    paddingTop: 18,
+    marginTop: 10,
+    paddingTop: 20,
     paddingHorizontal: 13,
     paddingBottom: 24,
-    borderRadius: 10,
+    borderRadius: 20,
     backgroundColor: cores.fundo,
+    ...sombraPadrao,
   },
   pergunta: {
     minHeight: 96,
@@ -67,9 +94,9 @@ const estilos = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    paddingLeft: 10,
-    paddingRight: 8,
-    borderRadius: 10,
+    paddingLeft: 8,
+    paddingRight: 10,
+    borderRadius: 14,
     backgroundColor: cores.botaoQuiz,
     ...sombraPadrao,
   },
@@ -79,18 +106,28 @@ const estilos = StyleSheet.create({
   alternativaErrada: {
     backgroundColor: cores.quizErrado,
   },
+  alternativaApagada: {
+    opacity: 0.5,
+  },
+  // Letra num círculo branco, com a cor da alternativa.
   circulo: {
-    width: 49,
-    height: 49,
+    width: 46,
+    height: 46,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 25,
-    backgroundColor: cores.quizEscuro,
+    borderRadius: 23,
+    backgroundColor: cores.fundo,
   },
   letra: {
     marginTop: 4,
-    ...fonteQuiz(40),
-    color: cores.fundo,
+    ...fonteQuiz(36),
+    color: cores.botaoQuiz,
+  },
+  letraCerta: {
+    color: cores.quizCerto,
+  },
+  letraErrada: {
+    color: cores.quizErrado,
   },
   textoAlternativa: {
     flex: 1,
@@ -104,16 +141,18 @@ const estilos = StyleSheet.create({
     alignSelf: 'center',
     width: 255,
     height: 60,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 25,
-    borderRadius: 10,
+    gap: 10,
+    marginTop: 22,
+    borderRadius: 14,
     backgroundColor: cores.quizEscuro,
     ...sombraPadrao,
   },
   textoBotao: {
     marginTop: 3,
-    ...fonteQuiz(36),
+    ...fonteQuiz(32),
     color: cores.fundo,
   },
 });

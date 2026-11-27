@@ -5,6 +5,7 @@
 import { useCallback, useState } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import { Feather } from '@expo/vector-icons';
 
 import BotaoVoltar, { voltar } from '../../components/BotaoVoltar';
 import TelaJogo from '../../components/TelaJogo';
@@ -93,8 +94,10 @@ export default function QuizScreen({ navigation }) {
     voltar(navigation);
   }
 
-  function corDaAlternativa(opcao) {
-    if (opcao !== escolhida) return null;
+  // Depois de responder: a escolhida fica verde ou vermelha; as outras ficam apagadas.
+  function estiloDaAlternativa(opcao) {
+    if (!respondeu) return null;
+    if (opcao !== escolhida) return estilos.alternativaApagada;
     return acertou ? estilos.alternativaCerta : estilos.alternativaErrada;
   }
 
@@ -114,6 +117,20 @@ export default function QuizScreen({ navigation }) {
         />
         <TextoDestaque texto="QUIZ" tamanho={40} centralizado />
         <Text style={estilos.subtitulo}>{subtitulo}</Text>
+
+        {/* Progresso: perguntas feitas (amarelo), atual (branco) e as que faltam. */}
+        <View style={estilos.progresso}>
+          {PERGUNTAS_QUIZ.map((item, posicao) => (
+            <View
+              key={item.pergunta}
+              style={[
+                estilos.segmento,
+                posicao < indice && estilos.segmentoFeito,
+                posicao === indice && estilos.segmentoAtual,
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={estilos.vidas}>
@@ -135,13 +152,21 @@ export default function QuizScreen({ navigation }) {
           {pergunta.alternativas.map((texto, opcao) => (
             <Pressable
               key={texto}
-              style={[estilos.alternativa, corDaAlternativa(opcao)]}
+              style={[estilos.alternativa, estiloDaAlternativa(opcao)]}
               onPress={() => responder(opcao)}
               accessibilityRole="button"
               accessibilityLabel={`${LETRAS[opcao]}: ${texto}`}
             >
               <View style={estilos.circulo}>
-                <Text style={estilos.letra}>{LETRAS[opcao]}</Text>
+                <Text
+                  style={[
+                    estilos.letra,
+                    opcao === escolhida &&
+                      (acertou ? estilos.letraCerta : estilos.letraErrada),
+                  ]}
+                >
+                  {LETRAS[opcao]}
+                </Text>
               </View>
               <Text
                 style={[
@@ -152,6 +177,13 @@ export default function QuizScreen({ navigation }) {
               >
                 {texto}
               </Text>
+              {opcao === escolhida && (
+                <Feather
+                  name={acertou ? 'check-circle' : 'x-circle'}
+                  size={22}
+                  color={cores.fundo}
+                />
+              )}
             </Pressable>
           ))}
         </View>
@@ -166,6 +198,11 @@ export default function QuizScreen({ navigation }) {
           <Text style={estilos.textoBotao}>
             {acertou ? 'CONTINUAR' : 'TENTAR NOVAMENTE'}
           </Text>
+          <Feather
+            name={acertou ? 'arrow-right' : 'rotate-ccw'}
+            size={24}
+            color={cores.fundo}
+          />
         </Pressable>
       )}
     </TelaJogo>

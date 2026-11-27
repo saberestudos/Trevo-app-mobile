@@ -42,6 +42,8 @@ export const cores = {
   quizCerto: '#5AC200',
   quizErrado: '#890000',
   quizEscuro: '#0E4A6E',
+  segmentoQuiz: 'rgba(255, 255, 255, 0.3)',
+  fundoVidas: 'rgba(255, 255, 255, 0.55)',
   textoRecompensa: '#890000',
   botaoQuiz: '#0077C2',
   botaoDesativado: '#939290',
