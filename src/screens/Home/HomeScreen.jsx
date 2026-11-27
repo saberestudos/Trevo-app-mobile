@@ -31,16 +31,23 @@ export default function HomeScreen({ navigation }) {
   const [progresso, setProgresso] = useState(null);
   const [visual, setVisual] = useState(null);
   const [presenteVisivel, setPresenteVisivel] = useState(false);
+  const [premioNivel, setPremioNivel] = useState(null);
 
   // Recarrega sempre que a Home aparece de novo
   // (por exemplo, depois de trocar a roupa ou de gastar moedas na loja).
   // Na primeira vez, a pessoa ganha o presente de boas-vindas.
   useFocusEffect(
     useCallback(() => {
-      ProgressoService.receberBonusBoasVindas().then((ganhouAgora) => {
-        if (ganhouAgora) setPresenteVisivel(true);
-        ProgressoService.buscar().then(setProgresso);
-      });
+      // Na ordem: presente de boas-vindas, prêmio de nível novo e o progresso atualizado.
+      async function carregar() {
+        if (await ProgressoService.receberBonusBoasVindas()) {
+          setPresenteVisivel(true);
+        }
+        const premio = await ProgressoService.receberPremioDeNivel();
+        if (premio) setPremioNivel(premio);
+        setProgresso(await ProgressoService.buscar());
+      }
+      carregar();
       AvatarService.buscar().then(setVisual);
     }, []),
   );
@@ -122,6 +129,15 @@ export default function HomeScreen({ navigation }) {
         titulo="Parabéns por chegar até aqui!"
         texto="Começar já é uma conquista. Use essas moedas na Loja do Avatar."
         aoFechar={() => setPresenteVisivel(false)}
+      />
+
+      {/* Prêmio de nível: aparece depois do presente de boas-vindas, se os dois vierem juntos. */}
+      <ModalPresente
+        visivel={Boolean(premioNivel) && !presenteVisivel}
+        moedas={premioNivel?.moedas ?? 0}
+        titulo={`Você chegou ao nível ${premioNivel?.nivel}!`}
+        texto="Parabéns pela evolução! Continue fazendo as missões e o quiz para subir mais."
+        aoFechar={() => setPremioNivel(null)}
       />
     </TelaJogo>
   );

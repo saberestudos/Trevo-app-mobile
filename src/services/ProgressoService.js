@@ -9,12 +9,16 @@ import { lerDados, salvarDados } from '../utils/armazenamento';
 const CHAVE_MOEDAS_GANHAS = 'trevo:moedasGanhas';
 const CHAVE_MOEDAS_GASTAS = 'trevo:moedasGastas';
 const CHAVE_BONUS_BOAS_VINDAS = 'trevo:bonusBoasVindas';
+const CHAVE_NIVEL_PREMIADO = 'trevo:nivelPremiado';
 // Troféus, missões e experiência ganhos nas missões diárias.
 const CHAVE_GANHOS_MISSOES = 'trevo:ganhosMissoes';
 const GANHOS_VAZIOS = { trofeus: 0, missoes: 0, experiencia: 0 };
 
 // Presente de boas-vindas para quem chega na Home pela primeira vez.
 export const MOEDAS_BOAS_VINDAS = 50;
+
+// Prêmio por cada nível novo alcançado (provisório: o grupo pode mudar).
+export const MOEDAS_POR_NIVEL = 30;
 
 const TEMPO_DE_RESPOSTA_SIMULADO = 500;
 
@@ -88,6 +92,21 @@ class ProgressoService {
     }
     salvarDados(CHAVE_BONUS_BOAS_VINDAS, true);
     return this.ganharMoedas(MOEDAS_BOAS_VINDAS).then(() => true);
+  }
+
+  // Quando a pessoa sobe de nível, ganha moedas uma vez por nível novo.
+  // Devolve o nível e as moedas ganhas agora, ou null se não subiu.
+  async receberPremioDeNivel() {
+    const progresso = await this.buscar();
+    const nivel = progresso.nivelAtual();
+    const jaPremiado = lerDados(CHAVE_NIVEL_PREMIADO, 0);
+    if (nivel <= jaPremiado) {
+      return null;
+    }
+    const moedas = (nivel - jaPremiado) * MOEDAS_POR_NIVEL;
+    salvarDados(CHAVE_NIVEL_PREMIADO, nivel);
+    await this.ganharMoedas(moedas);
+    return { nivel, moedas };
   }
 }
 
