@@ -10,19 +10,32 @@ function chaveDeHoje() {
   return `trevo:missoes:${hoje}`;
 }
 
+// "feitas": marcadas pela pessoa. "concluidasPeloApp": cumpridas de verdade no app
+// (o quiz). Missão automática só conta pela segunda lista, nunca pelo toque.
 function lerEstado() {
-  return lerDados(chaveDeHoje(), { feitas: [], resgatadas: [] });
+  return {
+    feitas: [],
+    resgatadas: [],
+    concluidasPeloApp: [],
+    ...lerDados(chaveDeHoje(), {}),
+  };
+}
+
+function estaFeita(missao, estado) {
+  return missao.automatica
+    ? estado.concluidasPeloApp.includes(missao.id)
+    : estado.feitas.includes(missao.id);
 }
 
 class MissaoService {
   // Lista das missões de hoje, cada uma com "feita" e "resgatada".
   listar() {
-    const { feitas, resgatadas } = lerEstado();
+    const estado = lerEstado();
     return Promise.resolve(
       MISSOES_DIARIAS.map((missao) => ({
         ...missao,
-        feita: feitas.includes(missao.id),
-        resgatada: resgatadas.includes(missao.id),
+        feita: estaFeita(missao, estado),
+        resgatada: estado.resgatadas.includes(missao.id),
       })),
     );
   }
@@ -41,11 +54,11 @@ class MissaoService {
     return this.listar();
   }
 
-  // Marca uma missão como feita (usado quando o próprio app sabe que ela foi cumprida).
+  // Marca uma missão como cumprida pelo próprio app (ex.: o quiz, ao terminar).
   concluir(id) {
     const estado = lerEstado();
-    if (!estado.feitas.includes(id)) {
-      estado.feitas = [...estado.feitas, id];
+    if (!estado.concluidasPeloApp.includes(id)) {
+      estado.concluidasPeloApp = [...estado.concluidasPeloApp, id];
       salvarDados(chaveDeHoje(), estado);
     }
     return this.listar();
@@ -56,8 +69,7 @@ class MissaoService {
     const estado = lerEstado();
     const novas = MISSOES_DIARIAS.filter(
       (missao) =>
-        estado.feitas.includes(missao.id) &&
-        !estado.resgatadas.includes(missao.id),
+        estaFeita(missao, estado) && !estado.resgatadas.includes(missao.id),
     );
 
     const total = { moedas: 0, trofeus: 0 };
