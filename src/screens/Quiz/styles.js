@@ -150,6 +150,9 @@ const estilos = StyleSheet.create({
     backgroundColor: cores.quizEscuro,
     ...sombraPadrao,
   },
+  botaoTentar: {
+    marginTop: 22,
+  },
   textoBotao: {
     marginTop: 3,
     ...fonteQuiz(32),

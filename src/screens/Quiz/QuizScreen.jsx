@@ -7,6 +7,7 @@ import { Image, Pressable, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 
+import BotaoIcone from '../../components/BotaoIcone';
 import BotaoVoltar, { voltar } from '../../components/BotaoVoltar';
 import TelaJogo from '../../components/TelaJogo';
 import TextoDestaque from '../../components/TextoDestaque';
@@ -189,21 +190,24 @@ export default function QuizScreen({ navigation }) {
         </View>
       </View>
 
-      {respondeu && (
+      {respondeu && acertou && (
         <Pressable
           style={estilos.botao}
           onPress={continuar}
           accessibilityRole="button"
         >
-          <Text style={estilos.textoBotao}>
-            {acertou ? 'CONTINUAR' : 'TENTAR NOVAMENTE'}
-          </Text>
-          <Feather
-            name={acertou ? 'arrow-right' : 'rotate-ccw'}
-            size={24}
-            color={cores.fundo}
-          />
+          <Text style={estilos.textoBotao}>CONTINUAR</Text>
+          <Feather name="arrow-right" size={24} color={cores.fundo} />
         </Pressable>
+      )}
+
+      {respondeu && !acertou && (
+        <BotaoIcone
+          icone="rotate-ccw"
+          dica="Tentar novamente"
+          aoPressionar={continuar}
+          estilo={estilos.botaoTentar}
+        />
       )}
     </TelaJogo>
   );
