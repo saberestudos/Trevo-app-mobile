@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CadastroScreen from '../screens/Cadastro/CadastroScreen';
+import ChatScreen from '../screens/Chat/ChatScreen';
 import CodigoScreen from '../screens/Codigo/CodigoScreen';
 import DiasJogadosScreen from '../screens/DiasJogados/DiasJogadosScreen';
 import EsqueceuSenhaScreen from '../screens/EsqueceuSenha/EsqueceuSenhaScreen';
@@ -40,6 +41,7 @@ export default function AppNavigator() {
         <Stack.Screen name="Missoes" component={MissoesScreen} />
         <Stack.Screen name="Quiz" component={QuizScreen} />
         <Stack.Screen name="Trilha" component={TrilhaScreen} />
+        <Stack.Screen name="Chat" component={ChatScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

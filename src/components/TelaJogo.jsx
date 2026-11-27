@@ -9,7 +9,7 @@ import { avisarEmBreve } from '../utils/avisos';
 import { cores } from '../theme/cores';
 
 // Abas da barra de baixo que já têm tela. As outras mostram "Em breve".
-const ABAS_PRONTAS = ['Home', 'Trofeus'];
+const ABAS_PRONTAS = ['Home', 'Trofeus', 'Chat'];
 
 // "fundo" e "estiloConteudo" são opcionais (ex.: o quiz tem fundo mais claro e cabeçalho próprio).
 export default function TelaJogo({

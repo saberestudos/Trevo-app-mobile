@@ -31,9 +31,10 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 | Missões Diárias (marcar missões e receber troféus e moedas) | — |
 | Quiz (6 perguntas de educação financeira, 4 vidas por dia, pontos para subir de nível) | — |
 | Trilha do Saber (conteúdos de educação financeira → Quiz) | — |
+| Chat com a Sofia (chatbot simples por palavras-chave, sem internet) | — |
 | Opções (engrenagem do topo: Minha Conta e Sair; as outras opções mostram "Em breve") | — |
 
-Fluxo (igual ao protótipo): Login → Home → Troféus (troféu do topo ou da barra), Missões Diárias (ícone de missões) → Quiz (Responder quiz), Loja do Avatar (botão LOJA) e Opções (engrenagem) → Minha Conta, Trilha do Saber (→ Quiz) e Pacote Premium. Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
+Fluxo (igual ao protótipo): Login → Home → Chat com a Sofia (ícone de chat da barra), Troféus (troféu do topo ou da barra), Missões Diárias (ícone de missões) → Quiz (Responder quiz), Loja do Avatar (botão LOJA) e Opções (engrenagem) → Minha Conta, Trilha do Saber (→ Quiz) e Pacote Premium. Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
 
 ## Como rodar
 
