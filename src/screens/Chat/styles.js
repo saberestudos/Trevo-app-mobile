@@ -64,24 +64,6 @@ const estilos = StyleSheet.create({
     ...fonte(familias.regular, 16),
     color: cores.texto,
   },
-  sugestoes: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginTop: 4,
-  },
-  sugestao: {
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderWidth: 1.5,
-    borderRadius: 18,
-    borderColor: cores.balaoSofia,
-    backgroundColor: cores.fundo,
-  },
-  textoSugestao: {
-    ...fonte(familias.media, 14),
-    color: cores.primaria,
-  },
   linhaEnvio: {
     flexDirection: 'row',
     alignItems: 'center',

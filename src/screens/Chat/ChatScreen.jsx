@@ -18,7 +18,7 @@ import { Feather } from '@expo/vector-icons';
 import BarraNavegacao from '../../components/BarraNavegacao';
 import BotaoVoltar, { voltar } from '../../components/BotaoVoltar';
 import TextoDestaque from '../../components/TextoDestaque';
-import { BOAS_VINDAS, SUGESTOES } from '../../catalogos/respostasSofia';
+import { BOAS_VINDAS } from '../../catalogos/respostasSofia';
 import SofiaService from '../../services/SofiaService';
 import { cores } from '../../theme/cores';
 import { avisarEmBreve } from '../../utils/avisos';
@@ -61,9 +61,6 @@ export default function ChatScreen({ navigation }) {
       avisarEmBreve();
     }
   }
-
-  // As sugestões só aparecem antes da primeira mensagem da pessoa.
-  const mostrarSugestoes = mensagens.length === 1;
 
   return (
     <LinearGradient
@@ -120,21 +117,6 @@ export default function ChatScreen({ navigation }) {
           {digitando && (
             <View style={[estilos.balao, estilos.balaoSofia]}>
               <Text style={estilos.textoSofia}>...</Text>
-            </View>
-          )}
-
-          {mostrarSugestoes && (
-            <View style={estilos.sugestoes}>
-              {SUGESTOES.map((sugestao) => (
-                <Pressable
-                  key={sugestao}
-                  style={estilos.sugestao}
-                  onPress={() => enviar(sugestao)}
-                  accessibilityRole="button"
-                >
-                  <Text style={estilos.textoSugestao}>{sugestao}</Text>
-                </Pressable>
-              ))}
             </View>
           )}
         </ScrollView>

@@ -6,14 +6,6 @@
 export const BOAS_VINDAS =
   'Oi! Eu sou a Sofia, sua mentora digital em educação financeira. Estou aqui pra te ajudar a sair do ciclo das apostas, passo a passo. Sobre o que você quer conversar?';
 
-// Sugestões que aparecem como botões, para a pessoa não precisar digitar.
-export const SUGESTOES = [
-  'Estou com vontade de apostar',
-  'Como montar um orçamento?',
-  'O que é reserva de emergência?',
-  'Tenho dívidas',
-];
-
 export const ASSUNTOS = [
   {
     id: 'vontade',
