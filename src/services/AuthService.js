@@ -41,14 +41,21 @@ function buscarPorIdentificador(identificador) {
 }
 
 class AuthService {
+  // Qualquer e-mail @gmail.com entra (o formato já foi conferido na tela).
+  // Se o e-mail já foi cadastrado no app, a senha precisa ser a do cadastro.
   login(identificador, senha) {
     return simularRequisicao(() => {
       const encontrado = buscarPorIdentificador(identificador);
 
-      if (!encontrado || encontrado.senha !== senha) {
-        throw new Error('E-mail, usuário ou senha incorretos.');
+      if (encontrado && encontrado.senha !== senha) {
+        throw new Error('Senha incorreta.');
       }
-      return new Usuario(encontrado);
+      if (encontrado) {
+        return new Usuario(encontrado);
+      }
+
+      const email = normalizar(identificador);
+      return new Usuario({ id: 0, nome: email, email, nomeUsuario: null });
     });
   }
 
@@ -74,16 +81,9 @@ class AuthService {
     });
   }
 
-  enviarCodigoRecuperacao(email) {
-    return simularRequisicao(() => {
-      const encontrado = todosOsUsuarios().find(
-        (usuario) => usuario.email === normalizar(email),
-      );
-
-      if (!encontrado) {
-        throw new Error('Não encontramos uma conta com esse e-mail.');
-      }
-    });
+  // Qualquer e-mail @gmail.com recebe o código (simulado).
+  enviarCodigoRecuperacao() {
+    return simularRequisicao(() => {});
   }
 
   verificarCodigo(codigo) {

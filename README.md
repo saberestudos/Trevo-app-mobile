@@ -49,13 +49,12 @@ Depois, leia o QR Code com o Expo Go (Android) ou com a câmera (iOS). O celular
 
 > Se o Expo Go avisar que a versão do projeto não é compatível, atualize o Expo com `npx expo install expo@latest`, rode `npx expo install --fix` e faça commit do `package.json` atualizado.
 
-## Usuário de teste (mock)
+## Como entrar (mock)
+
+Qualquer e-mail **@gmail.com** entra, com qualquer senha. Se o e-mail já foi cadastrado no app, a senha precisa ser a do cadastro.
 
 | Campo | Valor |
 |---|---|
-| E-mail | teste@trevo.com |
-| Usuário | teste |
-| Senha | 123456 |
 | Código de recuperação | 12345 |
 
 Os cadastros feitos no app ficam guardados no navegador (não somem ao recarregar a página). No celular, ficam só na memória até o backend existir.

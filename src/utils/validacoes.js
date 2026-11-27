@@ -12,13 +12,21 @@ export function emailValido(valor) {
   return FORMATO_EMAIL.test(valor.trim());
 }
 
-// Campo "E-mail ou usuário": se tiver @, precisa ser um e-mail válido.
+// Por enquanto o app aceita qualquer e-mail, desde que seja do Gmail.
+const DOMINIO_ACEITO = '@gmail.com';
+const MENSAGEM_DOMINIO = `Use um e-mail ${DOMINIO_ACEITO}.`;
+
+export function emailGmail(valor) {
+  const email = valor.trim().toLowerCase();
+  return emailValido(email) && email.endsWith(DOMINIO_ACEITO);
+}
+
 function validarIdentificador(identificador) {
   if (campoVazio(identificador)) {
-    return 'Informe seu e-mail ou usuário.';
+    return 'Informe seu e-mail.';
   }
-  if (identificador.includes('@') && !emailValido(identificador)) {
-    return 'Informe um e-mail válido.';
+  if (!emailGmail(identificador)) {
+    return MENSAGEM_DOMINIO;
   }
   return null;
 }
@@ -68,8 +76,8 @@ export function validarEmailRecuperacao(email) {
   if (campoVazio(email)) {
     return { email: 'Informe seu e-mail.' };
   }
-  if (!emailValido(email)) {
-    return { email: 'Informe um e-mail válido.' };
+  if (!emailGmail(email)) {
+    return { email: MENSAGEM_DOMINIO };
   }
   return {};
 }
