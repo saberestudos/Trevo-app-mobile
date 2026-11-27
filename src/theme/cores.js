@@ -33,5 +33,6 @@ export const cores = {
   fundoBotaoVoltar: 'rgba(255, 255, 255, 0.18)',
   bordaBotaoVoltar: 'rgba(255, 255, 255, 0.35)',
   linhaSecao: 'rgba(255, 255, 255, 0.35)',
+  fundoCadeado: 'rgba(0, 0, 0, 0.55)',
   contornoBotao: '#000000',
 };

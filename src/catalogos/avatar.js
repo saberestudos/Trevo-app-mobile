@@ -13,6 +13,8 @@ export const CABECAS = {
   bone: require('../../assets/images/avatar/cabecas/bone.png'),
   chapeu: require('../../assets/images/avatar/cabecas/chapeu.png'),
   'chapeu-mago': require('../../assets/images/avatar/cabecas/chapeu-mago.png'),
+  coroa: require('../../assets/images/avatar/cabecas/coroa.png'),
+  viking: require('../../assets/images/avatar/cabecas/viking.png'),
 };
 
 // A camiseta vermelha já faz parte do corpo; as outras cores vão por cima.
@@ -21,17 +23,23 @@ export const CAMISETAS = {
   verde: require('../../assets/images/avatar/camisetas/verde.png'),
   amarela: require('../../assets/images/avatar/camisetas/amarela.png'),
   preta: require('../../assets/images/avatar/camisetas/preta.png'),
+  roxa: require('../../assets/images/avatar/camisetas/roxa.png'),
+  laranja: require('../../assets/images/avatar/camisetas/laranja.png'),
 };
 
 export const PERNAS = {
   jeans: require('../../assets/images/avatar/pernas/jeans.png'),
   'bermuda-vermelha': require('../../assets/images/avatar/pernas/bermuda-vermelha.png'),
   'bermuda-azul': require('../../assets/images/avatar/pernas/bermuda-azul.png'),
+  'bermuda-verde': require('../../assets/images/avatar/pernas/bermuda-verde.png'),
+  'bermuda-preta': require('../../assets/images/avatar/pernas/bermuda-preta.png'),
 };
 
 export const OCULOS = {
   preto: require('../../assets/images/avatar/oculos/preto.png'),
   amarelo: require('../../assets/images/avatar/oculos/amarelo.png'),
+  vermelho: require('../../assets/images/avatar/oculos/vermelho.png'),
+  azul: require('../../assets/images/avatar/oculos/azul.png'),
 };
 
 // A fantasia é o boneco inteiro: cobre roupa, chapéu e óculos.
@@ -41,6 +49,8 @@ export const FANTASIAS = {
   dinossauro: require('../../assets/images/avatar/fantasias/dinossauro.png'),
   astronauta: require('../../assets/images/avatar/fantasias/astronauta.png'),
   abelha: require('../../assets/images/avatar/fantasias/abelha.png'),
+  'dinossauro-verde': require('../../assets/images/avatar/fantasias/dinossauro-verde.png'),
+  'abelha-rosa': require('../../assets/images/avatar/fantasias/abelha-rosa.png'),
 };
 
 // Visual básico: sem chapéu, sem óculos, camiseta vermelha e calça jeans.
@@ -80,9 +90,24 @@ const miniatura = {
   dinossauro: require('../../assets/images/avatar/miniaturas/fantasia-dinossauro.png'),
   astronauta: require('../../assets/images/avatar/miniaturas/fantasia-astronauta.png'),
   abelha: require('../../assets/images/avatar/miniaturas/fantasia-abelha.png'),
+  coroa: require('../../assets/images/avatar/miniaturas/coroa.png'),
+  viking: require('../../assets/images/avatar/miniaturas/viking.png'),
+  oculosVermelho: require('../../assets/images/avatar/miniaturas/oculos-vermelho.png'),
+  oculosAzul: require('../../assets/images/avatar/miniaturas/oculos-azul.png'),
+  camisetaRoxa: require('../../assets/images/avatar/miniaturas/camiseta-roxa.png'),
+  camisetaLaranja: require('../../assets/images/avatar/miniaturas/camiseta-laranja.png'),
+  bermudaVerde: require('../../assets/images/avatar/miniaturas/bermuda-verde.png'),
+  bermudaPreta: require('../../assets/images/avatar/miniaturas/bermuda-preta.png'),
+  dinossauroVerde: require('../../assets/images/avatar/miniaturas/fantasia-dinossauro-verde.png'),
+  abelhaRosa: require('../../assets/images/avatar/miniaturas/fantasia-abelha-rosa.png'),
 };
 
+// Nível em que os itens bloqueados são liberados.
+const NIVEL_ITEM_RARO = 3;
+const NIVEL_ITEM_EPICO = 5;
+
 // Categorias e itens da vitrine. "id: null" é a opção "nenhum" (tira o item).
+// Itens com "nivelMinimo" aparecem bloqueados até a pessoa chegar nesse nível.
 export const CATEGORIAS_VITRINE = [
   {
     id: 'chapeu',
@@ -97,6 +122,18 @@ export const CATEGORIAS_VITRINE = [
         nome: 'Chapéu de mago',
         miniatura: miniatura.chapeuMago,
       },
+      {
+        id: 'coroa',
+        nome: 'Coroa',
+        miniatura: miniatura.coroa,
+        nivelMinimo: NIVEL_ITEM_RARO,
+      },
+      {
+        id: 'viking',
+        nome: 'Capacete viking',
+        miniatura: miniatura.viking,
+        nivelMinimo: NIVEL_ITEM_EPICO,
+      },
     ],
   },
   {
@@ -110,6 +147,18 @@ export const CATEGORIAS_VITRINE = [
         id: 'amarelo',
         nome: 'Óculos amarelo',
         miniatura: miniatura.oculosAmarelo,
+      },
+      {
+        id: 'vermelho',
+        nome: 'Óculos vermelho',
+        miniatura: miniatura.oculosVermelho,
+        nivelMinimo: NIVEL_ITEM_RARO,
+      },
+      {
+        id: 'azul',
+        nome: 'Óculos azul',
+        miniatura: miniatura.oculosAzul,
+        nivelMinimo: NIVEL_ITEM_EPICO,
       },
     ],
   },
@@ -139,6 +188,18 @@ export const CATEGORIAS_VITRINE = [
         nome: 'Camiseta preta',
         miniatura: miniatura.camisetaPreta,
       },
+      {
+        id: 'roxa',
+        nome: 'Camiseta roxa',
+        miniatura: miniatura.camisetaRoxa,
+        nivelMinimo: NIVEL_ITEM_RARO,
+      },
+      {
+        id: 'laranja',
+        nome: 'Camiseta laranja',
+        miniatura: miniatura.camisetaLaranja,
+        nivelMinimo: NIVEL_ITEM_EPICO,
+      },
     ],
   },
   {
@@ -156,6 +217,18 @@ export const CATEGORIAS_VITRINE = [
         id: 'bermuda-azul',
         nome: 'Bermuda azul',
         miniatura: miniatura.bermudaAzul,
+      },
+      {
+        id: 'bermuda-verde',
+        nome: 'Bermuda verde',
+        miniatura: miniatura.bermudaVerde,
+        nivelMinimo: NIVEL_ITEM_RARO,
+      },
+      {
+        id: 'bermuda-preta',
+        nome: 'Bermuda preta',
+        miniatura: miniatura.bermudaPreta,
+        nivelMinimo: NIVEL_ITEM_EPICO,
       },
     ],
   },
@@ -176,6 +249,18 @@ export const CATEGORIAS_VITRINE = [
         miniatura: miniatura.astronauta,
       },
       { id: 'abelha', nome: 'Fantasia de abelha', miniatura: miniatura.abelha },
+      {
+        id: 'dinossauro-verde',
+        nome: 'Dinossauro verde',
+        miniatura: miniatura.dinossauroVerde,
+        nivelMinimo: NIVEL_ITEM_RARO,
+      },
+      {
+        id: 'abelha-rosa',
+        nome: 'Abelha rosa',
+        miniatura: miniatura.abelhaRosa,
+        nivelMinimo: NIVEL_ITEM_EPICO,
+      },
     ],
   },
 ];

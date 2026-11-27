@@ -1,14 +1,20 @@
 // Vitrine para personalizar o avatar: abas de categoria e os itens em cartões.
 // Tocar num item já veste o avatar; o item em uso ganha borda verde e um ✓.
+// Itens de nível maior que o da pessoa aparecem apagados, com cadeado.
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 
 import { CATEGORIAS_VITRINE } from '../catalogos/avatar';
 import { cores } from '../theme/cores';
 import { sombraPadrao } from '../theme/sombras';
+import { avisar } from '../utils/avisos';
 
-export default function VitrineAvatar({ visual, aoEscolher, estilo }) {
+export function estaBloqueado(item, nivel) {
+  return Boolean(item.nivelMinimo) && nivel < item.nivelMinimo;
+}
+
+export default function VitrineAvatar({ visual, nivel, aoEscolher, estilo }) {
   const [indiceCategoria, setIndiceCategoria] = useState(0);
   const categoria = CATEGORIAS_VITRINE[indiceCategoria];
 
@@ -38,19 +44,41 @@ export default function VitrineAvatar({ visual, aoEscolher, estilo }) {
       <View style={estilos.grade}>
         {categoria.itens.map((item) => {
           const emUso = visual[categoria.id] === item.id;
+          const bloqueado = estaBloqueado(item, nivel);
+
+          function escolher() {
+            if (bloqueado) {
+              avisar(
+                'Item bloqueado',
+                `${item.nome} libera no nível ${item.nivelMinimo}. Continue fazendo as missões!`,
+              );
+              return;
+            }
+            aoEscolher(categoria.id, item.id);
+          }
+
           return (
             <Pressable
               key={item.nome}
               style={[estilos.item, emUso && estilos.itemEmUso]}
-              onPress={() => aoEscolher(categoria.id, item.id)}
-              accessibilityLabel={item.nome}
-              accessibilityState={{ selected: emUso }}
+              onPress={escolher}
+              accessibilityLabel={
+                bloqueado
+                  ? `${item.nome}, bloqueado até o nível ${item.nivelMinimo}`
+                  : item.nome
+              }
+              accessibilityState={{ selected: emUso, disabled: bloqueado }}
             >
               <Image
                 source={item.miniatura}
-                style={estilos.miniatura}
+                style={[estilos.miniatura, bloqueado && estilos.apagada]}
                 resizeMode="contain"
               />
+              {bloqueado && (
+                <View style={estilos.cadeado}>
+                  <Ionicons name="lock-closed" size={13} color={cores.fundo} />
+                </View>
+              )}
               {emUso && (
                 <View style={estilos.selo}>
                   <Feather name="check" size={11} color={cores.fundo} />
@@ -121,6 +149,18 @@ const estilos = StyleSheet.create({
   miniatura: {
     width: 40,
     height: 40,
+  },
+  apagada: {
+    opacity: 0.35,
+  },
+  cadeado: {
+    position: 'absolute',
+    width: 24,
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 12,
+    backgroundColor: cores.fundoCadeado,
   },
   selo: {
     position: 'absolute',

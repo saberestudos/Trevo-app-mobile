@@ -91,6 +91,7 @@ export default function MinhaContaScreen({ navigation }) {
 
         <VitrineAvatar
           visual={visual}
+          nivel={progresso.nivelAtual()}
           aoEscolher={vestir}
           estilo={estilos.vitrine}
         />
