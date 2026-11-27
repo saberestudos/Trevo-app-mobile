@@ -1,5 +1,5 @@
 // Barra do topo das telas de jogo, seguindo o fluxo do protótipo (Figma):
-// LOJA → personalizar o avatar (Minha Conta), troféu → Troféus,
+// LOJA → Loja do Avatar, troféu → Troféus,
 // engrenagem → Opções (configurações). As moedas ainda não têm tela.
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -33,7 +33,7 @@ export default function BarraTopo({ moedas, trofeus, navigation }) {
             color={cores.destaqueAmarelo}
           />
         }
-        aoPressionar={() => navigation.navigate('MinhaConta')}
+        aoPressionar={() => navigation.navigate('Loja')}
       />
       <Pilula
         icone={imagens.trofeu}

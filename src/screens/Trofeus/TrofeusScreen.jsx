@@ -1,8 +1,9 @@
 // Tela de Troféus ("Minha coleção").
 // Requisito atendido: RF 08 (ranking e troféus).
 // Troféus conquistados aparecem dourados; os outros, pretos com cadeado.
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Image, View } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import BarraTopo from '../../components/BarraTopo';
 import BotaoVoltar, { voltar } from '../../components/BotaoVoltar';
@@ -35,10 +36,12 @@ export default function TrofeusScreen({ navigation }) {
   const [progresso, setProgresso] = useState(null);
   const [trofeus, setTrofeus] = useState([]);
 
-  useEffect(() => {
-    ProgressoService.buscar().then(setProgresso);
-    TrofeuService.listar().then(setTrofeus);
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      ProgressoService.buscar().then(setProgresso);
+      TrofeuService.listar().then(setTrofeus);
+    }, []),
+  );
 
   return (
     <TelaJogo navigation={navigation}>

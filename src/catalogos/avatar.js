@@ -15,6 +15,9 @@ export const CABECAS = {
   'chapeu-mago': require('../../assets/images/avatar/cabecas/chapeu-mago.png'),
   coroa: require('../../assets/images/avatar/cabecas/coroa.png'),
   viking: require('../../assets/images/avatar/cabecas/viking.png'),
+  cowboy: require('../../assets/images/avatar/cabecas/cowboy.png'),
+  'chapeu-roxo': require('../../assets/images/avatar/cabecas/chapeu-roxo.png'),
+  'chapeu-bruxa': require('../../assets/images/avatar/cabecas/chapeu-bruxa.png'),
 };
 
 // A camiseta vermelha já faz parte do corpo; as outras cores vão por cima.
@@ -40,6 +43,16 @@ export const OCULOS = {
   amarelo: require('../../assets/images/avatar/oculos/amarelo.png'),
   vermelho: require('../../assets/images/avatar/oculos/vermelho.png'),
   azul: require('../../assets/images/avatar/oculos/azul.png'),
+  verde: require('../../assets/images/avatar/oculos/verde.png'),
+};
+
+// Tênis: um para cada calça, porque a barra da calça fica por cima do sapato.
+export const TENIS = {
+  jeans: require('../../assets/images/avatar/tenis/jeans.png'),
+  'bermuda-vermelha': require('../../assets/images/avatar/tenis/bermuda-vermelha.png'),
+  'bermuda-azul': require('../../assets/images/avatar/tenis/bermuda-azul.png'),
+  'bermuda-verde': require('../../assets/images/avatar/tenis/bermuda-verde.png'),
+  'bermuda-preta': require('../../assets/images/avatar/tenis/bermuda-preta.png'),
 };
 
 // A fantasia é o boneco inteiro: cobre roupa, chapéu e óculos.
@@ -51,6 +64,8 @@ export const FANTASIAS = {
   abelha: require('../../assets/images/avatar/fantasias/abelha.png'),
   'dinossauro-verde': require('../../assets/images/avatar/fantasias/dinossauro-verde.png'),
   'abelha-rosa': require('../../assets/images/avatar/fantasias/abelha-rosa.png'),
+  urso: require('../../assets/images/avatar/fantasias/urso.png'),
+  heroi: require('../../assets/images/avatar/fantasias/heroi.png'),
 };
 
 // Visual básico: sem chapéu, sem óculos, camiseta vermelha e calça jeans.
@@ -59,6 +74,7 @@ export const VISUAL_PADRAO = {
   oculos: null,
   camiseta: 'vermelha',
   calca: 'jeans',
+  calcado: null,
   fantasia: null,
 };
 
@@ -100,6 +116,13 @@ const miniatura = {
   bermudaPreta: require('../../assets/images/avatar/miniaturas/bermuda-preta.png'),
   dinossauroVerde: require('../../assets/images/avatar/miniaturas/fantasia-dinossauro-verde.png'),
   abelhaRosa: require('../../assets/images/avatar/miniaturas/fantasia-abelha-rosa.png'),
+  cowboy: require('../../assets/images/avatar/miniaturas/cowboy.png'),
+  chapeuRoxo: require('../../assets/images/avatar/miniaturas/chapeu-roxo.png'),
+  chapeuBruxa: require('../../assets/images/avatar/miniaturas/chapeu-bruxa.png'),
+  oculosVerde: require('../../assets/images/avatar/miniaturas/oculos-verde.png'),
+  tenis: require('../../assets/images/avatar/miniaturas/tenis.png'),
+  urso: require('../../assets/images/avatar/miniaturas/fantasia-urso.png'),
+  heroi: require('../../assets/images/avatar/miniaturas/fantasia-heroi.png'),
 };
 
 // Nível em que os itens bloqueados são liberados.
@@ -108,6 +131,7 @@ const NIVEL_ITEM_EPICO = 12;
 
 // Categorias e itens da vitrine. "id: null" é a opção "nenhum" (tira o item).
 // Itens com "nivelMinimo" aparecem bloqueados até a pessoa chegar nesse nível.
+// Itens com "daLoja" só aparecem depois de comprados na Loja do Avatar.
 export const CATEGORIAS_VITRINE = [
   {
     id: 'chapeu',
@@ -134,6 +158,24 @@ export const CATEGORIAS_VITRINE = [
         miniatura: miniatura.viking,
         nivelMinimo: NIVEL_ITEM_EPICO,
       },
+      {
+        id: 'cowboy',
+        nome: 'Chapéu de cowboy',
+        miniatura: miniatura.cowboy,
+        daLoja: true,
+      },
+      {
+        id: 'chapeu-roxo',
+        nome: 'Chapéu roxo',
+        miniatura: miniatura.chapeuRoxo,
+        daLoja: true,
+      },
+      {
+        id: 'chapeu-bruxa',
+        nome: 'Chapéu de bruxa',
+        miniatura: miniatura.chapeuBruxa,
+        daLoja: true,
+      },
     ],
   },
   {
@@ -159,6 +201,12 @@ export const CATEGORIAS_VITRINE = [
         nome: 'Óculos azul',
         miniatura: miniatura.oculosAzul,
         nivelMinimo: NIVEL_ITEM_EPICO,
+      },
+      {
+        id: 'verde',
+        nome: 'Óculos verde',
+        miniatura: miniatura.oculosVerde,
+        daLoja: true,
       },
     ],
   },
@@ -233,6 +281,15 @@ export const CATEGORIAS_VITRINE = [
     ],
   },
   {
+    id: 'calcado',
+    nome: 'Calçados',
+    icone: miniatura.tenis,
+    itens: [
+      { id: null, nome: 'Sapato marrom', miniatura: miniatura.nenhum },
+      { id: 'tenis', nome: 'Tênis', miniatura: miniatura.tenis, daLoja: true },
+    ],
+  },
+  {
     id: 'fantasia',
     nome: 'Fantasias',
     icone: miniatura.dinossauro,
@@ -260,6 +317,18 @@ export const CATEGORIAS_VITRINE = [
         nome: 'Abelha rosa',
         miniatura: miniatura.abelhaRosa,
         nivelMinimo: NIVEL_ITEM_EPICO,
+      },
+      {
+        id: 'urso',
+        nome: 'Fantasia de urso',
+        miniatura: miniatura.urso,
+        daLoja: true,
+      },
+      {
+        id: 'heroi',
+        nome: 'Fantasia de herói',
+        miniatura: miniatura.heroi,
+        daLoja: true,
       },
     ],
   },

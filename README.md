@@ -25,9 +25,10 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 | Home (contador de dias sem apostar, nível, moedas e troféus) | RF 05 |
 | Troféus (minha coleção) | RF 08 |
 | Minha Conta (avatar, personalização e estatísticas) | RF 09 |
+| Loja do Avatar (compra de itens com moedas) | RF 09 |
 | Opções (engrenagem do topo: Minha Conta e Sair; as outras opções mostram "Em breve") | — |
 
-Fluxo (igual ao protótipo): Login → Home → Troféus (troféu do topo ou da barra), Minha Conta (botão LOJA) e Opções (engrenagem). Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
+Fluxo (igual ao protótipo): Login → Home → Troféus (troféu do topo ou da barra), Loja do Avatar (botão LOJA) e Opções (engrenagem) → Minha Conta. Login → "Inscreva-se" → Cadastro → Onboarding → Home. Login → "Esqueceu sua senha?" → Esqueceu a senha? → Código → Login.
 
 ## Como rodar
 

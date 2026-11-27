@@ -1,7 +1,8 @@
 // Tela Minha Conta: avatar, vitrine de personalização e estatísticas do usuário.
 // Requisito atendido: RF 09 (avatar e loja), com estatísticas de RF 05 e RF 08.
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Image, Pressable, View } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { VISUAL_PADRAO } from '../../catalogos/avatar';
 import AvatarPersonalizado from '../../components/AvatarPersonalizado';
@@ -34,11 +35,16 @@ function textoComPlural(numero, singular, plural) {
 export default function MinhaContaScreen({ navigation }) {
   const [progresso, setProgresso] = useState(null);
   const [visual, setVisual] = useState(null);
+  const [comprados, setComprados] = useState([]);
 
-  useEffect(() => {
-    ProgressoService.buscar().then(setProgresso);
-    AvatarService.buscar().then(setVisual);
-  }, []);
+  // Recarrega sempre que a tela aparece (ex.: depois de comprar na loja).
+  useFocusEffect(
+    useCallback(() => {
+      ProgressoService.buscar().then(setProgresso);
+      AvatarService.buscar().then(setVisual);
+      AvatarService.buscarComprados().then(setComprados);
+    }, []),
+  );
 
   // Veste o item escolhido na vitrine e guarda o novo visual.
   // - "Sem roupa" (⊘ das fantasias) tira tudo: depois disso, cada roupa
@@ -94,6 +100,7 @@ export default function MinhaContaScreen({ navigation }) {
           <VitrineAvatar
             visual={visual}
             nivel={progresso.nivelAtual()}
+            comprados={comprados}
             aoEscolher={vestir}
             estilo={estilos.vitrine}
           />

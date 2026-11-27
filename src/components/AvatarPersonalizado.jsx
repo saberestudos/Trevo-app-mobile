@@ -1,5 +1,5 @@
 // Desenha o avatar com o que ele está usando, empilhando imagens do mesmo tamanho:
-// corpo → camiseta → pernas (calça ou bermuda) → alto da cabeça (cabelo ou chapéu) → óculos.
+// corpo → camiseta → pernas (calça ou bermuda) → tênis → alto da cabeça (cabelo ou chapéu) → óculos.
 // Com fantasia, ela é o boneco inteiro e aparece sozinha.
 // O palco passa um pouco da caixa (chapéu de mago, asas da abelha); por isso ele
 // não recebe toques, para não tapar botões vizinhos como a seta de voltar.
@@ -13,6 +13,7 @@ import {
   OCULOS,
   PERNAS,
   POSICAO_CAMADAS,
+  TENIS,
 } from '../catalogos/avatar';
 
 function Camada({ imagem }) {
@@ -20,7 +21,8 @@ function Camada({ imagem }) {
 }
 
 export default function AvatarPersonalizado({ visual, estilo }) {
-  const { chapeu, oculos, camiseta, calca, fantasia } = visual;
+  const { chapeu, oculos, camiseta, calca, calcado, fantasia } = visual;
+  const pernas = PERNAS[calca] ? calca : 'jeans';
 
   return (
     <View style={estilo}>
@@ -31,7 +33,8 @@ export default function AvatarPersonalizado({ visual, estilo }) {
           <>
             <Camada imagem={CORPO} />
             {CAMISETAS[camiseta] && <Camada imagem={CAMISETAS[camiseta]} />}
-            <Camada imagem={PERNAS[calca] ?? PERNAS.jeans} />
+            <Camada imagem={PERNAS[pernas]} />
+            {calcado === 'tenis' && <Camada imagem={TENIS[pernas]} />}
             <Camada imagem={CABECAS[chapeu] ?? CABECAS.padrao} />
             {OCULOS[oculos] && <Camada imagem={OCULOS[oculos]} />}
           </>

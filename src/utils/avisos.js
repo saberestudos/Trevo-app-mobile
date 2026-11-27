@@ -14,3 +14,16 @@ export function avisar(titulo, mensagem) {
 export function avisarEmBreve() {
   avisar('Em breve', 'Essa funcionalidade estará disponível em breve.');
 }
+
+// Pergunta "sim ou não" e devolve uma Promise com a resposta (true = confirmou).
+export function confirmar(titulo, mensagem, textoConfirmar = 'Confirmar') {
+  if (Platform.OS === 'web') {
+    return Promise.resolve(globalThis.confirm(`${titulo}\n\n${mensagem}`));
+  }
+  return new Promise((resolve) => {
+    Alert.alert(titulo, mensagem, [
+      { text: 'Cancelar', style: 'cancel', onPress: () => resolve(false) },
+      { text: textoConfirmar, onPress: () => resolve(true) },
+    ]);
+  });
+}

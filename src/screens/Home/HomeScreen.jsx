@@ -1,7 +1,7 @@
 // Tela inicial (Home) do TREVO.
 // Requisito atendido: RF 05 (contador de dias sem apostar).
 // Moedas, troféus e nível são a parte de gamificação, por enquanto com dados simulados.
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -28,14 +28,11 @@ export default function HomeScreen({ navigation }) {
   const [progresso, setProgresso] = useState(null);
   const [visual, setVisual] = useState(null);
 
-  useEffect(() => {
-    ProgressoService.buscar().then(setProgresso);
-  }, []);
-
-  // Recarrega o visual sempre que a Home aparece de novo
-  // (por exemplo, depois de trocar a roupa pela LOJA).
+  // Recarrega sempre que a Home aparece de novo
+  // (por exemplo, depois de trocar a roupa ou de gastar moedas na loja).
   useFocusEffect(
     useCallback(() => {
+      ProgressoService.buscar().then(setProgresso);
       AvatarService.buscar().then(setVisual);
     }, []),
   );

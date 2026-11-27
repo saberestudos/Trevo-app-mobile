@@ -1,11 +1,13 @@
 // Vitrine para personalizar o avatar: abas de categoria e os itens em cartões.
 // Tocar num item já veste o avatar; o item em uso ganha borda verde e um ✓.
 // Itens de nível maior que o da pessoa aparecem apagados, com cadeado.
+// Itens da loja só aparecem depois de comprados.
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { Feather, Ionicons } from '@expo/vector-icons';
 
 import { CATEGORIAS_VITRINE } from '../catalogos/avatar';
+import { chaveDoItem } from '../catalogos/loja';
 import { cores } from '../theme/cores';
 import { sombraPadrao } from '../theme/sombras';
 import { avisar } from '../utils/avisos';
@@ -14,9 +16,19 @@ export function estaBloqueado(item, nivel) {
   return Boolean(item.nivelMinimo) && nivel < item.nivelMinimo;
 }
 
-export default function VitrineAvatar({ visual, nivel, aoEscolher, estilo }) {
+export default function VitrineAvatar({
+  visual,
+  nivel,
+  comprados = [],
+  aoEscolher,
+  estilo,
+}) {
   const [indiceCategoria, setIndiceCategoria] = useState(0);
   const categoria = CATEGORIAS_VITRINE[indiceCategoria];
+  const itensVisiveis = categoria.itens.filter(
+    (item) =>
+      !item.daLoja || comprados.includes(chaveDoItem(categoria.id, item.id)),
+  );
 
   return (
     <View style={[estilos.cartao, estilo]}>
@@ -42,7 +54,7 @@ export default function VitrineAvatar({ visual, nivel, aoEscolher, estilo }) {
       </View>
 
       <View style={estilos.grade}>
-        {categoria.itens.map((item) => {
+        {itensVisiveis.map((item) => {
           const emUso = visual[categoria.id] === item.id;
           const bloqueado = estaBloqueado(item, nivel);
 
@@ -100,11 +112,12 @@ const estilos = StyleSheet.create({
   abas: {
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: 4,
+    gap: 3,
   },
+  // 6 abas cabem na largura da vitrine (6 x 27 + 5 x 3 = 177).
   aba: {
-    width: 32,
-    height: 32,
+    width: 27,
+    height: 27,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
@@ -116,8 +129,8 @@ const estilos = StyleSheet.create({
     opacity: 1,
   },
   iconeAba: {
-    width: 22,
-    height: 20,
+    width: 19,
+    height: 17,
   },
   // 3 colunas fixas (3 x 54 + 2 x 8 = 178): a última linha começa
   // pela esquerda, embaixo do primeiro item.

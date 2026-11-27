@@ -13,6 +13,12 @@ class ProgressoService {
       }, TEMPO_DE_RESPOSTA_SIMULADO);
     });
   }
+
+  // Tira moedas do saldo (ex.: numa compra). Quem chama confere antes se há saldo.
+  gastarMoedas(quantidade) {
+    progressoMock.moedas -= quantidade;
+    return this.buscar();
+  }
 }
 
 export default new ProgressoService();
