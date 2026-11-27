@@ -14,7 +14,7 @@ const estilos = StyleSheet.create({
   },
   meio: {
     flex: 1,
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     gap: 14,
     paddingVertical: 16,
   },
@@ -39,24 +39,21 @@ const estilos = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 10,
   },
-  // Bolinhas dos dias: contorno cinza claro; selecionado fica verde cheio.
   dia: {
     width: 40,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1.5,
-    borderRadius: 20,
-    borderColor: cores.divisor,
-    backgroundColor: cores.fundo,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: cores.primaria,
   },
   diaSelecionado: {
-    borderColor: cores.primaria,
     backgroundColor: cores.primaria,
   },
   siglaDia: {
-    ...fonte(familias.semiNegrito, 12),
-    color: cores.textoSecundario,
+    ...fonte(familias.semiNegrito, 22),
+    color: cores.primaria,
   },
   siglaDiaSelecionado: {
     color: cores.fundo,

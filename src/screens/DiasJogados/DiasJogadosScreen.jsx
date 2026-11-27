@@ -15,15 +15,14 @@ import { validarHorarios } from '../../utils/validacoes';
 import ModalBoasVindas from './ModalBoasVindas';
 import estilos from './styles';
 
-// Siglas de 3 letras: mais fáceis de ler que S, T, Q... (que se repetem).
 const DIAS_DA_SEMANA = [
-  { id: 'segunda', sigla: 'SEG' },
-  { id: 'terca', sigla: 'TER' },
-  { id: 'quarta', sigla: 'QUA' },
-  { id: 'quinta', sigla: 'QUI' },
-  { id: 'sexta', sigla: 'SEX' },
-  { id: 'sabado', sigla: 'SÁB' },
-  { id: 'domingo', sigla: 'DOM' },
+  { id: 'segunda', sigla: 'S' },
+  { id: 'terca', sigla: 'T' },
+  { id: 'quarta', sigla: 'Q' },
+  { id: 'quinta', sigla: 'Q' },
+  { id: 'sexta', sigla: 'S' },
+  { id: 'sabado', sigla: 'S' },
+  { id: 'domingo', sigla: 'D' },
 ];
 
 const FAIXAS_VAZIAS = [
@@ -87,7 +86,7 @@ export default function DiasJogadosScreen({ navigation, route }) {
           aoPedirAjuda={() => setBoasVindasVisivel(true)}
         />
 
-        {/* Título e cartões se espalham pela altura, com espaços iguais. */}
+        {/* Título e cartões juntos, centralizados na altura da tela. */}
         <View style={estilos.meio}>
           <Text style={estilos.titulo}>Quantos dias por semana jogou?</Text>
 
