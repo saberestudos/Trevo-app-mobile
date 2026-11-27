@@ -25,10 +25,14 @@ export default function VitrineAvatar({
 }) {
   const [indiceCategoria, setIndiceCategoria] = useState(0);
   const categoria = CATEGORIAS_VITRINE[indiceCategoria];
-  const itensVisiveis = categoria.itens.filter(
-    (item) =>
-      !item.daLoja || comprados.includes(chaveDoItem(categoria.id, item.id)),
-  );
+  // Ordem: itens liberados, depois os comprados na loja e, por último, os bloqueados.
+  const comprado = (item) =>
+    comprados.includes(chaveDoItem(categoria.id, item.id));
+  const itensVisiveis = [
+    ...categoria.itens.filter((item) => !item.daLoja && !item.nivelMinimo),
+    ...categoria.itens.filter((item) => item.daLoja && comprado(item)),
+    ...categoria.itens.filter((item) => item.nivelMinimo),
+  ];
 
   return (
     <View style={[estilos.cartao, estilo]}>

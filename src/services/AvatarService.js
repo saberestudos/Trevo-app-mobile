@@ -1,12 +1,16 @@
 // Serviço do avatar: o visual (o que ele está vestindo) e os itens comprados na loja.
-// Hoje guarda na memória (some ao recarregar a página);
+// Fica guardado no navegador, para não sumir ao recarregar a página;
 // quando o backend existir, os métodos passam a chamar a API.
 import { visualAvatarMock } from '../mocks/avatar';
+import { lerDados, salvarDados } from '../utils/armazenamento';
+
+const CHAVE_VISUAL = 'trevo:visualAvatar';
+const CHAVE_COMPRADOS = 'trevo:itensComprados';
 
 class AvatarService {
   constructor() {
-    this.visual = { ...visualAvatarMock };
-    this.comprados = [];
+    this.visual = { ...visualAvatarMock, ...lerDados(CHAVE_VISUAL, {}) };
+    this.comprados = lerDados(CHAVE_COMPRADOS, []);
   }
 
   buscar() {
@@ -15,6 +19,7 @@ class AvatarService {
 
   salvar(visual) {
     this.visual = { ...visual };
+    salvarDados(CHAVE_VISUAL, this.visual);
     return Promise.resolve({ ...this.visual });
   }
 
@@ -26,6 +31,7 @@ class AvatarService {
   adicionarComprado(chave) {
     if (!this.comprados.includes(chave)) {
       this.comprados.push(chave);
+      salvarDados(CHAVE_COMPRADOS, this.comprados);
     }
     return Promise.resolve([...this.comprados]);
   }
