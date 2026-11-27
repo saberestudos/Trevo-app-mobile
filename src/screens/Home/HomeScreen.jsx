@@ -8,10 +8,13 @@ import { useFocusEffect } from '@react-navigation/native';
 import AvatarPersonalizado from '../../components/AvatarPersonalizado';
 import BarraNivel from '../../components/BarraNivel';
 import BarraTopo from '../../components/BarraTopo';
+import ModalPresente from '../../components/ModalPresente';
 import TelaJogo from '../../components/TelaJogo';
 import TextoDestaque from '../../components/TextoDestaque';
 import AvatarService from '../../services/AvatarService';
-import ProgressoService from '../../services/ProgressoService';
+import ProgressoService, {
+  MOEDAS_BOAS_VINDAS,
+} from '../../services/ProgressoService';
 import { avisarEmBreve } from '../../utils/avisos';
 import estilos from './styles';
 
@@ -27,12 +30,17 @@ const imagens = {
 export default function HomeScreen({ navigation }) {
   const [progresso, setProgresso] = useState(null);
   const [visual, setVisual] = useState(null);
+  const [presenteVisivel, setPresenteVisivel] = useState(false);
 
   // Recarrega sempre que a Home aparece de novo
   // (por exemplo, depois de trocar a roupa ou de gastar moedas na loja).
+  // Na primeira vez, a pessoa ganha o presente de boas-vindas.
   useFocusEffect(
     useCallback(() => {
-      ProgressoService.buscar().then(setProgresso);
+      ProgressoService.receberBonusBoasVindas().then((ganhouAgora) => {
+        if (ganhouAgora) setPresenteVisivel(true);
+        ProgressoService.buscar().then(setProgresso);
+      });
       AvatarService.buscar().then(setVisual);
     }, []),
   );
@@ -107,6 +115,14 @@ export default function HomeScreen({ navigation }) {
           </View>
         </>
       )}
+
+      <ModalPresente
+        visivel={presenteVisivel}
+        moedas={MOEDAS_BOAS_VINDAS}
+        titulo="Parabéns por chegar até aqui!"
+        texto="Começar já é uma conquista. Use essas moedas na Loja do Avatar."
+        aoFechar={() => setPresenteVisivel(false)}
+      />
     </TelaJogo>
   );
 }
