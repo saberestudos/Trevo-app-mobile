@@ -122,7 +122,7 @@ export default function MinhaContaScreen({ navigation }) {
             texto={progresso.ranking()}
             tamanho={40}
             cor={cores.texto}
-            estilo={estilos.numeroAfastado}
+            estilo={estilos.numero}
           />
         </View>
         <View style={[estilos.estatistica, estilos.estatisticaPequena]}>
@@ -131,7 +131,7 @@ export default function MinhaContaScreen({ navigation }) {
             texto={progresso.amigos}
             tamanho={40}
             cor={cores.texto}
-            estilo={estilos.numeroAfastado}
+            estilo={estilos.numero}
           />
         </View>
       </View>

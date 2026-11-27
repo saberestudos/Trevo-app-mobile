@@ -94,10 +94,13 @@ const estilos = StyleSheet.create({
     width: 22,
     height: 20,
   },
+  // 3 colunas fixas (3 x 54 + 2 x 8 = 178): a última linha começa
+  // pela esquerda, embaixo do primeiro item.
   grade: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    alignSelf: 'center',
+    width: 178,
     gap: 8,
     marginTop: 10,
   },

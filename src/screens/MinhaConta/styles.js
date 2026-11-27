@@ -5,6 +5,11 @@ import { StyleSheet } from 'react-native';
 import { cores } from '../../theme/cores';
 import { sombraPadrao } from '../../theme/sombras';
 
+// Largura do conteúdo (do quadro do avatar até a vitrine); o botão e as
+// estatísticas usam a mesma largura para ficarem alinhados.
+const LARGURA_CONTEUDO = 359;
+const ESPACO_CARTOES = 10;
+
 const estilos = StyleSheet.create({
   cabecalho: {
     flexDirection: 'row',
@@ -53,19 +58,19 @@ const estilos = StyleSheet.create({
   botaoAmigos: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: 346,
+    width: LARGURA_CONTEUDO,
     height: 60,
     marginTop: 13,
     marginLeft: 5,
     paddingLeft: 39,
     paddingTop: 5,
     borderRadius: 10,
-    backgroundColor: cores.cartaoEscuro,
+    backgroundColor: cores.botaoAzul,
     ...sombraPadrao,
   },
   iconeAmigos: {
     position: 'absolute',
-    left: 278,
+    left: 285,
     top: 9,
     width: 45,
     height: 41,
@@ -75,37 +80,33 @@ const estilos = StyleSheet.create({
   },
   linhaEstatisticas: {
     flexDirection: 'row',
-    gap: 8,
-    marginTop: 2,
-    marginLeft: 10,
+    gap: ESPACO_CARTOES,
+    width: LARGURA_CONTEUDO,
+    marginTop: 8,
+    marginLeft: 5,
   },
   linhaGrande: {
-    gap: 17,
-    marginTop: 13,
-    marginLeft: 0,
+    marginTop: ESPACO_CARTOES,
   },
   estatistica: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
     height: 60,
     borderRadius: 10,
     backgroundColor: cores.fundo,
     ...sombraPadrao,
   },
+  // 3 cartões na primeira linha e 2 na segunda, ocupando a mesma largura.
   estatisticaPequena: {
-    width: 112,
-    paddingLeft: 12,
+    width: (LARGURA_CONTEUDO - 2 * ESPACO_CARTOES) / 3,
   },
   estatisticaGrande: {
-    width: 176,
-    paddingLeft: 12,
+    width: (LARGURA_CONTEUDO - ESPACO_CARTOES) / 2,
   },
   numero: {
     marginTop: 6,
-  },
-  numeroAfastado: {
-    marginTop: 6,
-    marginLeft: 8,
   },
   iconeTrofeu: {
     width: 40,
@@ -122,17 +123,13 @@ const estilos = StyleSheet.create({
   iconeCalendario: {
     width: 35,
     height: 38,
-    marginLeft: 1,
   },
   textoDias: {
-    marginLeft: 8,
     marginTop: 4,
   },
   iconeGrafico: {
     width: 36,
     height: 31,
-    marginLeft: -2,
-    marginRight: 6,
   },
 });
 

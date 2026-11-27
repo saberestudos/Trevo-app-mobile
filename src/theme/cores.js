@@ -28,5 +28,6 @@ export const cores = {
   facebook: '#3C5A99',
   cartaoOpcoes: '#FF9C00',
   botaoSair: '#8E0000',
+  botaoAzul: '#1565C0',
   contornoBotao: '#000000',
 };

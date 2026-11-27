@@ -53,12 +53,13 @@ export const VISUAL_PADRAO = {
 };
 
 // As imagens têm sobra em volta (para o chapéu de mago e as asas da abelha).
-// Esta posição faz o boneco sem chapéu ocupar a caixa do avatar inteira.
+// Esta posição encaixa essa sobra inteira dentro da caixa do avatar,
+// para nenhum item passar por cima do resto da tela.
 export const POSICAO_CAMADAS = {
-  left: '-10.98%',
-  top: '-14.38%',
-  width: '121.95%',
-  height: '114.54%',
+  left: '-5.04%',
+  top: '-0.87%',
+  width: '107.91%',
+  height: '101.30%',
 };
 
 const miniatura = {
