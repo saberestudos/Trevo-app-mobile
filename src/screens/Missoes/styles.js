@@ -74,6 +74,26 @@ const estilos = StyleSheet.create({
     height: 24,
     marginLeft: 2,
   },
+  rodapeCartao: {
+    alignItems: 'center',
+    gap: 10,
+  },
+  // Aviso do quiz: vermelho enquanto não respondeu, verde depois.
+  aviso: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    backgroundColor: cores.quizErrado,
+  },
+  avisoOk: {
+    backgroundColor: cores.primaria,
+  },
+  textoAviso: {
+    marginTop: 3,
+  },
   botaoQuiz: {
     alignSelf: 'center',
     width: 263,

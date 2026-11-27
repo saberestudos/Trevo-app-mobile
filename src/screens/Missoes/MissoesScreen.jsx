@@ -147,13 +147,36 @@ export default function MissoesScreen({ navigation }) {
           ))}
         </View>
 
-        <Pressable
-          style={estilos.botaoQuiz}
-          onPress={() => navigation.navigate('Quiz')}
-          accessibilityRole="button"
-        >
-          <TextoDestaque texto="RESPONDER QUIZ" tamanho={36} />
-        </Pressable>
+        <View style={estilos.rodapeCartao}>
+          {/* Mostra se o quiz de hoje já foi respondido. */}
+          <View
+            style={[estilos.aviso, quizFeito && estilos.avisoOk]}
+            accessibilityLiveRegion="polite"
+          >
+            <Feather
+              name={quizFeito ? 'check-circle' : 'alert-circle'}
+              size={18}
+              color={cores.fundo}
+            />
+            <TextoDestaque
+              texto={
+                quizFeito
+                  ? 'QUIZ RESPONDIDO!'
+                  : 'VOCÊ AINDA NÃO RESPONDEU O QUIZ'
+              }
+              tamanho={18}
+              estilo={estilos.textoAviso}
+            />
+          </View>
+
+          <Pressable
+            style={estilos.botaoQuiz}
+            onPress={() => navigation.navigate('Quiz')}
+            accessibilityRole="button"
+          >
+            <TextoDestaque texto="RESPONDER QUIZ" tamanho={36} />
+          </Pressable>
+        </View>
       </View>
 
       <Pressable
