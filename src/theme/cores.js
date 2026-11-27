@@ -34,5 +34,8 @@ export const cores = {
   bordaBotaoVoltar: 'rgba(255, 255, 255, 0.35)',
   linhaSecao: 'rgba(255, 255, 255, 0.35)',
   fundoCadeado: 'rgba(0, 0, 0, 0.55)',
+  ouroInicio: '#FFE082',
+  ouroFim: '#F5A623',
+  textoClaro: 'rgba(255, 255, 255, 0.85)',
   contornoBotao: '#000000',
 };

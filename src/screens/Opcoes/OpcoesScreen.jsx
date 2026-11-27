@@ -56,7 +56,7 @@ export default function OpcoesScreen({ navigation }) {
       texto: 'PLANO PREMIUM',
       espaco: 23.3,
       topo: 352,
-      aoPressionar: avisarEmBreve,
+      aoPressionar: () => navigation.navigate('Premium'),
     },
   ];
 
