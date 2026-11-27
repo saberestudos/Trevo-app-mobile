@@ -11,11 +11,16 @@ const LARGURA_CONTEUDO = 359;
 const ESPACO_CARTOES = 10;
 
 const estilos = StyleSheet.create({
+  corpo: {
+    flex: 1,
+    justifyContent: 'space-evenly',
+    gap: 12,
+    paddingBottom: 12,
+  },
   cabecalho: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    marginTop: 40,
     paddingLeft: 10,
   },
   titulo: {
@@ -23,7 +28,6 @@ const estilos = StyleSheet.create({
   },
   areaAvatar: {
     height: 308,
-    marginTop: 6,
   },
   painelAvatar: {
     position: 'absolute',
@@ -60,7 +64,6 @@ const estilos = StyleSheet.create({
     alignItems: 'center',
     width: LARGURA_CONTEUDO,
     height: 60,
-    marginTop: 13,
     marginLeft: 5,
     paddingLeft: 39,
     paddingTop: 5,
@@ -76,7 +79,6 @@ const estilos = StyleSheet.create({
     height: 41,
   },
   tituloEstatisticas: {
-    marginTop: 16,
     marginLeft: 5,
     width: LARGURA_CONTEUDO,
   },

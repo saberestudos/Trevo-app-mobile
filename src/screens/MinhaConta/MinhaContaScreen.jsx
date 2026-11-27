@@ -68,90 +68,101 @@ export default function MinhaContaScreen({ navigation }) {
         navigation={navigation}
       />
 
-      <View style={estilos.cabecalho}>
-        <BotaoVoltar aoPressionar={() => voltar(navigation)} />
-        <TextoDestaque
-          texto="MINHA CONTA"
-          tamanho={34}
-          estilo={estilos.titulo}
-        />
-      </View>
-
-      <View style={estilos.areaAvatar}>
-        <View style={estilos.painelAvatar}>
-          <AvatarPersonalizado visual={visual} estilo={estilos.avatar} />
-        </View>
-
-        <TextoDestaque
-          texto={'PERSONALIZE O\nSEU AVATAR'}
-          tamanho={32}
-          centralizado
-          estilo={estilos.tituloPersonalizar}
-        />
-
-        <VitrineAvatar
-          visual={visual}
-          nivel={progresso.nivelAtual()}
-          aoEscolher={vestir}
-          estilo={estilos.vitrine}
-        />
-      </View>
-
-      <Pressable style={estilos.botaoAmigos} onPress={avisarEmBreve}>
-        <TextoDestaque texto="ADICIONAR AMIGOS" tamanho={36} />
-        <Image source={imagens.adicionarAmigos} style={estilos.iconeAmigos} />
-      </Pressable>
-
-      <TituloSecao texto="ESTATÍSTICAS" estilo={estilos.tituloEstatisticas} />
-
-      <View style={estilos.linhaEstatisticas}>
-        <View style={[estilos.estatistica, estilos.estatisticaPequena]}>
-          <Image source={imagens.trofeu} style={estilos.iconeTrofeu} />
+      {/* As seções se espalham pela altura da tela, com espaços iguais entre elas. */}
+      <View style={estilos.corpo}>
+        <View style={estilos.cabecalho}>
+          <BotaoVoltar aoPressionar={() => voltar(navigation)} />
           <TextoDestaque
-            texto={progresso.trofeus}
-            tamanho={40}
-            cor={cores.texto}
-            estilo={estilos.numero}
+            texto="MINHA CONTA"
+            tamanho={34}
+            estilo={estilos.titulo}
           />
         </View>
-        <View style={[estilos.estatistica, estilos.estatisticaPequena]}>
-          <Image source={imagens.podio} style={estilos.iconePodio} />
-          <TextoDestaque
-            texto={progresso.ranking()}
-            tamanho={40}
-            cor={cores.texto}
-            estilo={estilos.numero}
-          />
-        </View>
-        <View style={[estilos.estatistica, estilos.estatisticaPequena]}>
-          <Image source={imagens.amigo} style={estilos.iconeAmigo} />
-          <TextoDestaque
-            texto={progresso.amigos}
-            tamanho={40}
-            cor={cores.texto}
-            estilo={estilos.numero}
-          />
-        </View>
-      </View>
 
-      <View style={[estilos.linhaEstatisticas, estilos.linhaGrande]}>
-        <View style={[estilos.estatistica, estilos.estatisticaGrande]}>
-          <Image source={imagens.calendario} style={estilos.iconeCalendario} />
+        <View style={estilos.areaAvatar}>
+          <View style={estilos.painelAvatar}>
+            <AvatarPersonalizado visual={visual} estilo={estilos.avatar} />
+          </View>
+
           <TextoDestaque
-            texto={`${textoComPlural(progresso.diasSemApostar(), 'DIA', 'DIAS')} SEM\nAPOSTAR`}
-            tamanho={24}
-            cor={cores.texto}
-            estilo={estilos.textoDias}
+            texto={'PERSONALIZE O\nSEU AVATAR'}
+            tamanho={32}
+            centralizado
+            estilo={estilos.tituloPersonalizar}
+          />
+
+          <VitrineAvatar
+            visual={visual}
+            nivel={progresso.nivelAtual()}
+            aoEscolher={vestir}
+            estilo={estilos.vitrine}
           />
         </View>
-        <View style={[estilos.estatistica, estilos.estatisticaGrande]}>
-          <Image source={imagens.grafico} style={estilos.iconeGrafico} />
-          <TextoDestaque
-            texto={textoComPlural(progresso.ativos, 'ATIVO', 'ATIVOS')}
-            tamanho={40}
-            cor={cores.texto}
-            estilo={estilos.numero}
+
+        <Pressable style={estilos.botaoAmigos} onPress={avisarEmBreve}>
+          <TextoDestaque texto="ADICIONAR AMIGOS" tamanho={36} />
+          <Image source={imagens.adicionarAmigos} style={estilos.iconeAmigos} />
+        </Pressable>
+
+        <View>
+          <TituloSecao
+            texto="ESTATÍSTICAS"
+            estilo={estilos.tituloEstatisticas}
           />
+
+          <View style={estilos.linhaEstatisticas}>
+            <View style={[estilos.estatistica, estilos.estatisticaPequena]}>
+              <Image source={imagens.trofeu} style={estilos.iconeTrofeu} />
+              <TextoDestaque
+                texto={progresso.trofeus}
+                tamanho={40}
+                cor={cores.texto}
+                estilo={estilos.numero}
+              />
+            </View>
+            <View style={[estilos.estatistica, estilos.estatisticaPequena]}>
+              <Image source={imagens.podio} style={estilos.iconePodio} />
+              <TextoDestaque
+                texto={progresso.ranking()}
+                tamanho={40}
+                cor={cores.texto}
+                estilo={estilos.numero}
+              />
+            </View>
+            <View style={[estilos.estatistica, estilos.estatisticaPequena]}>
+              <Image source={imagens.amigo} style={estilos.iconeAmigo} />
+              <TextoDestaque
+                texto={progresso.amigos}
+                tamanho={40}
+                cor={cores.texto}
+                estilo={estilos.numero}
+              />
+            </View>
+          </View>
+
+          <View style={[estilos.linhaEstatisticas, estilos.linhaGrande]}>
+            <View style={[estilos.estatistica, estilos.estatisticaGrande]}>
+              <Image
+                source={imagens.calendario}
+                style={estilos.iconeCalendario}
+              />
+              <TextoDestaque
+                texto={`${textoComPlural(progresso.diasSemApostar(), 'DIA', 'DIAS')} SEM\nAPOSTAR`}
+                tamanho={24}
+                cor={cores.texto}
+                estilo={estilos.textoDias}
+              />
+            </View>
+            <View style={[estilos.estatistica, estilos.estatisticaGrande]}>
+              <Image source={imagens.grafico} style={estilos.iconeGrafico} />
+              <TextoDestaque
+                texto={textoComPlural(progresso.ativos, 'ATIVO', 'ATIVOS')}
+                tamanho={40}
+                cor={cores.texto}
+                estilo={estilos.numero}
+              />
+            </View>
+          </View>
         </View>
       </View>
     </TelaJogo>
