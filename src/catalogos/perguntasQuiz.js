@@ -1,5 +1,7 @@
 // Perguntas do quiz de educação financeira.
 // "correta" é a posição da alternativa certa (0 = A, 1 = B, 2 = C, 3 = D).
+// Conceitos básicos de educação financeira, como no Caderno de Educação
+// Financeira do Banco Central (orçamento, reserva, juros, inflação e crédito).
 export const PERGUNTAS_QUIZ = [
   {
     pergunta: 'O que é educação financeira?',
@@ -12,44 +14,54 @@ export const PERGUNTAS_QUIZ = [
     correta: 1,
   },
   {
-    pergunta: 'Nas apostas online, quem sempre ganha?',
+    pergunta: 'Para que serve um orçamento pessoal?',
     alternativas: [
-      'Quem aposta todo dia',
-      'Quem aposta valores altos',
-      'A casa de apostas',
-      'Quem tem sorte',
+      'Para gastar sem precisar anotar nada',
+      'Para pedir mais limite no cartão',
+      'Para comparar o que você ganha com o que você gasta',
+      'Para saber quanto o banco cobra de tarifa',
     ],
     correta: 2,
   },
   {
     pergunta: 'O que é uma reserva de emergência?',
     alternativas: [
-      'Dinheiro guardado para imprevistos',
-      'Dinheiro para apostar no fim de semana',
-      'Um empréstimo do banco',
-      'O limite do cartão de crédito',
+      'Dinheiro guardado para cobrir imprevistos',
+      'O limite do cheque especial',
+      'Um empréstimo feito no banco',
+      'Dinheiro separado para as férias',
     ],
     correta: 0,
   },
   {
-    pergunta: 'Qual é uma boa atitude quando bate a vontade de apostar?',
+    pergunta: 'Nos juros compostos, os juros são calculados sobre o quê?',
     alternativas: [
-      'Apostar só um pouquinho',
-      'Pedir dinheiro emprestado',
-      'Esconder de todo mundo',
-      'Conversar com alguém de confiança',
+      'Só sobre o valor inicial',
+      'Sobre o valor inicial mais os juros já acumulados',
+      'Só sobre a última parcela',
+      'Sobre um valor fixo definido pelo governo',
+    ],
+    correta: 1,
+  },
+  {
+    pergunta: 'O que acontece com o seu dinheiro quando a inflação sobe?',
+    alternativas: [
+      'Ele passa a comprar mais coisas',
+      'Ele rende juros sozinho',
+      'Nada muda no seu dia a dia',
+      'Ele perde poder de compra',
     ],
     correta: 3,
   },
   {
-    pergunta: 'Para que serve um orçamento mensal?',
+    pergunta: 'Pagar só o valor mínimo da fatura do cartão faz o quê?',
     alternativas: [
-      'Gastar sem pensar',
-      'Planejar quanto entra e quanto sai',
-      'Saber quanto dá para apostar',
-      'Esconder as dívidas',
+      'O restante vai para o rotativo, com juros muito altos',
+      'A dívida é perdoada no mês seguinte',
+      'O limite do cartão aumenta',
+      'Você não paga juros sobre o restante',
     ],
-    correta: 1,
+    correta: 0,
   },
 ];
 

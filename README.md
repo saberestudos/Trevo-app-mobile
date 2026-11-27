@@ -29,7 +29,7 @@ Esta é a versão MVP do **front-end**. Os dados ainda são simulados (mock) e n
 | Loja do Avatar (compra de itens com moedas) | RF 09 |
 | Pacote Premium (benefícios; pagamento ainda não existe) | — |
 | Missões Diárias (marcar missões e receber troféus e moedas) | — |
-| Quiz (5 perguntas, 4 vidas por dia, pontos para subir de nível) | — |
+| Quiz (6 perguntas de educação financeira, 4 vidas por dia, pontos para subir de nível) | — |
 | Trilha do Saber (conteúdos de educação financeira → Quiz) | — |
 | Opções (engrenagem do topo: Minha Conta e Sair; as outras opções mostram "Em breve") | — |
 
