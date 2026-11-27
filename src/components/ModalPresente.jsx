@@ -30,7 +30,7 @@ export default function ModalPresente({
             <View style={estilos.ganho}>
               <TextoDestaque
                 texto={`+${moedas}`}
-                tamanho={40}
+                tamanho={72}
                 cor={cores.primaria}
               />
             </View>
@@ -65,12 +65,14 @@ const estilos = StyleSheet.create({
     borderRadius: 16,
     backgroundColor: cores.fundo,
   },
+  // Moeda e "+50" lado a lado.
   areaMoeda: {
     width: '100%',
     height: 160,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
+    gap: 14,
     borderRadius: 12,
     backgroundColor: cores.fundoIlustracao,
   },
@@ -79,7 +81,7 @@ const estilos = StyleSheet.create({
     height: 90,
   },
   ganho: {
-    marginTop: 2,
+    marginTop: 8,
   },
   titulo: {
     marginTop: 20,
